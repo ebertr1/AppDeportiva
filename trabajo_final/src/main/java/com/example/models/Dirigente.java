@@ -1,16 +1,24 @@
 package com.example.models;
 
+import java.util.Date;
+
+import com.example.models.enumerador.Genero;
+import com.example.models.enumerador.TipoIdentificacion;
+
 public class Dirigente extends Persona {
     private Integer aniosExperiencia;
+
+
+    public Dirigente(Integer id, String nombre, String apellido, TipoIdentificacion tipo, String identificacion,
+            Date fechaNacimiento, String celular, Genero genero, Integer aniosExperiencia) {
+        super(id, nombre, apellido, tipo, identificacion, fechaNacimiento, celular, genero);
+        this.aniosExperiencia = aniosExperiencia;
+    }
 
     public Dirigente() {
     }
 
-    public Dirigente(Integer id, String nombre, String apellido, String genero, String tipoIdentificacion, String numeroIdentificacion, Integer aniosExperiencia) {
-        super(id, nombre, apellido, genero, tipoIdentificacion, numeroIdentificacion);
-        this.aniosExperiencia = aniosExperiencia;
-    }
-
+    
     public Integer getAniosExperiencia() {
         return aniosExperiencia;
     }

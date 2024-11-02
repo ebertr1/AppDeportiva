@@ -1,4 +1,5 @@
 package com.example.models;
+import java.sql.Time;
 
 public class Encuentro {
     private Integer id;

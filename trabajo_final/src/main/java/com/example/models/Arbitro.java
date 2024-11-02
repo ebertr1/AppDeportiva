@@ -1,16 +1,21 @@
 package com.example.models;
 
+import java.util.Date;
+
+import com.example.models.enumerador.Genero;
+import com.example.models.enumerador.TipoIdentificacion;
+
 public class Arbitro extends Persona {
     private String asociacion;
 
-    public Arbitro() {
-    }
-
-    public Arbitro(Integer id, String nombre, String apellido, String genero, String tipoIdentificacion, String numeroIdentificacion, String asociacion) {
-        super(id, nombre, apellido, genero, tipoIdentificacion, numeroIdentificacion);
+    public Arbitro(Integer id, String nombre, String apellido, TipoIdentificacion tipo, String identificacion,
+            Date fechaNacimiento, String celular, Genero genero, String asociacion) {
+        super(id, nombre, apellido, tipo, identificacion, fechaNacimiento, celular, genero);
         this.asociacion = asociacion;
     }
 
+    public Arbitro() {
+    }
 
     public String getAsociacion() {
         return asociacion;

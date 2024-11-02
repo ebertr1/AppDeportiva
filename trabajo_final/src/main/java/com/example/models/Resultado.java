@@ -4,15 +4,15 @@ public class Resultado {
     private Integer id;
     private String equipoGanador;
     private String equipoPerdedor;
-    private Intege golesEquipo1;
-    private Intege golesEquipo2;
+    private Integer golesEquipo1;
+    private Integer golesEquipo2;
     private Boolean empate;
     private Integer puntosEncuentro;
 
     public Resultado() {
     }
 
-    public Resultado(Integer id, String equipoGanador, String equipoPerdedor, Intege golesEquipo1, Intege golesEquipo2, Boolean empate, Integer puntosEncuentro) {
+    public Resultado(Integer id, String equipoGanador, String equipoPerdedor, Integer golesEquipo1, Integer golesEquipo2, Boolean empate, Integer puntosEncuentro) {
         this.id = id;
         this.equipoGanador = equipoGanador;
         this.equipoPerdedor = equipoPerdedor;
@@ -46,19 +46,19 @@ public class Resultado {
         this.equipoPerdedor = equipoPerdedor;
     }
 
-    public Intege getGolesEquipo1() {
+    public Integer getGolesEquipo1() {
         return golesEquipo1;
     }
 
-    public void setGolesEquipo1(Intege golesEquipo1) {
+    public void setGolesEquipo1(Integer golesEquipo1) {
         this.golesEquipo1 = golesEquipo1;
     }
 
-    public Intege getGolesEquipo2() {
+    public Integer getGolesEquipo2() {
         return golesEquipo2;
     }
 
-    public void setGolesEquipo2(Intege golesEquipo2) {
+    public void setGolesEquipo2(Integer golesEquipo2) {
         this.golesEquipo2 = golesEquipo2;
     }
 

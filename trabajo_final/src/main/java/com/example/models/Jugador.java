@@ -1,14 +1,19 @@
 package com.example.models;
 
+import java.util.Date;
+
+import com.example.models.enumerador.Genero;
+import com.example.models.enumerador.TipoIdentificacion;
+
 public class Jugador extends Persona {
     private Integer numCamiseta;
 
     public Jugador() {
     }
 
-    public Jugador(Integer id, String nombre, String apellido, String genero, String tipoIdentificacion, String numeroIdentificacion, Integer numCamiseta) {
-        super(id, nombre, apellido, genero, tipoIdentificacion, numeroIdentificacion);
-        this.numCamiseta = numCamiseta;
+    public Jugador(Integer id, String nombre, String apellido, TipoIdentificacion tipo, String identificacion,
+            Date fechaNacimiento, String celular, Genero genero) {
+        super(id, nombre, apellido, tipo, identificacion, fechaNacimiento, celular, genero);
     }
 
     public Integer getNumCamiseta() {
