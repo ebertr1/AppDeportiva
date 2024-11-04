@@ -1,27 +1,24 @@
-package controller.Dao.implement;
+package com.example.controller.dao.implement;
 
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.Scanner;
+
+import com.example.controller.tda.list.LinkedList;
 import com.google.gson.Gson;
-import controller.tda.list.LinkedList;
 
-public class AdapterDao<T> implements InterfazDao<T> {
-    private Class<T> clazz;
+public class AdapterDao <T> implements InterfazDao<T> {
+    private Class clazz;
     private Gson g;
+    public static String URL = "media/";
 
-    public static String filePath = "src/main/java/Data/";
-    public AdapterDao(Class<T> clazz) {
+    public AdapterDao(Class clazz){
         this.clazz = clazz;
         this.g = new Gson();
     }
 
-    public T get(Integer id) throws Exception {
-        return null; // Implementar según sea necesario
-    }
-
-    public LinkedList<T> listAll() {
+    public LinkedList listAll() {
         LinkedList<T> list = new LinkedList<>();
         try {
             String data = readFile();
@@ -32,26 +29,33 @@ public class AdapterDao<T> implements InterfazDao<T> {
         }
         return list;
     }
-
+    
+    public T get(Integer id) throws Exception {
+        LinkedList<T> list = listAll();
+        if (!list.isEmpty()) {
+            T [] matriz = list.toArray();
+            return matriz[id - 1];
+            
+        }
+        return null;
+    }
+    
     public void merge(T object, Integer index) throws Exception {
-        // Implementación pendiente
+        LinkedList<T> list = listAll();
+        list.update(object, index);
+        String info = g.toJson(list.toArray());
+        saveFile(info);
     }
 
     public void persist(T object) throws Exception {
-        System.out.println("Persisting object: " + object);
         LinkedList<T> list = listAll();
-        if (list == null) {
-            System.out.println("La lista es null. Asegúrate de que el archivo JSON se esté leyendo correctamente.");
-            return;
-        }
         list.add(object);
         String info = g.toJson(list.toArray());
-        System.out.println("Escribiendo datos al archivo: " + info);
         saveFile(info);
     }
 
     private String readFile() throws Exception {
-        File file = new File(filePath + clazz.getSimpleName() + ".json");
+        File file = new File(URL + clazz.getSimpleName() + ".json");
 
         if (!file.exists()) {
             System.out.println("El archivo no existe, creando uno nuevo: " + file.getAbsolutePath());
@@ -67,8 +71,9 @@ public class AdapterDao<T> implements InterfazDao<T> {
         return sb.toString().trim();
     }
 
+
     private void saveFile(String data) throws Exception {
-        File file = new File(filePath + clazz.getSimpleName() + ".json");
+        File file = new File(URL + clazz.getSimpleName() + ".json");
         file.getParentFile().mkdirs();
 
         if (!file.exists()) {
