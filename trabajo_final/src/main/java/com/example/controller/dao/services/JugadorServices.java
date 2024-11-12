@@ -11,16 +11,20 @@ public class JugadorServices {
         obj = new JugadorDao();
     }
 
-    public Boolean save() throws Exception {
+    public Boolean save() throws Exception{
         return obj.save();
     }
-
-    public Boolean update() throws Exception {
+    
+    public Boolean update() throws Exception{
         return obj.update();
     }
 
-    public LinkedList listAll() {
-        return obj.getListAll();
+    public Boolean delete(Integer id) throws Exception {
+        return obj.delete(id);
+    }
+    
+    public LinkedList listAll(){
+        return obj.getlistAll();
     }
 
     public Jugador getJugador() {
@@ -29,5 +33,9 @@ public class JugadorServices {
 
     public void setJugador(Jugador jugador) {
         obj.setJugador(jugador);
+    }
+
+    public Jugador get(Integer id) throws Exception {
+        return obj.get(id);
     }
 }

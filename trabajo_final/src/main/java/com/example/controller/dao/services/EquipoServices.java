@@ -11,16 +11,20 @@ public class EquipoServices {
         obj = new EquipoDao();
     }
 
-    public Boolean save() throws Exception {
+    public Boolean save() throws Exception{
         return obj.save();
     }
-
-    public Boolean update() throws Exception {
+    
+    public Boolean update() throws Exception{
         return obj.update();
     }
 
-    public LinkedList listAll() {
-        return obj.getListAll();
+    public Boolean delete(Integer id) throws Exception {
+        return obj.delete(id);
+    }
+    
+    public LinkedList listAll(){
+        return obj.getlistAll();
     }
 
     public Equipo getEquipo() {
@@ -29,6 +33,10 @@ public class EquipoServices {
 
     public void setEquipo(Equipo equipo) {
         obj.setEquipo(equipo);
+    }
+
+    public Equipo get(Integer id) throws Exception {
+        return obj.get(id);
     }
     
 }

@@ -11,16 +11,20 @@ public class ResultadoServices {
         obj = new ResultadoDao();
     }
 
-    public Boolean save() throws Exception {
+    public Boolean save() throws Exception{
         return obj.save();
     }
-
-    public Boolean update() throws Exception {
+    
+    public Boolean update() throws Exception{
         return obj.update();
     }
 
-    public LinkedList listAll() {
-        return obj.getListAll();
+    public Boolean delete(Integer id) throws Exception {
+        return obj.delete(id);
+    }
+    
+    public LinkedList listAll(){
+        return obj.getlistAll();
     }
 
     public Resultado getResultado() {
@@ -29,5 +33,9 @@ public class ResultadoServices {
 
     public void setResultado(Resultado resultado) {
         obj.setResultado(resultado);
+    }
+
+    public Resultado get(Integer id) throws Exception {
+        return obj.get(id);
     }
 }

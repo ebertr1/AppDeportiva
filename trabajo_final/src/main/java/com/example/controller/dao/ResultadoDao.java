@@ -24,25 +24,44 @@ public class ResultadoDao extends AdapterDao<Resultado>{
         this.resultado = resultado;
     }
 
-    public LinkedList getListAll() {
-        if(listAll == null){
+    public LinkedList<Resultado> getlistAll() {
+        if (listAll.isEmpty()) {
             this.listAll = listAll();
         }
         return listAll;
     }
 
     public Boolean save() throws Exception {
-        Integer id = getListAll().getSize()+1;
+        Integer id = getlistAll().getSize() + 1;
         resultado.setId(id);
         this.persist(this.resultado);
-        this.listAll = listAll();
+        this.listAll = getlistAll();
         return true;
     }
 
-
     public Boolean update() throws Exception {
-        this.merge(getResultado(), getResultado().getId()-1);
-        this.listAll = listAll();
-        return true;
+        try {
+            this.merge(getResultado(), getResultado().getId() - 1);
+            this.listAll = getlistAll();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public Boolean delete(Integer id) throws Exception {
+        LinkedList<Resultado> list = getlistAll();
+        Resultado resultado = get(id);
+        if (resultado != null) {
+            list.remove(resultado);
+            String info = g.toJson(list.toArray());
+            saveFile(info);
+            this.listAll = list;
+            return true;
+        } else {
+            System.out.println("Persona con id " + id + " no encontrada.");
+            return false;
+        }
     }
 }

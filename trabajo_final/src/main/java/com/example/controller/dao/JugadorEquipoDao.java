@@ -23,25 +23,44 @@ public class JugadorEquipoDao extends AdapterDao<JugadorEquipo>{
         this.jugadorEquipo = jugadorEquipo;
     }
 
-    public LinkedList getListAll() {
-        if(listAll == null){
+    public LinkedList<JugadorEquipo> getlistAll() {
+        if (listAll.isEmpty()) {
             this.listAll = listAll();
         }
         return listAll;
     }
 
     public Boolean save() throws Exception {
-        Integer id = getListAll().getSize()+1;
+        Integer id = getlistAll().getSize() + 1;
         jugadorEquipo.setId(id);
         this.persist(this.jugadorEquipo);
-        this.listAll = listAll();
+        this.listAll = getlistAll();
         return true;
     }
 
-
     public Boolean update() throws Exception {
-        this.merge(getJugadorEquipo(), getJugadorEquipo().getId()-1);
-        this.listAll = listAll();
-        return true;
+        try {
+            this.merge(getJugadorEquipo(), getJugadorEquipo().getId() - 1);
+            this.listAll = getlistAll();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public Boolean delete(Integer id) throws Exception {
+        LinkedList<JugadorEquipo> list = getlistAll();
+        JugadorEquipo jugadorEquipo = get(id);
+        if (jugadorEquipo != null) {
+            list.remove(jugadorEquipo);
+            String info = g.toJson(list.toArray());
+            saveFile(info);
+            this.listAll = list;
+            return true;
+        } else {
+            System.out.println("Persona con id " + id + " no encontrada.");
+            return false;
+        }
     }
 }
