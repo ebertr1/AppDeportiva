@@ -3,13 +3,16 @@ package com.example.controller.dao;
 import com.example.controller.dao.implement.AdapterDao;
 import com.example.controller.tda.list.LinkedList;
 import com.example.models.Jugador;
+import com.example.models.enumerador.Genero;
+import com.example.models.enumerador.TipoIdentificacion;
 
 public class JugadorDao extends AdapterDao<Jugador>{
     private Jugador jugador;
-    private LinkedList listAll;
+    private LinkedList<Jugador> listAll;
 
     public JugadorDao() {
         super(Jugador.class);
+        this.listAll = new LinkedList<>();
     }
 
     public Jugador getJugador() {
@@ -36,6 +39,22 @@ public class JugadorDao extends AdapterDao<Jugador>{
         this.persist(this.jugador);
         this.listAll = getlistAll();
         return true;
+    }
+
+        public TipoIdentificacion getTipoIdentificacion(String tipo) {
+        return TipoIdentificacion.valueOf(tipo);
+    }
+    
+    public TipoIdentificacion[] getTipos() {
+        return TipoIdentificacion.values();
+    }
+
+    public Genero getTipoGenero(String genero) {
+        return Genero.valueOf(genero);
+    }
+    
+    public Genero[] getGenero() {
+        return Genero.values();
     }
 
     public Boolean update() throws Exception {

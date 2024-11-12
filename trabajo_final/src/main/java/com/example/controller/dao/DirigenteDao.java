@@ -3,13 +3,17 @@ package com.example.controller.dao;
 import com.example.controller.dao.implement.AdapterDao;
 import com.example.controller.tda.list.LinkedList;
 import com.example.models.Dirigente;
+import com.example.models.enumerador.Genero;
+import com.example.models.enumerador.TipoIdentificacion;
 
 public class DirigenteDao extends AdapterDao<Dirigente> {
     private Dirigente dirigente;
-    private LinkedList listAll;
+    private LinkedList<Dirigente> listAll;
+    // private LinkedList<Persona> listAll;
 
     public DirigenteDao() {
         super(Dirigente.class);
+        this.listAll = new LinkedList<>();
     }
 
     public Dirigente getDirigente() {
@@ -36,6 +40,23 @@ public class DirigenteDao extends AdapterDao<Dirigente> {
         this.persist(this.dirigente);
         this.listAll = getlistAll();
         return true;
+    }
+
+    public TipoIdentificacion getTipoIdentificacion(String tipo) {
+        return TipoIdentificacion.valueOf(tipo);
+    }
+    
+    public TipoIdentificacion[] getTipos() {
+        return TipoIdentificacion.values();
+    }
+
+    
+    public Genero getTipoGenero(String genero) {
+        return Genero.valueOf(genero);
+    }
+    
+    public Genero[] getGenero() {
+        return Genero.values();
     }
 
     public Boolean update() throws Exception {

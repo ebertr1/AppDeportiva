@@ -17,7 +17,6 @@ import com.example.controller.dao.services.EquipoServices;
 import com.google.gson.Gson;
 
 @Path("equipo")
-
 public class EquipoApi {
         @Path("/list")
         @GET

@@ -16,6 +16,7 @@ import javax.ws.rs.core.Response.Status;
 import com.example.controller.dao.services.JugadorEquipoServices;
 import com.google.gson.Gson;
 
+@Path("jugadorEquipo")
 public class JugadorEquipoApi {
     @Path("/list")
     @GET

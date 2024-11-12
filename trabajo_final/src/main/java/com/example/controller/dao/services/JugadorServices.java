@@ -3,6 +3,8 @@ package com.example.controller.dao.services;
 import com.example.controller.dao.JugadorDao;
 import com.example.controller.tda.list.LinkedList;
 import com.example.models.Jugador;
+import com.example.models.enumerador.Genero;
+import com.example.models.enumerador.TipoIdentificacion;
 
 public class JugadorServices {
     private JugadorDao obj;
@@ -37,5 +39,21 @@ public class JugadorServices {
 
     public Jugador get(Integer id) throws Exception {
         return obj.get(id);
+    }
+
+        public TipoIdentificacion getTipoIdentificacion(String tipo) {
+        return obj.getTipoIdentificacion(tipo);
+    }
+
+    public TipoIdentificacion[] getTipos() {
+        return obj.getTipos();
+    }
+
+    public Genero getTipoGenero(String genero) {
+        return obj.getTipoGenero(genero);
+    }
+
+    public Genero[] getGenero() {
+        return obj.getGenero();
     }
 }

@@ -1,5 +1,6 @@
 package com.example.rest;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import javax.ws.rs.GET;
@@ -73,10 +74,19 @@ public class DirigenteApi {
             DirigenteServices ds = new DirigenteServices();
             ds.getDirigente().setNombre(map.get("nombre").toString());
             ds.getDirigente().setApellido(map.get("apellido").toString());
+            ds.getDirigente().setTipo(ds.getTipoIdentificacion(map.get("tipo").toString()));
             ds.getDirigente().setIdentificacion(map.get("identificacion").toString());
-            //ds.getDirigente().setFechaNacimiento(new Date(map.get("fechaNacimiento").toString()));
+            ds.getDirigente().setCelular(map.get("celular").toString());
+            ds.getDirigente().setGenero(ds.getTipoGenero(map.get("genero").toString()));
+            // ds.getDirigente().setFechaNacimiento(new
+            // Date(map.get("fechaNacimiento").toString()));
             ds.getDirigente().setAniosExperiencia(Integer.parseInt(map.get("aniosExperiencia").toString()));
-            //ds.getDirigente().setTipo(null);
+            if (map.containsKey("fechaNacimiento") && map.get("fechaNacimiento") != null) {
+                String fechaNacimientoStr = map.get("fechaNacimiento").toString();
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                Date fechaNacimiento = dateFormat.parse(fechaNacimientoStr);
+                ds.getDirigente().setFechaNacimiento(fechaNacimiento);
+            }
             ds.save();
             res.put("msg", "Ok");
             res.put("data", "Guardado correctamente");
@@ -101,7 +111,24 @@ public class DirigenteApi {
         HashMap map = new HashMap<>();
         DirigenteServices ds = new DirigenteServices();
         map.put("msg", "Ok");
-        map.put("data", ds.getDirigente());
+        map.put("data", ds.getTipos());
+        if (ds.listAll().isEmpty()) {
+            map.put("data", new Object[] {});
+        }
+        return Response.ok(map).build();
+    }
+
+    @Path("/listTypeGenero")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getTypeGenero() {
+        HashMap map = new HashMap<>();
+        DirigenteServices ds = new DirigenteServices();
+        map.put("msg", "Ok");
+        map.put("data", ds.getGenero());
+        if (ds.listAll().isEmpty()) {
+            map.put("data", new Object[] {});
+        }
         return Response.ok(map).build();
     }
 
@@ -117,11 +144,15 @@ public class DirigenteApi {
             ds.setDirigente(ds.get(Integer.parseInt(map.get("idDirigente").toString())));
             ds.getDirigente().setNombre(map.get("nombre").toString());
             ds.getDirigente().setApellido(map.get("apellido").toString());
+            ds.getDirigente().setTipo(ds.getTipoIdentificacion(map.get("tipo").toString()));
             ds.getDirigente().setIdentificacion(map.get("identificacion").toString());
-            //ds.getDirigente().setFechaNacimiento(new Date(map.get("fechaNacimiento").toString()));
             ds.getDirigente().setAniosExperiencia(Integer.parseInt(map.get("aniosExperiencia").toString()));
-            //ds.getDirigente().setTipo(null);
-
+            if (map.containsKey("fechaNacimiento") && map.get("fechaNacimiento") != null) {
+                String fechaNacimientoStr = map.get("fechaNacimiento").toString();
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                Date fechaNacimiento = dateFormat.parse(fechaNacimientoStr);
+                ds.getDirigente().setFechaNacimiento(fechaNacimiento);
+            }
             ds.update();
             res.put("msg", "Ok");
             res.put("data", "Guardado correctamente");
@@ -133,10 +164,6 @@ public class DirigenteApi {
             res.put("data", e.toString());
             return Response.status(Status.INTERNAL_SERVER_ERROR).entity(res).build();
         }
-
-        // todo
-        // Validation
-
     }
 
     @Path("/delete")

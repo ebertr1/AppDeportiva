@@ -6,11 +6,11 @@ import com.example.models.Resultado;
 
 public class ResultadoDao extends AdapterDao<Resultado>{
     private Resultado resultado;
-    
-    private LinkedList listAll;
+    private LinkedList<Resultado> listAll;
     
     public ResultadoDao(){
         super(Resultado.class);
+        this.listAll = new LinkedList<>();
     }
     
     public Resultado getResultado() {

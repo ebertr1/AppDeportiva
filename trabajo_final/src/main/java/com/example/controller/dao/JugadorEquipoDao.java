@@ -6,10 +6,11 @@ import com.example.models.JugadorEquipo;
 
 public class JugadorEquipoDao extends AdapterDao<JugadorEquipo>{
     private JugadorEquipo jugadorEquipo;
-    private LinkedList listAll;
+    private LinkedList<JugadorEquipo> listAll;
 
     public JugadorEquipoDao(){
         super(JugadorEquipo.class);
+        this.listAll = new LinkedList<>();
     }
 
     public JugadorEquipo getJugadorEquipo() {

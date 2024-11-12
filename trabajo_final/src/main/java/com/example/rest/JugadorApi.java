@@ -1,5 +1,7 @@
 package com.example.rest;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 
 import javax.ws.rs.Consumes;
@@ -15,6 +17,7 @@ import javax.ws.rs.core.Response.Status;
 import com.example.controller.dao.services.JugadorServices;
 import com.google.gson.Gson;
 
+@Path("jugador")
 public class JugadorApi {
     @Path("/list")
     @GET
@@ -71,11 +74,17 @@ public class JugadorApi {
             JugadorServices js = new JugadorServices();
             js.getJugador().setNombre(map.get("nombre").toString());
             js.getJugador().setApellido(map.get("apellido").toString());
+            js.getJugador().setTipo(js.getTipoIdentificacion(map.get("tipo").toString()));
             js.getJugador().setIdentificacion(map.get("identificacion").toString());
-            // js.getJugador().setFechaNacimiento(new
-            // Date(map.get("fechaNacimiento").toString()));
+            js.getJugador().setCelular(map.get("celular").toString());
+            js.getJugador().setGenero(js.getTipoGenero(map.get("genero").toString()));
             js.getJugador().setNumCamiseta(Integer.parseInt(map.get("numCamiseta").toString()));
-            // js.getJugador().setTipo(null);
+            if (map.containsKey("fechaNacimiento") && map.get("fechaNacimiento") != null) {
+                String fechaNacimientoStr = map.get("fechaNacimiento").toString();
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                Date fechaNacimiento = dateFormat.parse(fechaNacimientoStr);
+                js.getJugador().setFechaNacimiento(fechaNacimiento);
+            }
             js.save();
             res.put("msg", "Ok");
             res.put("data", "Guardado correctamente");
@@ -100,7 +109,24 @@ public class JugadorApi {
         HashMap map = new HashMap<>();
         JugadorServices js = new JugadorServices();
         map.put("msg", "Ok");
-        map.put("data", js.getJugador());
+        map.put("data", js.getTipos());
+        if (js.listAll().isEmpty()) {
+            map.put("data", new Object[] {});
+        }
+        return Response.ok(map).build();
+    }
+
+    @Path("/listTypeGenero")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getTypeGenero() {
+        HashMap map = new HashMap<>();
+        JugadorServices js = new JugadorServices();
+        map.put("msg", "Ok");
+        map.put("data", js.getGenero());
+        if (js.listAll().isEmpty()) {
+            map.put("data", new Object[] {});
+        }
         return Response.ok(map).build();
     }
 
@@ -116,12 +142,17 @@ public class JugadorApi {
             js.setJugador(js.get(Integer.parseInt(map.get("idJugador").toString())));
             js.getJugador().setNombre(map.get("nombre").toString());
             js.getJugador().setApellido(map.get("apellido").toString());
+            js.getJugador().setTipo(js.getTipoIdentificacion(map.get("tipo").toString()));
             js.getJugador().setIdentificacion(map.get("identificacion").toString());
-            // js.getJugador().setFechaNacimiento(new
-            // Date(map.get("fechaNacimiento").toString()));
+            js.getJugador().setCelular(map.get("celular").toString());
+            js.getJugador().setGenero(js.getTipoGenero(map.get("genero").toString()));
             js.getJugador().setNumCamiseta(Integer.parseInt(map.get("numCamiseta").toString()));
-            // js.getJugador().setTipo(null);
-
+            if (map.containsKey("fechaNacimiento") && map.get("fechaNacimiento") != null) {
+                String fechaNacimientoStr = map.get("fechaNacimiento").toString();
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                Date fechaNacimiento = dateFormat.parse(fechaNacimientoStr);
+                js.getJugador().setFechaNacimiento(fechaNacimiento);
+            }
             js.update();
             res.put("msg", "Ok");
             res.put("data", "Guardado correctamente");
