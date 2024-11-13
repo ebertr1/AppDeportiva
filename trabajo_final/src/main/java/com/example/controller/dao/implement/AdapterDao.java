@@ -10,8 +10,8 @@ import com.google.gson.Gson;
 
 public class AdapterDao <T> implements InterfazDao<T> {
     private Class clazz;
-    private Gson g;
-    public static String URL = "media/";
+    protected Gson g;
+    public static String URL = "src/media/";
 
     public AdapterDao(Class clazz){
         this.clazz = clazz;
@@ -33,7 +33,7 @@ public class AdapterDao <T> implements InterfazDao<T> {
     public T get(Integer id) throws Exception {
         LinkedList<T> list = listAll();
         if (!list.isEmpty()) {
-            T [] matriz = list.toArray();
+            T[] matriz = list.toArray();
             return matriz[id - 1];
             
         }

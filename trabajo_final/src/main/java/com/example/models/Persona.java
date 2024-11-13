@@ -4,7 +4,7 @@ import java.util.Date;
 import com.example.models.enumerador.TipoIdentificacion;
 import com.example.models.enumerador.Genero;
 public class Persona {
-    private Integer id;
+    private int id;
     private String nombre;
     private String apellido;
     private TipoIdentificacion tipo;
@@ -12,28 +12,30 @@ public class Persona {
     private Date fechaNacimiento;
     private String celular;
     private Genero genero;
+    private boolean activo;
 
     public Persona() {
     }
 
 
-    public Persona(Integer id, String nombre, String apellido, TipoIdentificacion tipo, String identificacion, Date fechaNacimiento, String celular, Genero genero) {
+    public Persona(int id,boolean activo, String nombre, String apellido, TipoIdentificacion tipo, String identificacion, Date fechaNacimiento, String celular, Genero genero) {
         this.id = id;
-        this.nombre = nombre;
-        this.apellido = apellido;
+        this.activo = activo;//
+        this.nombre = nombre;//
+        this.apellido = apellido;//
         this.tipo = tipo;
         this.identificacion = identificacion;
-        this.fechaNacimiento = fechaNacimiento;
-        this.celular = celular;
-        this.genero = genero;
+        this.fechaNacimiento = fechaNacimiento;//
+        this.celular = celular;//
+        this.genero = genero;//
     }
 
 
-    public Integer getId() {
+    public int getId() {
         return this.id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -92,5 +94,11 @@ public class Persona {
     public void setGenero(Genero genero) {
         this.genero = genero;
     }    
+    public boolean getisActivo() {
+        return activo;
+    }
 
+    public void setActivo(boolean activo) {
+        this.activo = activo;
+    }
 }
