@@ -11,7 +11,11 @@ import com.google.gson.Gson;
 public class AdapterDao <T> implements InterfazDao<T> {
     private Class clazz;
     protected Gson g;
+<<<<<<< HEAD
+    public static String URL = "media/";
+=======
     public static String URL = "src/media/";
+>>>>>>> main
 
     public AdapterDao(Class clazz){
         this.clazz = clazz;
@@ -72,7 +76,7 @@ public class AdapterDao <T> implements InterfazDao<T> {
     }
 
 
-    private void saveFile(String data) throws Exception {
+    protected void saveFile(String data) throws Exception {
         File file = new File(URL + clazz.getSimpleName() + ".json");
         file.getParentFile().mkdirs();
 
