@@ -3,6 +3,7 @@ package com.example.controller.dao;
 import com.example.controller.dao.implement.AdapterDao;
 import com.example.controller.tda.list.LinkedList;
 import com.example.models.Jugador;
+<<<<<<< HEAD
 import com.example.models.enumerador.Genero;
 import com.example.models.enumerador.TipoIdentificacion;
 
@@ -13,6 +14,15 @@ public class JugadorDao extends AdapterDao<Jugador>{
     public JugadorDao() {
         super(Jugador.class);
         this.listAll = new LinkedList<>();
+=======
+
+public class JugadorDao extends AdapterDao<Jugador>{
+    private Jugador jugador;
+    private LinkedList listAll;
+
+    public JugadorDao() {
+        super(Jugador.class);
+>>>>>>> main
     }
 
     public Jugador getJugador() {
@@ -26,14 +36,20 @@ public class JugadorDao extends AdapterDao<Jugador>{
         this.jugador = jugador;
     }
     
+<<<<<<< HEAD
     public LinkedList<Jugador> getlistAll() {
         if (listAll.isEmpty()) {
+=======
+    public LinkedList getListAll() {
+        if(listAll == null){
+>>>>>>> main
             this.listAll = listAll();
         }
         return listAll;
     }
 
     public Boolean save() throws Exception {
+<<<<<<< HEAD
         Integer id = getlistAll().getSize() + 1;
         jugador.setId(id);
         this.persist(this.jugador);
@@ -81,6 +97,20 @@ public class JugadorDao extends AdapterDao<Jugador>{
             System.out.println("Persona con id " + id + " no encontrada.");
             return false;
         }
+=======
+        Integer id = getListAll().getSize()+1;
+        jugador.setId(id);
+        this.persist(this.jugador);
+        this.listAll = listAll();
+        return true;
+    }
+
+
+    public Boolean update() throws Exception {
+        this.merge(getJugador(), getJugador().getId()-1);
+        this.listAll = listAll();
+        return true;
+>>>>>>> main
     }
 
 }
