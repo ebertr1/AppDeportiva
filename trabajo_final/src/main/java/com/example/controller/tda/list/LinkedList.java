@@ -248,5 +248,27 @@ public class LinkedList<E> {
             return element;
         }
     }
+
+    public boolean remove(E element) {
+        if (isEmpty()) return false;
+        
+        if (header.getInfo().equals(element)) { // Si el elemento está en la cabecera
+            header = header.getNext();
+            size--;
+            return true;
+        }
+        
+        Node<E> current = header;
+        while (current.getNext() != null) {
+            if (current.getNext().getInfo().equals(element)) {
+                current.setNext(current.getNext().getNext());
+                size--;
+                return true;
+            }
+            current = current.getNext();
+        }
+        
+        return false; // Elemento no encontrado
+    }
 }
     
