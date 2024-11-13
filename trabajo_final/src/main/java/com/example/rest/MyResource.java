@@ -9,7 +9,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import com.example.controller.dao.Servicies.PersonaService;
+import com.example.controller.dao.services.PersonaService;
 import com.example.models.enumerador.Genero;
 import com.example.models.enumerador.TipoIdentificacion;
 
@@ -28,7 +28,7 @@ public class MyResource {
             aux = "La lista de personas está vacía: " + pd.listAll().isEmpty();
 
             // Crear y asignar datos a la Persona
-            pd.getPersona().setNombre("Admin");
+            pd.getPersona().setNombre("Admiddddddn");
             pd.getPersona().setApellido("Admin");
             pd.getPersona().setActivo(false);
             pd.getPersona().setCelular("1234567890");

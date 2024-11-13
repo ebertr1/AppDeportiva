@@ -22,7 +22,7 @@ public class ResultadoApi {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllPersons() {
-        HashMap map = new HashMap<>();
+        HashMap<String, Object> map = new HashMap<>();
         ResultadoServices rs = new ResultadoServices();
         map.put("msg", "Ok");
         map.put("data", rs.listAll().toArray());
@@ -64,7 +64,7 @@ public class ResultadoApi {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response save(HashMap map) {
-        HashMap res = new HashMap<>();
+        HashMap<String, Object> res = new HashMap<>();
         Gson g = new Gson();
         String a = g.toJson(map);
         System.out.println("***** " + a);

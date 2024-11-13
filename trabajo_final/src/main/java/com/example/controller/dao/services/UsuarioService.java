@@ -1,4 +1,4 @@
-package com.example.controller.dao.Servicies;
+package com.example.controller.dao.services;
 
 import com.example.controller.dao.PersonaDao;
 import com.example.controller.dao.UsuarioDao;

@@ -4,7 +4,6 @@ import com.example.controller.dao.implement.AdapterDao;
 import com.example.controller.tda.list.LinkedList;
 import com.example.models.Equipo;
 
-<<<<<<< HEAD
 public class EquipoDao extends AdapterDao<Equipo> {
     private Equipo equipo;
     private LinkedList<Equipo> listAll;
@@ -12,14 +11,6 @@ public class EquipoDao extends AdapterDao<Equipo> {
     public EquipoDao() {
         super(Equipo.class);
         this.listAll = new LinkedList<>();
-=======
-public class EquipoDao extends AdapterDao<Equipo>{
-    private Equipo equipo;
-    private LinkedList listAll;
-
-    public EquipoDao() {
-        super(Equipo.class);
->>>>>>> main
     }
 
     public Equipo getEquipo() {
@@ -32,22 +23,15 @@ public class EquipoDao extends AdapterDao<Equipo>{
     public void setEquipo(Equipo equipo) {
         this.equipo = equipo;
     }
-<<<<<<< HEAD
 
     public LinkedList<Equipo> getlistAll() {
         if (listAll.isEmpty()) {
-=======
-    
-    public LinkedList getListAll() {
-        if(listAll == null){
->>>>>>> main
             this.listAll = listAll();
         }
         return listAll;
     }
 
     public Boolean save() throws Exception {
-<<<<<<< HEAD
         Integer id = getlistAll().getSize() + 1;
         equipo.setId(id);
         this.persist(this.equipo);
@@ -79,19 +63,5 @@ public class EquipoDao extends AdapterDao<Equipo>{
             System.out.println("Persona con id " + id + " no encontrada.");
             return false;
         }
-=======
-        Integer id = getListAll().getSize()+1;
-        equipo.setId(id);
-        this.persist(this.equipo);
-        this.listAll = listAll();
-        return true;
-    }
-
-
-    public Boolean update() throws Exception {
-        this.merge(getEquipo(), getEquipo().getId()-1);
-        this.listAll = listAll();
-        return true;
->>>>>>> main
     }
 }
