@@ -8,9 +8,9 @@ import com.example.models.enumerador.TipoIdentificacion;
 public class Arbitro extends Persona {
     private String asociacion;
 
-    public Arbitro(Integer id, String nombre, String apellido, TipoIdentificacion tipo, String identificacion,
+    public Arbitro(Integer id, boolean activo, String nombre, String apellido, TipoIdentificacion tipo, String identificacion,
             Date fechaNacimiento, String celular, Genero genero, String asociacion) {
-        super(id, nombre, apellido, tipo, identificacion, fechaNacimiento, celular, genero);
+        super(id, activo, nombre, apellido, tipo, identificacion, fechaNacimiento, celular, genero);
         this.asociacion = asociacion;
     }
 
