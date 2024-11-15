@@ -1,0 +1,11 @@
+[
+    {
+        "id": 1,
+        "equipoGanador": "Barcelona",
+        "equipoPerdedor": "Real Madrid",
+        "golesEquipo1": 4,
+        "golesEquipo2": 0,
+        "empate": false,
+        "puntosEncuentro": 3
+    }
+]
