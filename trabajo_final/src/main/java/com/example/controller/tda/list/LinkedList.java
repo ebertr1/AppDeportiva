@@ -3,26 +3,30 @@ package com.example.controller.tda.list;
 import com.example.controller.exception.ListEmptyException;
 
 public class LinkedList<E> {
-    private Node<E> header;
-    private Node<E> last; 
-    private Integer size; 
+    private Node<E> header; // Nodo cabecera (el primer nodo de la lista)
+    private Node<E> last;   // Nodo último (el último nodo de la lista)
+    private Integer size;   // Tamaño de la lista (cuenta el número de nodos en la lista)
 
+    // Constructor de la clase LinkedList
     public LinkedList() {
-        this.header = null; 
-        this.last = null; 
-        this.size = 0; 
+        this.header = null; // Inicialmente, la cabecera es nula (no hay nodos en la lista)
+        this.last = null;   // Inicialmente, el último nodo es nulo
+        this.size = 0;      // Inicialmente, el tamaño de la lista es 0
     }
 
+    // Método para verificar si la lista está vacía
     public Boolean isEmpty() {
         return (this.header == null || this.size == 0);
     }
 
+    // Método privado para agregar un elemento al principio de la lista
     private void addHeader(E dato) {
         Node<E> help;
+
         if (isEmpty()) {
-            help = new Node<>(dato); 
-            header = help; 
-            this.size++; 
+            help = new Node<>(dato);
+            header = help;
+            this.size++;
         } else {
             Node<E> healpHeader = this.header;
             help = new Node<>(dato, healpHeader);
@@ -31,18 +35,18 @@ public class LinkedList<E> {
         this.size++;
     }
 
-    private void addLast(E info) {
-        Node<E> help; 
-        if (isEmpty()) { 
-            help = new Node<>(info); 
-            header = help; 
-            last = help; 
+    public void addLast(E info) {  //cambio a public
+        Node<E> help;
+        if (isEmpty()) {
+            help = new Node<>(info);
+            header = help;
+            last = help;
         } else {
-            help = new Node<>(info, null); 
-            last.setNext(help); 
-            last = help; 
+            help = new Node<>(info, null);
+            last.setNext(help);
+            last = help;
         }
-        this.size++; 
+        this.size++;
     }
 
     public void add(E info) {
@@ -67,12 +71,6 @@ public class LinkedList<E> {
         }
     }
 
-    private E getFirst() throws ListEmptyException {
-        if (isEmpty()) {
-            throw new ListEmptyException("Error, lista vacia");
-        }
-        return last.getInfo();
-    }
 
     public E getLast() throws ListEmptyException {
         if (isEmpty()) {
@@ -115,7 +113,71 @@ public class LinkedList<E> {
         }
     }
 
-    /*** END BYPOSITION */
+   
+    
+   public E deleteFirst() throws ListEmptyException {
+        if (isEmpty()) {
+            throw new ListEmptyException("Error, lista vacía");
+        } else {
+            E elemnt = header.getInfo();
+            Node<E> aux = header.getNext();
+            header = aux;
+            if (size.intValue() == 1) {
+                last = null;
+            } 
+            size--;
+            return elemnt;
+            }
+        }
+        
+        
+    public E deleteLast() throws ListEmptyException {
+        if (isEmpty()) {
+            throw new ListEmptyException("Error, lista vacía");
+        } else{
+            E elemnt = last.getInfo();
+            Node<E> aux = getNode(size -2);
+            if (aux == null) {
+                last = null;
+                if (size == 2) {
+                    last = header;
+                }else {
+                header = null;
+                }
+            }else{
+                last = null;
+                last = aux;
+                last.setNext(null);
+            }
+            size--;
+            return elemnt;
+        }
+    }
+
+    public E delete(Integer post) throws ListEmptyException {
+        if (isEmpty()) {
+            throw new ListEmptyException("Error, lista vacía");
+        } else if (post < 0 || post >= size) {
+            throw new IndexOutOfBoundsException("Error, fuera de rango");
+        } else if (post == 0) {
+            return deleteFirst(); // Elimina el primer nodo
+        } else if (post == (size - 1)) {
+            return deleteLast(); // Elimina el último nodo
+        } else {
+            Node<E> previous = getNode(post - 1); // Nodo anterior al nodo a eliminar
+            Node<E> current = previous.getNext(); // Nodo actual (a eliminar)
+            E element = current.getInfo(); // Información del nodo a eliminar
+            Node<E> next = current.getNext(); // Nodo siguiente al nodo a eliminar
+    
+            previous.setNext(next); // Elimina el nodo actual enlazando el nodo anterior al siguiente
+            size--; // Disminuye el tamaño de la lista
+            return element; // Devuelve la información del nodo eliminado
+        }
+    }
+    
+    
+    
+
     public void reset() {
         this.header = null;
         this.last = null;
@@ -142,7 +204,7 @@ public class LinkedList<E> {
     }
 
     public Node<E> getHeader() {
-        return header; 
+        return header;
     }
 
     public E[] toArray() {
@@ -155,7 +217,6 @@ public class LinkedList<E> {
                 matrix[i] = aux.getInfo();
                 aux = aux.getNext();
             }
-
         }
         return matrix;
     }
@@ -168,85 +229,17 @@ public class LinkedList<E> {
         return this;
     }
 
-    public void update(E data, Integer post) throws Exception{
-        if (isEmpty()) {
-            throw new ListEmptyException("Error, lista vacia");
-        }else if (post < 0 || post >= size){
-            throw new IndexOutOfBoundsException("Error, fuera de rango");
-        }else if (post == 0){
-            header.setInfo(data);
-        }else if (post == (size-1)){
-            last.setInfo(data);
-        }else{
-            Node<E> search = header;
-            Integer cont = 0;
-            while (cont < post) {
-                cont++;
-                search = search.getNext();
-            }
-            search.setInfo(data);
+    public void update(E object, Integer index) {
+        if (index < 0 || index >= size) { // Verifica el rango del índice
+            throw new IndexOutOfBoundsException("Índice fuera de rango: " + index);
         }
-
-    }
-
-    public E deleteFirst() throws ListEmptyException {
-        if (isEmpty()) {
-            throw new ListEmptyException("Error, lista vacia");
-        } else {
-            E element = header.getInfo();
-            Node<E> aux = header.getNext();
-            header = aux;
-            if (size.intValue() == 1) {
-                last = null;   
-            }
-            size--;
-            return element;
+    
+        Node<E> current = header; // Comienza desde la cabecera
+        for (int i = 0; i < index; i++) {
+            current = current.getNext(); // Moverse al nodo en el índice deseado
         }
-    }
-
-    public E deleteLast() throws ListEmptyException {
-        if (isEmpty()) {
-            throw new ListEmptyException("Error, lista vacia");
-        } else {
-            E element = last.getInfo();
-            Node<E> aux = getNode(size - 2);
-            if (aux == null) {
-                last = null;
-                if (size == 2) {
-                    last = header;
-                } else {
-                    header = null;
-                }
-            } else {
-                last = null;
-                last = aux;
-                last.setNext(null);
-            }
-            size--;
-            return element;
-            }
-    }
-
-
-    public E delete (Integer post) throws Exception{
-        if (isEmpty()) {
-            throw new ListEmptyException("Error, lista vacia");
-        } else if (post < 0 || post >= size) {
-            throw new IndexOutOfBoundsException("Error, esta fuera de los limites de la lista");
-        } else if (post == 0) {
-            return deleteFirst();
-        } else if (post == (size -1)) {
-            return deleteLast();
-        } else {
-            Node<E> preview = getNode(post - 1);
-            Node<E> actually = getNode(post);
-            E element = preview.getInfo();
-            Node<E> next = actually.getNext();
-            actually = null;
-            preview.setNext(next);
-            size--;
-            return element;
-        }
+    
+        current.setInfo(object); // Actualizar el dato del nodo usando el setter
     }
 
     public boolean remove(E element) {
@@ -271,4 +264,3 @@ public class LinkedList<E> {
         return false; // Elemento no encontrado
     }
 }
-    

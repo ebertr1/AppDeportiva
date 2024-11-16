@@ -41,4 +41,6 @@ public class Usuario {
         this.estado = estado;
     }
 
+    // hashear contrasenia
+
 }

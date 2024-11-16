@@ -11,9 +11,9 @@ public class Jugador extends Persona {
     public Jugador() {
     }
 
-    public Jugador(Integer id, String nombre, String apellido, TipoIdentificacion tipo, String identificacion,
+    public Jugador(Integer id, boolean activo, String nombre, String apellido, TipoIdentificacion tipo, String identificacion,
             Date fechaNacimiento, String celular, Genero genero) {
-        super(id, nombre, apellido, tipo, identificacion, fechaNacimiento, celular, genero);
+        super(id, activo, nombre, apellido, tipo, identificacion, fechaNacimiento, celular, genero);
     }
 
     public Integer getNumCamiseta() {
