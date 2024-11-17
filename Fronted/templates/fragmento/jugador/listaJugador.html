@@ -1,9 +1,9 @@
 {% extends 'template.html' %}
 {% block content %}
 <div class="col-12">
-    <h2 class="mt-4">Dirigente/Representantes</h2>
+    <h2 class="mt-4">Jugadores</h2>
     <div class="justify-content-end mb-3">
-        <a href="/admin/dirigente/register" class="btn btn-success">Nuevo Dirigente</a>
+        <a href="/admin/jugador/register" class="btn btn-success">Nuevo Jugador</a>
     </div>
     <table class="table">
         <thead>
@@ -25,7 +25,7 @@
                     <td>{{ item.tipo }}</td>
                     <td>{{ item.identificacion }}</td>
                     <td>
-                        <a href="/admin/dirigente/edit/{{ item.id }}" class="btn btn-info">Modificar</a>
+                        <a href="/admin/jugador/edit/{{ item.idPersona }}" class="btn btn-info">Modificar</a>
                     </td>
                     <td>
                         <button class="btn btn-danger" onclick="deleteRow({{ item.id }})">Eliminar</button>

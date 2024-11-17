@@ -11,19 +11,16 @@
             <tr>
                 <th>Nro</th>
                 <th>Nombre</th>
-                <th>Dirigente</th>
                 <th>Acciones</th>
                 <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
-            {% if list and list2 %}
+            {% if list%}
             {% for item in list %}
-                {% for item2 in list2 %}
                 <tr>
                     <td>{{ loop.index }}</td>
                     <td>{{ item.nombre }}</td>
-                    <td>{{ item2.nombre }} {{ item2.apellido }}</td>
                     <td>
                         <a href="/admin/person/edit/{{ item.idPersona }}" class="btn btn-info">Modificar</a>
                     </td>
@@ -31,7 +28,6 @@
                         <button class="btn btn-danger" onclick="deleteRow({{ item.idPersona }})">Eliminar</button>
                     </td>
                 </tr>
-                {% endfor %}
             {% endfor %}
         {% else %}
             <tr>
