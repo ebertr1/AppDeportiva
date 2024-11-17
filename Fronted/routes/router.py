@@ -105,18 +105,108 @@ def update_person():
         flash(str(dat["data"]), category='error')
     return redirect("/admin/person/list")
 
+
+#CRUD DE EQUIPO   
+    #listar equipos
+@router.route('/admin/equipo/list')
+def listEquipo():
+    r = requests.get("http://localhost:8078/myapp/equipo/list")
+    print(type(r.json()))
+    print(r.json())
+    data = r.json()
+    return render_template('fragmento/equipo/listaEquipo.html', list = data["data"])
+
+    #registrar equipo
+@router.route('/admin/equipo/register')
+def view_register_equipo():
+    r = requests.get("http://localhost:8078/myapp/dirigente/listType")
+    r2 = requests.get("http://localhost:8078/myapp/dirigente/listTypeGenero")
+    data = r.json()
+    data2 = r2.json()
+    print(r.json())
+    return render_template('fragmento/equipo/registroEquipo.html', lista = data["data"], lista2 = data2["data"])
+
+    #guardar equipo
+@router.route('/admin/equipo/save', methods=["POST"])
+def save_equipo():
+    headers = {'Content-type': 'application/json'}
+    form = request.form
+    dataF = {
+        "apellido": form["ape"],
+        "nombre": form["nom"],
+        "tipo": form["tipo"],
+        "ident": form["ident"],
+        "fono": form["fono"],
+        "exp": form["exp"],
+        "fecha": form["fecha"],
+    }
+    r = requests.post("http://localhost:8078/myapp/dirigente/save", data=json.dumps(dataF), headers=headers)
+    dat = r.json()
+
+    if r.status_code == 200:
+        flash("Se ha guardado correctamente", category='info')
+    else:
+        flash(str(dat["data"]), category='error')
+    return redirect("/admin/equipo/list")
+
+
+#CRUD DE DIRIGENTE  
+    #listar dirigentes
+@router.route('/admin/dirigente/list')
+def listDirigente():
+    r = requests.get("http://localhost:8078/myapp/dirigente/list")
+    print(type(r.json()))
+    print(r.json())
+    data = r.json()
+    return render_template('fragmento/dirigente/listaDirigente.html', list = data["data"])
+
+    #registrar dirigente
+@router.route('/admin/dirigente/register')
+def view_register_dirigente():
+    r = requests.get("http://localhost:8078/myapp/dirigente/listType")
+    r2 = requests.get("http://localhost:8078/myapp/dirigente/listTypeGenero")
+    data = r.json()
+    data2 = r2.json()
+    print(r.json())
+    return render_template('fragmento/dirigente/registroDirigente.html', lista = data["data"], lista2 = data2["data"])
+
+    #guardar dirigente
+@router.route('/admin/dirigente/save', methods=["POST"])
+def save_dirigente():
+    headers = {'Content-type': 'application/json'}
+    form = request.form
+    dataF = {
+        "apellido": form["ape"],
+        "nombre": form["nom"],
+        "tipo": form["tipo"],
+        "identificacion": int(form["ident"]) if form["ident"].isdigit() else None,
+        "celular": form["fono"],
+        "genero": form["genero"],
+        "aniosExperiencia": int(form["exp"]) if form["exp"].isdigit() else 0,  
+        "fechaNacimiento": form["fecha"]
+    }
+    r = requests.post("http://localhost:8078/myapp/dirigente/save", data=json.dumps(dataF), headers=headers)
+    dat = r.json()
+    if r.status_code == 200:
+        flash("Se ha guardado correctamente", category='info')
+    else:
+        flash(str(dat["data"]), category='error')
+    return redirect("/admin/dirigente/list")    
+
+    #editar dirigente
     
     
-
-
-
-
-
-
-
-
-
-
-
-
+    #eliminar dirigente
+@router.route('/admin/dirigente/delete/<int:id>', methods=["POST"])
+def delete_dirigente(id):
+    # Realiza una solicitud DELETE a la API
+    r = requests.delete(f"http://localhost:8078/myapp/dirigente/delete/{id}")
+    
+    # Verifica la respuesta de la API
+    if r.status_code == 200:
+        flash("Cliente eliminado exitosamente.", category='info')
+    else:
+        flash("No se pudo eliminar el cliente.", category='error')
+    
+    return redirect(url_for('router.list'))
 

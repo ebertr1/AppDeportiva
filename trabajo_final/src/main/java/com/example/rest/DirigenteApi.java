@@ -175,7 +175,7 @@ public class DirigenteApi {
 
         try {
             DirigenteServices ds = new DirigenteServices();
-            Integer id = Integer.parseInt(map.get("idDirigente").toString());
+            Integer id = Integer.parseInt(map.get("id").toString());
 
             Boolean success = ds.delete(id);
             if (success) {
