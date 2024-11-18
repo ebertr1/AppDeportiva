@@ -1,5 +1,7 @@
 package com.example.controller.dao;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import com.example.controller.dao.implement.AdapterDao;
 import com.example.controller.tda.list.LinkedList;
 import com.example.models.Persona;
@@ -37,6 +39,10 @@ public class UsuarioDao extends AdapterDao<Usuario> {
     public Boolean save() throws Exception {
         Integer id = getListAll().getSize()+1;
         user.setId(id);
+        
+        // hashear contrasenia
+        user.setContrasenia(hashPasswd(user.getContrasenia()));
+        
         this.persist(this.user);
         this.listUsr = listAll();
         return true;
@@ -63,4 +69,23 @@ public class UsuarioDao extends AdapterDao<Usuario> {
             return false;
         }
     }
+    
+    // Metodo que me permite hasear contrasenia
+    private String hashPasswd(String pwd) {
+    	
+    	String salt_pwd = BCrypt.gensalt(5); // genSalt -> establece el nivel de seguridad, entre mas grande el numero, mas seguro mas lento de procesar
+    	return BCrypt.hashpw(pwd, salt_pwd); // Devuelve el hash
+    }
+    
+    // Metodo que me permite verificar si dos contrasenias son iguales
+    // Necesitaremos la contrasenia que envia el user, y la contrasenia almacenada en bdd para comparar
+    public boolean verifyPwd(String pwd_usr, String pwd_hash_usr) {    	
+    	return BCrypt.checkpw(pwd_usr, pwd_hash_usr);
+    }
+    
+    public Usuario getUsuariobyEmail(String email) throws Exception{
+    	// Metodos de ordenacion 
+    	// Metodo de Busqueda   	
+    }
+    
 }
