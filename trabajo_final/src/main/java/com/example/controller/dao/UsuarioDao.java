@@ -4,6 +4,7 @@ import org.mindrot.jbcrypt.BCrypt;
 
 import com.example.controller.dao.implement.AdapterDao;
 import com.example.controller.tda.list.LinkedList;
+import com.example.models.Administrador;
 import com.example.models.Persona;
 import com.example.models.Rol;
 import com.example.models.Usuario;
@@ -12,6 +13,9 @@ public class UsuarioDao extends AdapterDao<Usuario> {
      // Atributos
     private Usuario user;
     private LinkedList listUsr;
+    
+    // Atributo PersonaDao
+    private AdministradorDao personaDao;
 
     public UsuarioDao(){
         super(Usuario.class);
@@ -85,7 +89,39 @@ public class UsuarioDao extends AdapterDao<Usuario> {
     
     public Usuario getUsuariobyEmail(String email) throws Exception{
     	// Metodos de ordenacion 
-    	// Metodo de Busqueda   	
+    	// Metodo de Busqueda
+    	Usuario persona = null;
+    	LinkedList listita = listAll();
+    	if(!listAll().isEmpty()) {
+    		Usuario[] aux = (Usuario[]) listita.toArray();
+    		
+    		for (int i = 0; i < aux.length; i++) {
+    			// Si el apellido empieza con las letras del texto que tiene como parametro
+				if (aux[i].getCorreo().equals(email)) {
+					persona = aux[i];
+				}
+			}
+    	}
+    	
+    	return persona;
+    }
+    
+    public Administrador getPersonabyEmail(String email) throws Exception{
+    	Administrador person = null;
+    	LinkedList listPersona = personaDao.getlistAll();
+    	
+    	if(!personaDao.getlistAll().isEmpty()) {
+    		Administrador[] aux = (Administrador[]) listPersona.toArray();
+    		
+    		for (int i = 0; i < aux.length; i++) {
+    			// Si el apellido empieza con las letras del texto que tiene como parametro
+				if (aux[i].getEmail().equals(email)) {
+					person = aux[i];
+				}
+			}
+    	}
+    	
+    	return person;
     }
     
 }
