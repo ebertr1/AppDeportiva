@@ -42,11 +42,11 @@ public class Reglamento {
         this.descripcion = descripcion;
     }
 
-    public Formato getFormato() {
+    public Formato getTipoFormato() {
         return formato;
     }
 
-    public void setFormato(Formato formato) {
+    public void setTipoFormato(Formato formato) {
         this.formato = formato;
     }
     
