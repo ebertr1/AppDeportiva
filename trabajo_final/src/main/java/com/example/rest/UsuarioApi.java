@@ -1,6 +1,7 @@
 package com.example.rest;
 
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 
 import java.util.HashMap;
 
@@ -12,8 +13,9 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-import com.example.controller.dao.UsuarioDao;
 import com.example.controller.dao.services.UsuarioService;
+import com.example.models.Administrador;
+import com.example.models.Rol;
 import com.google.gson.Gson;
 
 @Path("/usuario")
@@ -34,6 +36,7 @@ public class UsuarioApi {
             ps.getUsuario().setCorreo(map.get("correo").toString());
             ps.getUsuario().setContrasenia(map.get("contrasenia").toString());
             ps.getUsuario().setEstado( (Boolean) map.get("estado"));
+            ps.getUsuario().setRole(new Rol(1, "Administrador")); // defect
 
             ps.save();
             res.put("msg", "Ok");
@@ -62,4 +65,24 @@ public class UsuarioApi {
         }
         return Response.ok(map).build();
     }
+    
+    // obtener persona por usuario
+    @Path("/search/{email}")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getPersonAdminUser(@PathParam("email") String email) throws Exception {
+        HashMap map = new HashMap<>();
+        UsuarioService ps = new UsuarioService();
+        Administrador persona = ps.findPersonabyEmail(email);
+        System.out.println("Objeto Persona: "+persona);
+        map.put("msg", "Ok");
+        map.put("data", persona);
+        if (ps.listAll().isEmpty()) {
+            map.put("data", new Object[] {});
+        }
+        return Response.ok(map).build();
+    }
+    
+    //Modificar y asignar roles
+    
 }
