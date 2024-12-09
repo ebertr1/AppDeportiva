@@ -1,6 +1,5 @@
 package com.example.rest;
-
-import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 
 import javax.ws.rs.Consumes;
@@ -71,8 +70,8 @@ public class CampeonatoApi {
             CampeonatoServices cs = new CampeonatoServices();
             //cs.getCampeonato().setId(0);
             cs.getCampeonato().setNombre(map.get("nombre").toString());
-            cs.getCampeonato().setFechaInicio(new SimpleDateFormat("yyyy-MM-dd").parse(map.get("fechaInicio").toString())); 
-            cs.getCampeonato().setFechaFin(new SimpleDateFormat("yyyy-MM-dd").parse(map.get("fechaFin").toString()));   
+            cs.getCampeonato().setFechaInicio(new Date());
+            cs.getCampeonato().setFechaFin(new Date());
             cs.getCampeonato().setCategoria(cs.getTipoCategoria(map.get("Categoria").toString()));   
             cs.save();
 
@@ -110,10 +109,10 @@ public class CampeonatoApi {
         HashMap res = new HashMap<>();
         try {
             CampeonatoServices cs = new CampeonatoServices();
-            cs.getCampeonato().setId(Integer.parseInt(map.get("id").toString()));
+            cs.setCampeonato(cs.get(Integer.parseInt(map.get("isCampeonato").toString())));
             cs.getCampeonato().setNombre(map.get("nombre").toString());
-            cs.getCampeonato().setFechaInicio(new SimpleDateFormat("yyyy-MM-dd").parse(map.get("fechaInicio").toString()));
-            cs.getCampeonato().setFechaFin(new SimpleDateFormat("yyyy-MM-dd").parse(map.get("fechaFin").toString()));
+            cs.getCampeonato().setFechaInicio(new Date());
+            cs.getCampeonato().setFechaFin(new Date());
             cs.getCampeonato().setCategoria(cs.getTipoCategoria(map.get("Categoria").toString()));
             cs.update();
             res.put("msg", "Ok");

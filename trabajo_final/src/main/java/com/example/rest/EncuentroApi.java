@@ -85,7 +85,7 @@ public class EncuentroApi {
 
         try {
             EncuentroServices es = new EncuentroServices();
-            es.getEncuentro().setIdInscrito1(Integer.parseInt(map.get("idInscrito1").toString()));
+            es.setEncuentro(es.get(Integer.parseInt(map.get("idEncientro").toString())));
             es.getEncuentro().setIdInscrito2(Integer.parseInt(map.get("idInscrito1").toString()));
             es.getEncuentro().setUbicacion(map.get("ubicacion").toString());
             es.getEncuentro().setEstado(Boolean.parseBoolean(map.get("Estado").toString()));

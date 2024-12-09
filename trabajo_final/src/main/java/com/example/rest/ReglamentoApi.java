@@ -71,7 +71,8 @@ public class ReglamentoApi {
             ReglamentoServices rs = new ReglamentoServices();
             rs.getReglamento().setNombreReglamento(map.get("nombreReglamento").toString());
             rs.getReglamento().setDescripcion(map.get("descripcion").toString());
-            rs.getReglamento().setFormato(rs.getTipoFormato(map.get("formato").toString()));
+            rs.getReglamento().setTipoFormato(rs.getTipoFormato(map.get("formato").toString()));
+            rs.getReglamento().setId_Campeonato(Integer.parseInt(map.get("idCampeonato").toString()));
             rs.save();
             res.put("msg", "Ok");
             res.put("msg", "Reglamento guardado");
@@ -111,11 +112,11 @@ public class ReglamentoApi {
         System.out.println("****" + a);
         try {
             ReglamentoServices rs = new ReglamentoServices();
-            rs.getReglamento().setId(Integer.parseInt(map.get("id").toString()));
+            rs.setReglamento(rs.get(Integer.parseInt(map.get("id").toString())));
             rs.getReglamento().setNombreReglamento(map.get("nombreReglamento").toString());
             rs.getReglamento().setDescripcion(map.get("descripcion").toString());
-            rs.getReglamento().setFormato(rs.getTipoFormato(map.get("formato").toString()));
-            rs.update();
+            rs.getReglamento().setTipoFormato(rs.getTipoFormato(map.get("formato").toString()));
+            rs.getReglamento().setId_Campeonato(Integer.parseInt(map.get("idCampeonato").toString()));rs.update();
             res.put("msg", "Ok");
             res.put("msg", "Reglamento actualizado");
             return Response.ok(res).build();
