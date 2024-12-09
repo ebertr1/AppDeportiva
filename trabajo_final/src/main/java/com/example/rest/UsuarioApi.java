@@ -13,7 +13,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import com.example.controller.dao.UsuarioDao;
-import com.example.controller.dao.Servicies.UsuarioService;
+import com.example.controller.dao.services.UsuarioService;
 import com.google.gson.Gson;
 
 @Path("/usuario")

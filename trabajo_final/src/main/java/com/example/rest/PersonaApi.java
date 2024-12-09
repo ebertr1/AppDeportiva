@@ -1,5 +1,5 @@
 package com.example.rest;
-import com.example.controller.dao.Servicies.PersonaService;
+import com.example.controller.dao.services.PersonaService;
 import com.example.models.enumerador.Genero;
 import com.example.models.enumerador.TipoIdentificacion;
 

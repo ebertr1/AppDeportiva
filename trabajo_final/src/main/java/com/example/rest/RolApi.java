@@ -13,7 +13,7 @@ import javax.ws.rs.core.Response.StatusType;
 
 
 import com.example.controller.dao.RolDao;
-import com.example.controller.dao.Servicies.RolService;
+import com.example.controller.dao.services.RolService;
 import com.google.gson.Gson;
 
 @Path("/rol")
