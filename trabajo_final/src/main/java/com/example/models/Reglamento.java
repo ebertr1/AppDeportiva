@@ -7,15 +7,17 @@ public class Reglamento {
     private String nombreReglamento;
     private String descripcion;
     private Formato formato;
+    private Integer id_Campeonato;
 
     public Reglamento() {
     }
 
-    public Reglamento(Integer id, String nombreReglamento, String descripcion, Formato formato) {
+    public Reglamento(Integer id, String nombreReglamento, String descripcion, Formato formato, Integer id_Campeonato) {
         this.id = id;
         this.nombreReglamento = nombreReglamento;
         this.descripcion = descripcion;
         this.formato = formato;
+        this.id_Campeonato = id_Campeonato;
     }
 
     public Integer getId() {
@@ -50,4 +52,11 @@ public class Reglamento {
         this.formato = formato;
     }
     
+    public Integer getId_Campeonato(){
+        return id_Campeonato;
+    }
+
+    public void setId_Campeonato(Integer id_Campeonato){
+        this.id_Campeonato = id_Campeonato;
+    }
 }

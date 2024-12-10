@@ -50,6 +50,24 @@ public class CalendarioDao extends AdapterDao<Calendario>{
             e.printStackTrace();
             return false;
         }
+<<<<<<< HEAD
+    }
+
+    public Boolean delete(Integer id) throws Exception {
+        LinkedList<Calendario> list = getListAll();
+        Calendario calendario = get(id);
+        if (calendario != null) {
+            list.remove(calendario);
+            String info = g.toJson(list.toArray());
+            saveFile(info);
+            this.listAll = list;
+            return true;
+        } else {
+            System.out.println("Calendario con id " + id + " no encontrada.");
+            return false;
+        }
+=======
+>>>>>>> origin/rama_Isauro
     }
 
     public Boolean delete(Integer id) throws Exception {

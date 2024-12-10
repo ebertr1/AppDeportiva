@@ -39,4 +39,8 @@ public class CalendarioServices {
         return obj.get(id);
     }   
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> origin/rama_Isauro

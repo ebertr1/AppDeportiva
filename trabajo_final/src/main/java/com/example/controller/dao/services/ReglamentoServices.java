@@ -46,4 +46,8 @@ public class ReglamentoServices {
         public Formato[] getFormato() {
             return obj.getTipoFormato();
         }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> origin/rama_Isauro

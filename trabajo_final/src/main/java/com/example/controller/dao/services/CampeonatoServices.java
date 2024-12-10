@@ -49,4 +49,8 @@ public class CampeonatoServices {
         return obj.getTipoCategoria();
     }
     
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> origin/rama_Isauro

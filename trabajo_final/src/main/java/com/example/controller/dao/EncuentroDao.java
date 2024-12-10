@@ -67,4 +67,8 @@ public class EncuentroDao extends AdapterDao<Encuentro>{
         }
     }
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> origin/rama_Isauro

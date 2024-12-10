@@ -72,6 +72,10 @@ public class ReglamentoApi {
             rs.getReglamento().setNombreReglamento(map.get("nombreReglamento").toString());
             rs.getReglamento().setDescripcion(map.get("descripcion").toString());
             rs.getReglamento().setTipoFormato(rs.getTipoFormato(map.get("formato").toString()));
+<<<<<<< HEAD
+=======
+            rs.getReglamento().setId_Campeonato(Integer.parseInt(map.get("idCampeonato").toString()));
+>>>>>>> origin/rama_Isauro
             rs.save();
             res.put("msg", "Ok");
             res.put("msg", "Reglamento guardado");
@@ -111,11 +115,19 @@ public class ReglamentoApi {
         System.out.println("****" + a);
         try {
             ReglamentoServices rs = new ReglamentoServices();
+<<<<<<< HEAD
             rs.getReglamento().setId(Integer.parseInt(map.get("id").toString()));
             rs.getReglamento().setNombreReglamento(map.get("nombreReglamento").toString());
             rs.getReglamento().setDescripcion(map.get("descripcion").toString());
             rs.getReglamento().setTipoFormato(rs.getTipoFormato(map.get("formato").toString()));
             rs.update();
+=======
+            rs.setReglamento(rs.get(Integer.parseInt(map.get("id").toString())));
+            rs.getReglamento().setNombreReglamento(map.get("nombreReglamento").toString());
+            rs.getReglamento().setDescripcion(map.get("descripcion").toString());
+            rs.getReglamento().setTipoFormato(rs.getTipoFormato(map.get("formato").toString()));
+            rs.getReglamento().setId_Campeonato(Integer.parseInt(map.get("idCampeonato").toString()));rs.update();
+>>>>>>> origin/rama_Isauro
             res.put("msg", "Ok");
             res.put("msg", "Reglamento actualizado");
             return Response.ok(res).build();

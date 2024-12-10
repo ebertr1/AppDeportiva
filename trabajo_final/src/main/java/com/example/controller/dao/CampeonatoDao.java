@@ -42,6 +42,39 @@ public class CampeonatoDao extends AdapterDao<Campeonato>{
 
     public TipoCategoria getTipoCategoria(String categoria) {
         return TipoCategoria.valueOf(categoria);
+<<<<<<< HEAD
+    }
+
+    public TipoCategoria[] getTipoCategoria() {
+        return TipoCategoria.values();
+    }
+    
+    public Boolean update() throws Exception {
+        try {
+            this.merge(getCampeonato(), getCampeonato().getId() - 1);
+            this.listAll = getListAll();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public Boolean delete(Integer id) throws Exception {
+        LinkedList<Campeonato> list = getListAll();
+        Campeonato campeonato = get(id);
+        if (campeonato != null) {
+            list.remove(campeonato);
+            String info = g.toJson(list.toArray());
+            saveFile(info);
+            this.listAll = list;
+            return true;
+        } else {
+            System.out.println("Campeonato con id " + id + " no encontrada.");
+            return false;
+        }
+=======
+>>>>>>> origin/rama_Isauro
     }
 
     public TipoCategoria[] getTipoCategoria() {

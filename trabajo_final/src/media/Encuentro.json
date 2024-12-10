@@ -1,0 +1,11 @@
+[
+    {
+        "id": 1,
+        "idInscrito1": "12",
+        "idIncrito2": "13",
+        "ubicacion": "Coliseo de loja",
+        "identificacion": 11,
+        "estado": true,
+        "horaInicio": "10:00:00"
+    }
+]

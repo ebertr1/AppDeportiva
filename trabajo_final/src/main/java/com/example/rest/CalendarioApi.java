@@ -1,6 +1,10 @@
 package com.example.rest;
 
+<<<<<<< HEAD
 import java.text.SimpleDateFormat;
+=======
+import java.util.Date;
+>>>>>>> origin/rama_Isauro
 import java.util.HashMap;
 
 import javax.ws.rs.Consumes;
@@ -72,8 +76,14 @@ public class CalendarioApi {
         try {
             CalendarioServices cs = new CalendarioServices();
 
+<<<<<<< HEAD
             cs.getCalendario().setFechaJornada(new SimpleDateFormat("YYYY-MM-dd").parse(map.get("fechaJornada").toString()));
             cs.getCalendario().setNroEncuentros(Integer.parseInt(map.get("nroEncuentros").toString()));
+=======
+            cs.getCalendario().setFechaJornada(new Date());
+            cs.getCalendario().setNroEncuentros(Integer.parseInt(map.get("nroEncuentros").toString()));
+            cs.getCalendario().setId_Campeonato(Integer.parseInt(map.get("idCampeonato").toString()));
+>>>>>>> origin/rama_Isauro
             cs.save();
             res.put("msg", "Ok");
             res.put("data", "Guardado correctamente");
@@ -95,9 +105,16 @@ public class CalendarioApi {
         HashMap res = new HashMap<>();
         try {
             CalendarioServices cs = new CalendarioServices();
+<<<<<<< HEAD
             cs.setCalendario(cs.get(Integer.parseInt(map.get("id").toString())));
             cs.getCalendario().setFechaJornada(new SimpleDateFormat("YYYY-MM-dd").parse(map.get("fechaJornada").toString()));
             cs.getCalendario().setNroEncuentros(Integer.parseInt(map.get("nroEncuentros").toString()));
+=======
+            cs.setCalendario(cs.get(Integer.parseInt(map.get("idCalendario").toString())));
+            cs.getCalendario().setFechaJornada(new Date());
+            cs.getCalendario().setNroEncuentros(Integer.parseInt(map.get("nroEncuentros").toString()));
+            cs.getCalendario().setId_Campeonato(Integer.parseInt(map.get("idCampeonato").toString()));
+>>>>>>> origin/rama_Isauro
             cs.update();
             res.put("msg", "Ok");
             res.put("data", "Actualizado correctamente");

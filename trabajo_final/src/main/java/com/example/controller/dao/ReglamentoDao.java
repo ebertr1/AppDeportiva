@@ -77,4 +77,8 @@ public class ReglamentoDao extends AdapterDao<Reglamento>{
         return Formato.values();
     }
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> origin/rama_Isauro
