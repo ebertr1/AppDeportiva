@@ -53,12 +53,11 @@ public class Campeonato {
         this.fechaFin = fechaFin;
     }
 
-
-    public TipoCategoria getTipoCategoria() {
-        return this.categoria;
+    public TipoCategoria getCategoria() {
+        return categoria;
     }
 
-    public void setTipoCategoria(TipoCategoria categoria) {
+    public void setCategoria(TipoCategoria categoria) {
         this.categoria = categoria;
     }
 }

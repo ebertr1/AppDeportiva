@@ -3,7 +3,6 @@ package com.example.controller.dao.services;
 import com.example.controller.dao.PersonaDao;
 import com.example.controller.dao.UsuarioDao;
 import com.example.controller.tda.list.LinkedList;
-import com.example.models.Administrador;
 import com.example.models.Persona;
 import com.example.models.Usuario;
 
@@ -40,14 +39,6 @@ public class UsuarioService {
 
     public Usuario get(Integer id) throws Exception {
         return userDao.get(id);
-    }
-    
-    public Usuario findUserbyEmail(String email) throws Exception{
-    	return userDao.getUsuariobyEmail(email);
-    }
-    
-    public Administrador findPersonabyEmail(String text_email) throws Exception{
-    	return userDao.getPersonabyEmail(text_email);
-    }
+    } 
 
 }
