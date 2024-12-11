@@ -89,7 +89,6 @@ public class RolApi {
     }
 
     @Path("/listType")
-
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getType() {

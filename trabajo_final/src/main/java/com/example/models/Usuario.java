@@ -5,8 +5,11 @@ public class Usuario {
     private String correo;
     private String contrasenia;
     private Boolean estado;
+    
+    // Podria ser en lugar de String la clase role
+    private Rol role;
 
-    public Usuario() {
+	public Usuario() {
     }
 
     public Usuario(Integer id, String correo, String contrasenia, Boolean estado) {
@@ -40,7 +43,13 @@ public class Usuario {
     public void setEstado(Boolean estado) {
         this.estado = estado;
     }
+    
+    public Rol getRole() {
+		return role;
+	}
 
-    // hashear contrasenia
+	public void setRole(Rol role) {
+		this.role = role;
+	}
 
 }

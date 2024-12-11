@@ -6,10 +6,11 @@ import com.example.models.Encuentro;
 
 public class EncuentroDao extends AdapterDao<Encuentro>{
     private Encuentro encuentro;
-    private LinkedList listAll;
+    private LinkedList<Encuentro> listAll;
 
     public EncuentroDao() {
         super(Encuentro.class);
+        this.listAll = new LinkedList<>();
     }
 
     public Encuentro getEncuentro() {
@@ -23,7 +24,7 @@ public class EncuentroDao extends AdapterDao<Encuentro>{
         this.encuentro = encuentro;
     }
     
-    public LinkedList getListAll() {
+    public LinkedList<Encuentro> getListAll() {
         if(listAll == null){
             this.listAll = listAll();
         }
@@ -40,8 +41,30 @@ public class EncuentroDao extends AdapterDao<Encuentro>{
 
 
     public Boolean update() throws Exception {
-        this.merge(getEncuentro(), getEncuentro().getId()-1);
-        this.listAll = listAll();
-        return true;
+        try {
+            this.merge(getEncuentro(), getEncuentro().getId() - 1);
+            this.listAll = getListAll();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
+
+
+    public Boolean delete(Integer id) throws Exception {
+        LinkedList<Encuentro> list = getListAll();
+        Encuentro encuentro = get(id);
+        if (encuentro != null) {
+            list.remove(encuentro);
+            String info = g.toJson(list.toArray());
+            saveFile(info);
+            this.listAll = list;
+            return true;
+        } else {
+            System.out.println("Encuentro con id " + id + " no encontrada.");
+            return false;
+        }
+    }
+
 }
