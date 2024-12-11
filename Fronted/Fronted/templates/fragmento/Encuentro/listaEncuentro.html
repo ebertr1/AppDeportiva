@@ -1,0 +1,71 @@
+{% extends 'template.html' %}
+{% block content %}
+<div class="col-12">
+    <h2 class="mt-4">Encuentros</h2>
+    <div class="justify-content-end mb-3">
+        <a href="/admin/encuentro/register" class="btn btn-success">Nuevo Encuentro</a>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nro</th>
+                <th>ID Inscrito 1</th>
+                <th>ID Inscrito 2</th>
+                <th>Ubicación</th>
+                <th>Identificación</th>
+                <th>Estado</th>
+                <th>Hora de Inicio</th>
+                <th>Hora de Finalizacion</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            {% if list %}
+            {% for item in list %}
+            <tr id="row-{{ item.id }}">
+                <td>{{ loop.index }}</td>
+                <td>{{ item.idInscrito1 }}</td>
+                <td>{{ item.idInscrito2 }}</td>
+                <td>{{ item.ubicacion }}</td>
+                <td>{{ item.identificacion }}</td>
+                <td>{{ item.estado ? 'Activo' : 'Inactivo' }}</td>
+                <td>{{ item.horaInicio }}</td>
+                <td>{{ item.horaFin }}</td>
+                <td>
+                    <a href="/admin/encuentro/edit/{{ item.id }}" class="btn btn-info">Modificar</a>
+                    <button class="btn btn-danger" onclick="deleteRow('{{ item.id }}')">Eliminar</button>
+                </td>
+            </tr>
+            {% endfor %}
+            {% else %}
+            <tr>
+                <td colspan="8">No hay Encuentros registrados.</td>
+            </tr>
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+
+<script>
+function deleteRow(id) {
+    if (confirm('¿Está seguro de que desea eliminar este encuentro?')) {
+        fetch(`/admin/encuentro/delete`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ idEncuentro: id })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.msg === 'Ok') {
+                document.getElementById(`row-${id}`).remove();
+            } else {
+                alert('Error al eliminar el encuentro');
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    }
+}
+</script>
+{% endblock %}

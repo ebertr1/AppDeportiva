@@ -1,4 +1,4 @@
-package com.example.controller.dao;
+package com.example.controller;
 
 import com.example.controller.dao.implement.AdapterDao;
 import com.example.controller.tda.list.LinkedList;

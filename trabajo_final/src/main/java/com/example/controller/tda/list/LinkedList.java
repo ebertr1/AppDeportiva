@@ -160,18 +160,18 @@ public class LinkedList<E> {
         } else if (post < 0 || post >= size) {
             throw new IndexOutOfBoundsException("Error, fuera de rango");
         } else if (post == 0) {
-            return deleteFirst(); // Elimina el primer nodo
+            return deleteFirst(); 
         } else if (post == (size - 1)) {
-            return deleteLast(); // Elimina el último nodo
+            return deleteLast(); 
         } else {
-            Node<E> previous = getNode(post - 1); // Nodo anterior al nodo a eliminar
-            Node<E> current = previous.getNext(); // Nodo actual (a eliminar)
-            E element = current.getInfo(); // Información del nodo a eliminar
-            Node<E> next = current.getNext(); // Nodo siguiente al nodo a eliminar
+            Node<E> previous = getNode(post - 1); 
+            Node<E> current = previous.getNext(); 
+            E element = current.getInfo();
+            Node<E> next = current.getNext(); 
     
-            previous.setNext(next); // Elimina el nodo actual enlazando el nodo anterior al siguiente
-            size--; // Disminuye el tamaño de la lista
-            return element; // Devuelve la información del nodo eliminado
+            previous.setNext(next); 
+            size--; 
+            return element; 
         }
     }
     

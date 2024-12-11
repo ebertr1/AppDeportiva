@@ -1,0 +1,68 @@
+{% extends 'template.html' %}
+{% block content %}
+<div class="col-12">
+    <h2 class="mt-4">Árbitros</h2>
+    <div class="justify-content-end mb-3">
+        <a href="/admin/arbitro/register" class="btn btn-success">Nuevo Árbitro</a>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nro</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Tipo</th>
+                <th>Identificación</th>
+                <th>Genero</th>
+                <th>Asociacion</th>
+               
+            </tr>
+        </thead>
+        <tbody>
+            {% if list %}
+            {% for item in list %}
+            <tr id="row-{{ item.id }}">
+                <td>{{ loop.index }}</td>
+                <td>{{ item.nombre }} {{ item.apellido }}</td>
+                <td>{{ item.tipo }}</td>
+                <td>{{ item.identificacion }}</td>
+                <td>
+                    <a href="/admin/arbitro/edit/{{ item.id }}" class="btn btn-info">Modificar</a>
+                </td>
+                <td>
+                    <button class="btn btn-danger" onclick="deleteRow('{{ item.id }}')">Eliminar</button>
+                </td>
+            </tr>
+            {% endfor %}
+            {% else %}
+            <tr>
+                <td colspan="6">No hay Árbitros registrados.</td>
+            </tr>
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+
+<script>
+    function deleteRow(id) {
+        if (confirm('¿Está seguro de que desea eliminar este árbitro?')) {
+            fetch(`/admin/arbitro/delete`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ idArbitro: id })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.msg === 'Ok') {
+                    document.getElementById(`row-${id}`).remove();
+                } else {
+                    alert('Error al eliminar el árbitro');
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    }
+    </script>
+{% endblock %}

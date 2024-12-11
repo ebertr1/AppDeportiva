@@ -4,54 +4,48 @@ import com.example.controller.dao.implement.AdapterDao;
 import com.example.controller.tda.list.LinkedList;
 import com.example.models.Resultado;
 
-public class ResultadoDao extends AdapterDao<Resultado>{
+public class ResultadoDao extends AdapterDao<Resultado> {
     private Resultado resultado;
     private LinkedList<Resultado> listAll;
-    
-    public ResultadoDao(){
+
+    public ResultadoDao() {
         super(Resultado.class);
-        this.listAll = new LinkedList<>();
     }
-    
+
     public Resultado getResultado() {
         if (resultado == null) {
             resultado = new Resultado();
         }
         return resultado;
     }
-    
+
     public void setResultado(Resultado resultado) {
         this.resultado = resultado;
     }
 
-    public LinkedList<Resultado> getlistAll() {
-        if (listAll.isEmpty()) {
+    public LinkedList<Resultado> getListAll() {
+        if (listAll == null) {
             this.listAll = listAll();
         }
         return listAll;
     }
 
     public Boolean save() throws Exception {
-        Integer id = getlistAll().getSize() + 1;
+        Integer id = getListAll().getSize() + 1;
         resultado.setId(id);
         this.persist(this.resultado);
-        this.listAll = getlistAll();
+        this.listAll = listAll();
         return true;
     }
 
     public Boolean update() throws Exception {
-        try {
-            this.merge(getResultado(), getResultado().getId() - 1);
-            this.listAll = getlistAll();
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
+        this.merge(getResultado(), getResultado().getId() - 1);
+        this.listAll = listAll();
+        return true;
     }
 
     public Boolean delete(Integer id) throws Exception {
-        LinkedList<Resultado> list = getlistAll();
+        LinkedList<Resultado> list = getListAll();
         Resultado resultado = get(id);
         if (resultado != null) {
             list.remove(resultado);
@@ -60,7 +54,7 @@ public class ResultadoDao extends AdapterDao<Resultado>{
             this.listAll = list;
             return true;
         } else {
-            System.out.println("Persona con id " + id + " no encontrada.");
+            System.out.println("Resultado con id " + id + " no encontrado.");
             return false;
         }
     }

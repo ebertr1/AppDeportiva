@@ -5,37 +5,41 @@ import com.example.controller.tda.list.LinkedList;
 import com.example.models.Resultado;
 
 public class ResultadoServices {
-    private ResultadoDao obj;
+    private ResultadoDao resultadoDao;
+    private Resultado resultado;
 
     public ResultadoServices() {
-        obj = new ResultadoDao();
-    }
-
-    public Boolean save() throws Exception{
-        return obj.save();
-    }
-    
-    public Boolean update() throws Exception{
-        return obj.update();
-    }
-
-    public Boolean delete(Integer id) throws Exception {
-        return obj.delete(id);
-    }
-    
-    public LinkedList listAll(){
-        return obj.getlistAll();
+        this.resultadoDao = new ResultadoDao();
     }
 
     public Resultado getResultado() {
-        return obj.getResultado();
+        if (resultado == null) {
+            resultado = new Resultado();
+        }
+        return resultado;
     }
 
     public void setResultado(Resultado resultado) {
-        obj.setResultado(resultado);
+        this.resultado = resultado;
+    }
+
+    public LinkedList<Resultado> listAll() {
+        return resultadoDao.getListAll();
     }
 
     public Resultado get(Integer id) throws Exception {
-        return obj.get(id);
+        return resultadoDao.get(id);
+    }
+
+    public Boolean save() throws Exception {
+        return resultadoDao.save();
+    }
+
+    public Boolean update() throws Exception {
+        return resultadoDao.update();
+    }
+
+    public Boolean delete(Integer id) throws Exception {
+        return resultadoDao.delete(id);
     }
 }

@@ -12,16 +12,15 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-import com.example.controller.dao.services.ResultadoServices;
+import com.example.controller.services.ResultadoServices;
 import com.google.gson.Gson;
 
 @Path("resultado")
 public class ResultadoApi {
-
     @Path("/list")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getAllPersons() {
+    public Response getAllResultados() {
         HashMap<String, Object> map = new HashMap<>();
         ResultadoServices rs = new ResultadoServices();
         map.put("msg", "Ok");
@@ -35,20 +34,20 @@ public class ResultadoApi {
     @Path("/get/{id}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getPerson(@PathParam("id") Integer id) {
-        HashMap map = new HashMap<>();
+    public Response getResultado(@PathParam("id") Integer id) {
+        HashMap<String, Object> map = new HashMap<>();
         ResultadoServices rs = new ResultadoServices();
         try {
             rs.setResultado(rs.get(id));
         } catch (Exception e) {
-
+            // Handle exception
         }
 
         map.put("msg", "Ok");
         map.put("data", rs.getResultado());
 
         if (rs.getResultado() == null || rs.getResultado().getId() == 0) {
-            map.put("msg", "No se encontró persona con ese identificador");
+            map.put("msg", "No se encontró resultado con ese identificador");
             return Response.status(Status.NOT_FOUND).entity(map).build();
         }
 
@@ -63,7 +62,7 @@ public class ResultadoApi {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response save(HashMap map) {
+    public Response save(HashMap<String, Object> map) {
         HashMap<String, Object> res = new HashMap<>();
         Gson g = new Gson();
         String a = g.toJson(map);
@@ -73,11 +72,10 @@ public class ResultadoApi {
             ResultadoServices rs = new ResultadoServices();
             rs.getResultado().setEquipoGanador(map.get("equipoGanador").toString());
             rs.getResultado().setEquipoPerdedor(map.get("equipoPerdedor").toString());
-            rs.getResultado().setEmpate(Boolean.parseBoolean(map.get("empate").toString()));
             rs.getResultado().setGolesEquipo1(Integer.parseInt(map.get("golesEquipo1").toString()));
             rs.getResultado().setGolesEquipo2(Integer.parseInt(map.get("golesEquipo2").toString()));
+            rs.getResultado().setEmpate(Boolean.parseBoolean(map.get("empate").toString()));
             rs.getResultado().setPuntosEncuentro(Integer.parseInt(map.get("puntosEncuentro").toString()));
-
             rs.save();
             res.put("msg", "Ok");
             res.put("data", "Guardado correctamente");
@@ -89,44 +87,35 @@ public class ResultadoApi {
             res.put("data", e.toString());
             return Response.status(Status.INTERNAL_SERVER_ERROR).entity(res).build();
         }
-
-        // todo
-        // Validation
-
     }
 
     @Path("/update")
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response update(HashMap map) {
-        HashMap res = new HashMap<>();
+    public Response update(HashMap<String, Object> map) {
+        HashMap<String, Object> res = new HashMap<>();
 
         try {
             ResultadoServices rs = new ResultadoServices();
             rs.setResultado(rs.get(Integer.parseInt(map.get("idResultado").toString())));
             rs.getResultado().setEquipoGanador(map.get("equipoGanador").toString());
             rs.getResultado().setEquipoPerdedor(map.get("equipoPerdedor").toString());
-            rs.getResultado().setEmpate(Boolean.parseBoolean(map.get("empate").toString()));
             rs.getResultado().setGolesEquipo1(Integer.parseInt(map.get("golesEquipo1").toString()));
             rs.getResultado().setGolesEquipo2(Integer.parseInt(map.get("golesEquipo2").toString()));
+            rs.getResultado().setEmpate(Boolean.parseBoolean(map.get("empate").toString()));
             rs.getResultado().setPuntosEncuentro(Integer.parseInt(map.get("puntosEncuentro").toString()));
-
             rs.update();
             res.put("msg", "Ok");
-            res.put("data", "Guardado correctamente");
+            res.put("data", "Actualizado correctamente");
             return Response.ok(res).build();
 
         } catch (Exception e) {
-            System.out.println("Error en save data" + e.toString());
+            System.out.println("Error en update data" + e.toString());
             res.put("msg", "Error");
             res.put("data", e.toString());
             return Response.status(Status.INTERNAL_SERVER_ERROR).entity(res).build();
         }
-
-        // todo
-        // Validation
-
     }
 
     @Path("/delete")
@@ -147,7 +136,7 @@ public class ResultadoApi {
                 return Response.ok(res).build();
             } else {
                 res.put("msg", "Error");
-                res.put("data", "Dirigente no encontrado");
+                res.put("data", "Resultado no encontrado");
                 return Response.status(Status.NOT_FOUND).entity(res).build();
             }
         } catch (Exception e) {
