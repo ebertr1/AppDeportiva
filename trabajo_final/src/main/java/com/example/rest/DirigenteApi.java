@@ -147,12 +147,7 @@ public class DirigenteApi {
             ds.getDirigente().setTipo(ds.getTipoIdentificacion(map.get("tipo").toString()));
             ds.getDirigente().setIdentificacion(map.get("identificacion").toString());
             ds.getDirigente().setAniosExperiencia(Integer.parseInt(map.get("aniosExperiencia").toString()));
-            if (map.containsKey("fechaNacimiento") && map.get("fechaNacimiento") != null) {
-                String fechaNacimientoStr = map.get("fechaNacimiento").toString();
-                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-                Date fechaNacimiento = dateFormat.parse(fechaNacimientoStr);
-                ds.getDirigente().setFechaNacimiento(fechaNacimiento);
-            }
+
             ds.update();
             res.put("msg", "Ok");
             res.put("data", "Guardado correctamente");
@@ -175,7 +170,7 @@ public class DirigenteApi {
 
         try {
             DirigenteServices ds = new DirigenteServices();
-            Integer id = Integer.parseInt(map.get("idDirigente").toString());
+            Integer id = Integer.parseInt(map.get("id").toString());
 
             Boolean success = ds.delete(id);
             if (success) {

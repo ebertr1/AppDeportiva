@@ -19,6 +19,7 @@
   <!-- Font Awesome for Sports Icons -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 
+<<<<<<< HEAD
   <!-- Vendor CSS Files -->
   <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
   <link href="{{ url_for('static', filename='vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
@@ -162,6 +163,11 @@
       color: #ff9900;
     }
   </style>
+=======
+<!-- Main CSS File -->
+<link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
+ 
+>>>>>>> rama_Stiven
 </head>
 
 <body class="index-page">
@@ -198,6 +204,7 @@
     </nav>
   </header>
 
+<<<<<<< HEAD
   <!-- Hero Section -->
   <section id="hero" class="hero section position-relative">
     <video autoplay muted loop id="background-video" class="w-100 h-100 position-absolute">
@@ -206,6 +213,28 @@
     </video>
 
     <div class="overlay"></div>
+=======
+  <main class="main">
+    <!-- Hero Section -->
+
+    {% block content %}
+    <section id="hero" class="hero section dark-background">
+
+
+      <img src="{{ url_for('static', filename='img/my-profile-img.jpg') }}" alt="" data-aos="fade-in" class="">
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <h2>Alex Smith</h2>
+        <p>I'm <span class="typed" data-typed-items="Designer, Developer, Freelancer, Photographer">Designer</span><span class="typed-cursor typed-cursor--blink" aria-hidden="true"></span><span class="typed-cursor typed-cursor--blink" aria-hidden="true"></span></p>
+      </div>
+
+    </section><!-- /Hero Section -->
+    {% endblock %}
+
+ 
+
+  <footer id="footer" class="footer position-relative light-background">
+>>>>>>> rama_Stiven
 
     <div class="container">
       <h1>Transforma la Gestión de Tu Campeonato de Fútbol</h1>
