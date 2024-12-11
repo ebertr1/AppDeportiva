@@ -105,6 +105,7 @@ def update_person():
         flash(str(dat["data"]), category='error')
     return redirect("/admin/person/list")
 
+
     
     
 

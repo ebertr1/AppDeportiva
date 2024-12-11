@@ -1,0 +1,52 @@
+{% extends 'template.html' %}
+{% block content %}
+<div class="col-12">
+    <h2 class="mt-4">Lista de Reglamentos</h2>
+    <div class="justify-content-end mb-3">
+        <a href="/admin/campeonato/register" class="btn btn-success">Nuevo Reglamento</a>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nro</th>
+                <th>Nombre del Reglamento</th>
+                <th>Descripcion</th>
+                <th>Formato</th>
+                <th>Acciones</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if list %}
+            {% for item in list %}
+            <tr id="row-{{ item.id }}">
+                    <td>{{ loop.index }}</td>
+                    <td>{{ item.nombreReglamento }}</td>
+                    <td>{{ item.descripcion }}</td>
+                    <td>{{ item.formato}}</td>
+                    <td>
+                        <a href="/admin/reglamento/edit/{{ item.id }}" class="btn btn-info">Modificar</a>
+                    </td>
+                    <td>
+                        <button class="btn btn-danger" onclick="deleteRow({{ item.id }})">Eliminar</button>
+                    </td>
+                </tr>
+            {% endfor %}
+        {% else %}
+            <tr>
+                <td colspan="5">No hay reglamentos registrados.</td>
+            </tr>
+        {% endif %}
+        </tbody>
+    </table>
+</div>
+
+<script>
+    function deleteRow(id) {
+        const row = document.getElementById(`row-${id}`);
+        if (confirm("¿Estás seguro de que deseas eliminar este campeonato.?")) {
+            row.remove();
+        }
+    }
+</script>
+{% endblock %}

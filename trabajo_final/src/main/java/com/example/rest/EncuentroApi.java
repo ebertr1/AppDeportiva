@@ -37,7 +37,11 @@ public class EncuentroApi {
     public Response getPerson(@PathParam("id") Integer id) {
         HashMap map = new HashMap<>();
         EncuentroServices es = new EncuentroServices();
-
+        try {
+            es.setEncuentro(es.get(id));
+        } catch (Exception e) {
+        }
+        
         map.put("msg", "Ok");
         map.put("data", es.getEncuentro());
         if (es.getEncuentro() == null || es.getEncuentro().getId() == 0) {
