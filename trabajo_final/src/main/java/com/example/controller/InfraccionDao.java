@@ -58,4 +58,52 @@ public class InfraccionDao extends AdapterDao<Infraccion> {
             return false;
         }
     }
+
+    public LinkedList<Infraccion> ordenarPorNumTarjeta(boolean ascendente) throws Exception {
+        LinkedList<Infraccion> infracciones = getListAll();
+        infracciones.quicksort("numTarjeta", ascendente ? 1 : -1);
+        return infracciones;
+    }
+
+    public LinkedList<Infraccion> ordenarPorIdentificacionJugador(boolean ascendente) throws Exception {
+        LinkedList<Infraccion> infracciones = getListAll();
+        infracciones.quicksort("identificacionJugador", ascendente ? 1 : -1);
+        return infracciones;
+    }
+
+    public LinkedList<Infraccion> ordenarPorColorTarjeta(boolean ascendente) throws Exception {
+        LinkedList<Infraccion> infracciones = getListAll();
+        infracciones.quicksort("colorTarjeta", ascendente ? 1 : -1);
+        return infracciones;
+    }
+
+    public LinkedList<Infraccion> buscarPorNumTarjeta(Integer numTarjeta) {
+        LinkedList<Infraccion> resultados = new LinkedList<>();
+        for (Infraccion infraccion : getListAll().toArray()) {
+            if (infraccion.getNumTarjeta().equals(numTarjeta)) {
+                resultados.add(infraccion);
+            }
+        }
+        return resultados;
+    }
+
+    public LinkedList<Infraccion> buscarPorIdentificacionJugador(String identificacionJugador) {
+        LinkedList<Infraccion> resultados = new LinkedList<>();
+        for (Infraccion infraccion : getListAll().toArray()) {
+            if (infraccion.getIdentificacionJugador().equalsIgnoreCase(identificacionJugador)) {
+                resultados.add(infraccion);
+            }
+        }
+        return resultados;
+    }
+
+    public LinkedList<Infraccion> buscarPorColorTarjeta(String colorTarjeta) {
+        LinkedList<Infraccion> resultados = new LinkedList<>();
+        for (Infraccion infraccion : getListAll().toArray()) {
+            if (infraccion.getColorTarjeta().toString().equalsIgnoreCase(colorTarjeta)) {
+                resultados.add(infraccion);
+            }
+        }
+        return resultados;
+    }
 }

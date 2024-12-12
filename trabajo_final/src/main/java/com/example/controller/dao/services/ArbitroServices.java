@@ -50,4 +50,45 @@ public class ArbitroServices {
     public Boolean delete(Integer id) throws Exception {
         return arbitroDao.delete(id);
     }
+
+    public LinkedList<Arbitro> ordenarPorNombre(boolean ascendente) throws Exception {
+        return arbitroDao.ordenarPorNombre(ascendente);
+    }
+
+    public LinkedList<Arbitro> ordenarPorApellido(boolean ascendente) throws Exception {
+        return arbitroDao.ordenarPorApellido(ascendente);
+    }
+
+    public LinkedList<Arbitro> ordenarPorIdentificacion(boolean ascendente) throws Exception {
+        return arbitroDao.ordenarPorIdentificacion(ascendente);
+    }
+
+    public LinkedList<Arbitro> ordenarPorFechaNacimiento(boolean ascendente) throws Exception {
+        return arbitroDao.ordenarPorFechaNacimiento(ascendente);
+    }
+
+    public LinkedList<Arbitro> ordenarPorAsociacion(boolean ascendente) throws Exception {
+        return arbitroDao.ordenarPorAsociacion(ascendente);
+    }
+
+    public LinkedList<Arbitro> buscarPorNombre(String nombre) {
+        return arbitroDao.buscarPorNombre(nombre);
+    }
+
+    public LinkedList<Arbitro> buscarPorApellido(String apellido) {
+        return arbitroDao.buscarPorApellido(apellido);
+    }
+
+    public LinkedList<Arbitro> buscarPorIdentificacion(String identificacion) {
+        return arbitroDao.buscarPorIdentificacion(identificacion);
+    }
+
+    public LinkedList<Arbitro> buscarPorAsociacion(String asociacion) {
+        return arbitroDao.buscarPorAsociacion(asociacion);
+    }
+
+    public LinkedList<Arbitro> buscarPorGenero(String genero) {
+        return arbitroDao.buscarPorGenero(genero);
+    }
+    
 }

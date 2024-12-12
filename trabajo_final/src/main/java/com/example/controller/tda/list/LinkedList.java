@@ -1,5 +1,7 @@
 package com.example.controller.tda.list;
 
+import java.lang.reflect.Method;
+
 import com.example.controller.exception.ListEmptyException;
 
 public class LinkedList<E> {
@@ -263,4 +265,196 @@ public class LinkedList<E> {
         
         return false; // Elemento no encontrado
     }
+
+    private Boolean compare(Object a, Object b, Integer type) {
+        if (a == null || b == null) return false;
+        
+        if (a instanceof Number && b instanceof Number) {
+            Number aNum = (Number) a;
+            Number bNum = (Number) b;
+            return (type == 1) ? aNum.doubleValue() > bNum.doubleValue() : aNum.doubleValue() < bNum.doubleValue();
+        } else if (a instanceof String && b instanceof String) {
+            String aStr = (String) a;
+            String bStr = (String) b;
+            return (type == 1) ? aStr.compareTo(bStr) > 0 : aStr.compareTo(bStr) < 0;
+        }
+        return false;
+    }
+
+    private Boolean atrribute_compare(String attribute, E a, E b, Integer type) throws Exception {
+        if (a == null || b == null) return false;
+        Object valueA = exist_attribute(a, attribute);
+        Object valueB = exist_attribute(b, attribute);
+        return compare(valueA, valueB, type);
+    }
+
+    private Object exist_attribute(E a, String attribute) throws Exception {
+        Method method = null;
+        attribute = attribute.substring(0, 1).toUpperCase() + attribute.substring(1);
+        attribute = "get" + attribute;
+        
+        for (Method aux : a.getClass().getMethods()) {
+            if (aux.getName().equals(attribute)) {
+                method = aux;
+                break;
+            }
+        }
+        
+        if (method == null) {
+            for (Method aux : a.getClass().getSuperclass().getMethods()) {
+                if (aux.getName().equals(attribute)) {
+                    method = aux;
+                    break;
+                }
+            }
+        }
+        
+        if (method != null) {
+            return method.invoke(a);
+        }
+        throw new Exception("Atributo no econtrado: " + attribute);
+    }
+
+  
+    public LinkedList<E> order(int orderType) throws Exception {
+        if (!isEmpty()) {
+            E[] lista = this.toArray();
+            reset();
+            for (int i = 1; i < lista.length; i++) {
+                E aux = lista[i];
+                int j = i - 1;
+                while (j >= 0 && compare(lista[j], aux, orderType)) {
+                    lista[j + 1] = lista[j];
+                    j--;
+                }
+                lista[j + 1] = aux;
+            }
+            this.toList(lista);
+        }
+        return this;
+    }
+
+    public LinkedList<E> order(String attribute, Integer type) throws Exception {
+        if (!isEmpty()) {
+            E[] lista = this.toArray();
+            reset();
+            for (int i = 1; i < lista.length; i++) {
+                E aux = lista[i];
+                int j = i - 1;
+                while (j >= 0 && atrribute_compare(attribute, lista[j], aux, type)) {
+                    lista[j + 1] = lista[j];
+                    j--;
+                }
+                lista[j + 1] = aux;
+            }
+            this.toList(lista);
+        }
+        return this;
+    }
+
+    // Búsqueda Secuencial
+    public static int busquedaSecuencial(int[] array, int objetivo) {
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == objetivo) {
+                return i; 
+            }
+        }
+        return -1; 
+    }
+
+    // Búsqueda Binaria
+    public static int busquedaBinaria(int[] array, int objetivo) {
+        int inicio = 0, fin = array.length - 1;
+        while (inicio <= fin) {
+            int medio = (inicio + fin) / 2;
+            if (array[medio] == objetivo) {
+                return medio; 
+            } else if (array[medio] < objetivo) {
+                inicio = medio + 1;
+            } else {
+                fin = medio - 1;
+            }
+        }
+        return -1; 
+    }
+ 
+    // QuickSort implementation
+    public LinkedList<E> quicksort(int orderType) throws Exception {
+        if (!isEmpty()) {
+            E[] lista = this.toArray();
+            reset();
+            quicksortHelper(lista, 0, lista.length - 1, orderType);
+            this.toList(lista);
+        }
+        return this;
+    }
+
+    private void quicksortHelper(E[] lista, int low, int high, int orderType) throws Exception {
+        if (low < high) {
+            int pi = partition(lista, low, high, orderType);
+            quicksortHelper(lista, low, pi - 1, orderType);
+            quicksortHelper(lista, pi + 1, high, orderType);
+        }
+    }
+
+    private int partition(E[] lista, int low, int high, int orderType) throws Exception {
+        E pivot = lista[high];
+        int i = (low - 1);
+        
+        for (int j = low; j < high; j++) {
+            if (compare(lista[j], pivot, orderType)) {
+                i++;
+                E temp = lista[i];
+                lista[i] = lista[j];
+                lista[j] = temp;
+            }
+        }
+        
+        E temp = lista[i + 1];
+        lista[i + 1] = lista[high];
+        lista[high] = temp;
+        
+        return i + 1;
+    }
+
+    private int partitionAttribute(E[] lista, int low, int high, String attribute, Integer type) throws Exception {
+        E pivot = lista[high];
+        int i = (low - 1);
+        
+        for (int j = low; j < high; j++) {
+            if (atrribute_compare(attribute, lista[j], pivot, type)) {
+                i++;
+                E temp = lista[i];
+                lista[i] = lista[j];
+                lista[j] = temp;
+            }
+        }
+        
+        E temp = lista[i + 1];
+        lista[i + 1] = lista[high];
+        lista[high] = temp;
+        
+        return i + 1;
+    }
+    
+    public LinkedList<E> quicksort(String attribute, Integer type) throws Exception {
+        if (!isEmpty()) {
+            E[] lista = this.toArray();
+            reset();
+            quicksortHelperAttribute(lista, 0, lista.length - 1, attribute, type);
+            this.toList(lista);
+        }
+        return this;
+    }
+    
+    private void quicksortHelperAttribute(E[] lista, int low, int high, String attribute, Integer type) throws Exception {
+        if (low < high) {
+            int pi = partitionAttribute(lista, low, high, attribute, type);
+            quicksortHelperAttribute(lista, low, pi - 1, attribute, type);
+            quicksortHelperAttribute(lista, pi + 1, high, attribute, type);
+        }
+    }
+    
+
 }
+

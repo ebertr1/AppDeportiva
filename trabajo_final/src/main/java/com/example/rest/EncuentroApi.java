@@ -9,11 +9,14 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import com.example.controller.dao.services.EncuentroServices;
+import com.example.controller.tda.list.LinkedList;
+import com.example.models.Encuentro;
 import com.google.gson.Gson;
 
 @Path("encuentro")
@@ -146,5 +149,92 @@ public class EncuentroApi {
             res.put("data", e.toString());
             return Response.status(Status.INTERNAL_SERVER_ERROR).entity(res).build();
         }
+    }
+
+     @Path("/ordenar")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response ordenarEncuentros(
+        @QueryParam("by") String orderBy,
+        @QueryParam("direction") String orderDirection
+    ) {
+        HashMap<String, Object> map = new HashMap<>();
+        EncuentroServices es = new EncuentroServices();
+        
+        boolean ascendente = orderDirection == null || orderDirection.equalsIgnoreCase("asc");
+        LinkedList<Encuentro> encuentros;
+
+        try {
+            switch (orderBy.toLowerCase()) {
+                case "idinscrito1":
+                    encuentros = es.ordenarPorIdInscrito1(ascendente);
+                    break;
+                case "idinscrito2":
+                    encuentros = es.ordenarPorIdInscrito2(ascendente);
+                    break;
+                case "ubicacion":
+                    encuentros = es.ordenarPorUbicacion(ascendente);
+                    break;
+                case "identificacion":
+                    encuentros = es.ordenarPorIdentificacion(ascendente);
+                    break;
+                case "horainicio":
+                    encuentros = es.ordenarPorHoraInicio(ascendente);
+                    break;
+                default:
+                    map.put("msg", "Error");
+                    map.put("data", "Criterio de ordenamiento no válido");
+                    return Response.status(Status.BAD_REQUEST).entity(map).build();
+            }
+
+            map.put("msg", "Ok");
+            map.put("data", encuentros.toArray());
+            map.put("total", encuentros.getSize());
+        } catch (Exception e) {
+            map.put("msg", "Error");
+            map.put("data", e.toString());
+            return Response.status(Status.INTERNAL_SERVER_ERROR).entity(map).build();
+        }
+
+        return Response.ok(map).build();
+    }
+
+    @Path("/buscar")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response buscarEncuentros(
+        @QueryParam("idInscrito1") Integer idInscrito1,
+        @QueryParam("idInscrito2") Integer idInscrito2,
+        @QueryParam("ubicacion") String ubicacion,
+        @QueryParam("identificacion") String identificacion,
+        @QueryParam("horaInicio") String horaInicio
+    ) {
+        HashMap<String, Object> map = new HashMap<>();
+        EncuentroServices es = new EncuentroServices();
+        
+        LinkedList<Encuentro> resultados = es.listAll();
+
+        // Aplicar filtros
+        if (idInscrito1 != null) {
+            resultados = es.buscarPorIdInscrito1(idInscrito1);
+        }
+        if (idInscrito2 != null) {
+            resultados = es.buscarPorIdInscrito2(idInscrito2);
+        }
+        if (ubicacion != null) {
+            resultados = es.buscarPorUbicacion(ubicacion);
+        }
+        if (identificacion != null) {
+            resultados = es.buscarPorIdentificacion(identificacion);
+        }
+        if (horaInicio != null) {
+            resultados = es.buscarPorHoraInicio(horaInicio);
+        }
+
+        map.put("msg", "Ok");
+        map.put("data", resultados.toArray());
+        map.put("total", resultados.getSize());
+
+        return Response.ok(map).build();
     }
 }

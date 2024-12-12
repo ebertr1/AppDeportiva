@@ -8,11 +8,14 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import com.example.controller.services.InfraccionServices;
+import com.example.controller.tda.list.LinkedList;
+import com.example.models.Infraccion;
 import com.example.models.enumerador.ColorTarjeta;
 import com.google.gson.Gson;
 
@@ -140,5 +143,78 @@ public class InfraccionApi {
             res.put("data", e.toString());
             return Response.status(Status.INTERNAL_SERVER_ERROR).entity(res).build();
         }
+    }
+
+    @Path("/ordenar")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response ordenarInfracciones(
+        @QueryParam("by") String orderBy,
+        @QueryParam("direction") String orderDirection
+    ) {
+        HashMap<String, Object> map = new HashMap<>();
+        InfraccionServices is = new InfraccionServices();
+        
+        boolean ascendente = orderDirection == null || orderDirection.equalsIgnoreCase("asc");
+        LinkedList<Infraccion> infracciones;
+
+        try {
+            switch (orderBy.toLowerCase()) {
+                case "numtarjeta":
+                    infracciones = is.ordenarPorNumTarjeta(ascendente);
+                    break;
+                case "identificacionjugador":
+                    infracciones = is.ordenarPorIdentificacionJugador(ascendente);
+                    break;
+                case "colortarjeta":
+                    infracciones = is.ordenarPorColorTarjeta(ascendente);
+                    break;
+                default:
+                    map.put("msg", "Error");
+                    map.put("data", "Criterio de ordenamiento no válido");
+                    return Response.status(Status.BAD_REQUEST).entity(map).build();
+            }
+
+            map.put("msg", "Ok");
+            map.put("data", infracciones.toArray());
+            map.put("total", infracciones.getSize());
+        } catch (Exception e) {
+            map.put("msg", "Error");
+            map.put("data", e.toString());
+            return Response.status(Status.INTERNAL_SERVER_ERROR).entity(map).build();
+        }
+
+        return Response.ok(map).build();
+    }
+
+    @Path("/buscar")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response buscarInfracciones(
+        @QueryParam("numTarjeta") Integer numTarjeta,
+        @QueryParam("identificacionJugador") String identificacionJugador,
+        @QueryParam("colorTarjeta") String colorTarjeta
+    ) {
+        HashMap<String, Object> map = new HashMap<>();
+        InfraccionServices is = new InfraccionServices();
+        
+        LinkedList<Infraccion> resultados = is.listAll();
+
+        // Aplicar filtros
+        if (numTarjeta != null) {
+            resultados = is.buscarPorNumTarjeta(numTarjeta);
+        }
+        if (identificacionJugador != null) {
+            resultados = is.buscarPorIdentificacionJugador(identificacionJugador);
+        }
+        if (colorTarjeta != null) {
+            resultados = is.buscarPorColorTarjeta(colorTarjeta);
+        }
+
+        map.put("msg", "Ok");
+        map.put("data", resultados.toArray());
+        map.put("total", resultados.getSize());
+
+        return Response.ok(map).build();
     }
 }

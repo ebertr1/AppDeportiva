@@ -1,4 +1,4 @@
-package com.example.controller.dao.services;
+package com.example.controller.services;
 
 import com.example.controller.dao.EncuentroDao;
 import com.example.controller.tda.list.LinkedList;

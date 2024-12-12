@@ -42,4 +42,36 @@ public class InfraccionServices {
     public Boolean delete(Integer id) throws Exception {
         return infraccionDao.delete(id);
     }
+
+    public LinkedList<Infraccion> ordenarPorNumTarjeta(boolean ascendente) throws Exception {
+        return infraccionDao.ordenarPorNumTarjeta(ascendente);
+    }
+
+    public LinkedList<Infraccion> ordenarPorIdentificacionJugador(boolean ascendente) throws Exception {
+        return infraccionDao.ordenarPorIdentificacionJugador(ascendente);
+    }
+
+    
+    public LinkedList<Infraccion> ordenarPorColorTarjeta(boolean ascendente) throws Exception {
+        return infraccionDao.ordenarPorColorTarjeta(ascendente);
+    }
+
+    public LinkedList<Infraccion> buscarPorNumTarjeta(Integer numTarjeta) {
+        return infraccionDao.buscarPorNumTarjeta(numTarjeta);
+    }
+
+    public LinkedList<Infraccion> buscarPorIdentificacionJugador(String identificacionJugador) {
+        return infraccionDao.buscarPorIdentificacionJugador(identificacionJugador);
+    }
+
+    public LinkedList<Infraccion> buscarPorColorTarjeta(String colorTarjeta) {
+        return infraccionDao.buscarPorColorTarjeta(colorTarjeta);
+    }
+
+
+
+
+
+
+
 }
