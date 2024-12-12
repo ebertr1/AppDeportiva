@@ -111,7 +111,7 @@ def list_arbitros():
     # Realizar solicitud GET a la API
     r = requests.get("http://localhost:8078/api/arbitro/list")
     data = r.json()
-    
+        
     if r.status_code == 200:
         return render_template('listaArbitro.html', list=data["data"])
     else:

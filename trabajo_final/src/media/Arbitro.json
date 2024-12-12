@@ -1,0 +1,12 @@
+{
+    "id": 1,
+    "activo": true,
+    "nombre": "Juan",
+    "apellido": "Perez",
+    "tipo": "DNI",
+    "identificacion": "12345678",
+    "fechaNacimiento": "1980-01-01",
+    "celular": "123456789",
+    "genero": "MASCULINO",
+    "asociacion": "Asociacion de Arbitros"
+}
