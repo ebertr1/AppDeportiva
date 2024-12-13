@@ -117,6 +117,7 @@ public class UsuarioDao extends AdapterDao<Usuario> {
     			// Si el apellido empieza con las letras del texto que tiene como parametro
 				if (aux[i].getEmail().equals(email)) {
 					person = aux[i];
+					break;
 				}
 			}
     	}

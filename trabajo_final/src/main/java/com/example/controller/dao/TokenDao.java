@@ -47,7 +47,7 @@ public class TokenDao extends AdapterDao<Token>{
 		this.listTokns = listAll();
 	}
 	
-	
+	// realizar logica para refresh token
 	public Boolean refreshToken() throws Exception{
 		return true;
 	}
@@ -69,4 +69,6 @@ public class TokenDao extends AdapterDao<Token>{
        
         this.UpdateFile(listTokns); // Actualiza el archivo si es necesario
     }
+	
+	// Realizar metodo de busqueda por token, para comparar
 }

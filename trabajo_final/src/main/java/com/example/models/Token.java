@@ -12,6 +12,7 @@ public class Token {
 	
 	private String token;
 	private LocalDateTime fecha_creacion;
+	// variable de refresh token	
 	private LocalDateTime expiracion_token;
 	private boolean isValid;
 	

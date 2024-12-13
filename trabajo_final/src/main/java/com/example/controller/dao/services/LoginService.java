@@ -32,6 +32,9 @@ public class LoginService {
 	}
 
 	public String login(String email, String password) throws Exception {
+//		userService.getUsuario().setCorreo(email);
+//		userService.getUsuario().setContrasenia(password);
+		
 		Usuario user = userService.findUserbyEmail(email); // debo de 
 
 		if (user == null) {
@@ -42,6 +45,8 @@ public class LoginService {
 		// Verificar la contraseña hasheada
 		if (BCrypt.checkpw(password, user.getContrasenia())) {
 			// Si las credenciales son correctas, generar el JWT
+			System.out.println("Contrasenia correcta");
+			System.out.println("usuario : "+user.getCorreo());
 			return generateJWT(user);
 		} else {
 			return "Contraseña incorrecta";
@@ -50,23 +55,52 @@ public class LoginService {
 
 	private String generateJWT(Usuario user) throws Exception {
 		// Obtener la fecha y hora actual
-		long now = System.currentTimeMillis();
+		long now = System.currentTimeMillis(); // opcional usar Calendar
 		Key key = Keys.hmacShaKeyFor(SECRET_KEY.getBytes());
 		Map claims = new HashMap<>();
-		
+		String msg;
 		// construimos un map
 		claims.put("email", user.getCorreo());
-		Administrador personaAdmin = userService.findPersonabyEmail(user.getCorreo());
-		claims.put("nombres completos", personaAdmin.getNombre()+" "+personaAdmin.getApellido());
+		
+		// OJO Error al momento de traer datos de la persona
+		//		Administrador personaAdmin = userService.findPersonabyEmail(user.getCorreo());
+		//		claims.put("nombres completos", personaAdmin.getNombre()+" "+personaAdmin.getApellido());
+		//		Error del Administrador
+		/*
+		 * 	"msg": "tester",
+			"error Mesag": "Cannot invoke \"com.example.controller.dao.AdministradorDao.getlistAll()\" because \"this.personaDao\" is null",
+			"data": "Ocurrio un error null",
+			"error Localized": "Cannot invoke \"com.example.controller.dao.AdministradorDao.getlistAll()\" because \"this.personaDao\" is null"
+		 */
+		
 		claims.put("rol", user.getRole().getNombre());
 		
+		// crear un token (objeto) y guardar a la base de dats
+		
 		// Generar el JWT con información sobre el usuario
-		return Jwts.builder().setSubject(String.valueOf(user.getId())) // ID del usuario como "subject" (sujeto)
-				.setClaims(claims)
-				.setIssuedAt(new Date(now)) // Fecha de emisión
-				.setExpiration(new Date(now + 3600000)) // El token expira en 1 hora (3600000 segundos)
-				.signWith(key, SignatureAlgorithm.HS256) // Firma del JWT con la clave secreta
-				.compact();
+		// header
+		// payload -> user, id, role, carga util, fecha 
+		// signature -> firma, clae secreta firmaca con algoritmo HS26
+		try {			
+			
+			String tokn = Jwts.builder().setSubject(String.valueOf(user.getId())) // ID del usuario como "subject" (sujeto)
+					.setClaims(claims)
+					.setIssuedAt(new Date(now)) // Fecha de emisión
+					.setExpiration(new Date(now + 3600000)) // El token expira en 1 hora (3600000 segundos)
+					.signWith(key, SignatureAlgorithm.HS256) // Firma del JWT con la clave secreta
+					.compact();
+			
+			System.out.println("tokn: "+tokn);
+			msg = tokn;
+		} catch (Exception e) {
+			// TODO: handle exception
+			msg = "Error en generate Token, CAUSA: "+e.getCause()+"\nMessage Localized: "+e.getLocalizedMessage()+" \nMessage: "+e.getMessage();
+			
+		}
+		
+		
+		
+		return msg;
 	}
 	
 	// metodo para refrescar el token
