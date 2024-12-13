@@ -25,7 +25,7 @@
                     <td>{{ item.tipo }}</td>
                     <td>{{ item.identificacion }}</td>
                     <td>
-                        <a href="/admin/jugador/edit/{{ item.idPersona }}" class="btn btn-info">Modificar</a>
+                        <a href="/admin/jugador/edit/{{ item.id }}" class="btn btn-info">Modificar</a>
                     </td>
                     <td>
                         <button class="btn btn-danger" onclick="deleteRow({{ item.id }})">Eliminar</button>
@@ -44,7 +44,7 @@
 <script>
     function deleteRow(id) {
         const row = document.getElementById(`row-${id}`);
-        if (confirm("¿Estás seguro de que deseas eliminar este dirigente.?")) {
+        if (confirm("¿Estás seguro de que deseas eliminar este Jugador.?")) {
             row.remove();
         }
     }
