@@ -1,4 +1,4 @@
-{
+[{
     "id": 1,
     "activo": true,
     "nombre": "Juan",
@@ -9,4 +9,4 @@
     "celular": "123456789",
     "genero": "MASCULINO",
     "asociacion": "Asociacion de Arbitros"
-}
+}]

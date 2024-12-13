@@ -14,7 +14,6 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import com.example.controller.services.ResultadoServices;
-import com.example.controller.tda.list.LinkedList;
 import com.example.models.Resultado;
 import com.google.gson.Gson;
 
@@ -161,7 +160,7 @@ public class ResultadoApi {
         ResultadoServices rs = new ResultadoServices();
         
         boolean ascendente = orderDirection == null || orderDirection.equalsIgnoreCase("asc");
-        LinkedList<Resultado> resultados;
+        com.example.controller.tda.list.LinkedList<Resultado> resultados;
 
         try {
             switch (orderBy.toLowerCase()) {
@@ -211,7 +210,7 @@ public class ResultadoApi {
         HashMap<String, Object> map = new HashMap<>();
         ResultadoServices rs = new ResultadoServices();
         
-        LinkedList<Resultado> resultados = rs.listAll();
+        com.example.controller.tda.list.LinkedList<Resultado> resultados = rs.listAll();
 
         // Aplicar filtros
         if (equipoGanador != null) {
@@ -236,4 +235,6 @@ public class ResultadoApi {
 
         return Response.ok(map).build();
     }
+
+
 }

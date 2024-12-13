@@ -1,10 +1,9 @@
-{
+[{
     "id": 1,
     "idInscrito1": 101,
     "idInscrito2": 102,
     "ubicacion": "Estadio Nacional",
     "identificacion": "EN123",
     "estado": true,
-    "horaInicio": "15:00:00",
-    "horaFin": "17:00:00"
-}
+    "horaInicio": "15:00:00"
+}]

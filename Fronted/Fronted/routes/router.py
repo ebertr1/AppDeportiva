@@ -23,13 +23,13 @@ def list():
 
 
 
-@router.route('/admin/person/edit/<int:id>')  # Asegúrate de que 'id' se define como entero
-def view_edit_person(id):  # Agrega 'id' como parámetro de la función
+@router.route('/admin/person/edit/<int:id>')  
+def view_edit_person(id):  
     r = requests.get("http://localhost:8078/api/person/list")
     data = r.json()
     
-    # Usa el 'id' que se pasa a la función
-    r1 = requests.get(f"http://localhost:8078/api/person/get/{id}")  # Usar f-string para interpolar el id
+   
+    r1 = requests.get(f"http://localhost:8078/api/person/get/{id}")  
     data1 = r1.json()
     
     if r1.status_code == 200:
@@ -56,7 +56,7 @@ def save_person():
         "dni": form["dni"],
         "celular": form["fono"],
     }
-    # Realizar la solicitud POST a la API
+    
     r = requests.post("http://localhost:8078/api/person/save", data=json.dumps(dataF), headers=headers)
     dat = r.json()
     

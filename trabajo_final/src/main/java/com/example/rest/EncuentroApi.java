@@ -24,12 +24,12 @@ public class EncuentroApi {
     @Path("/list")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getAllEncuentros() {
+    public Response getAllArbitros() {
         HashMap<String, Object> map = new HashMap<>();
-        EncuentroServices es = new EncuentroServices();
+        EncuentroServices as = new EncuentroServices();
         map.put("msg", "Ok");
-        map.put("data", es.listAll().toArray());
-        if (es.listAll().isEmpty()) {
+        map.put("data", as.listAll().toArray());
+        if (as.listAll().isEmpty()) {
             map.put("data", new Object[] {});
         }
         return Response.ok(map).build();
