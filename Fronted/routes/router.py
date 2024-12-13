@@ -10,7 +10,7 @@ def home():
 
 @router.route('/admin')
 def admin():
-    return render_template('fragmento/inicial/admin.html')
+    return render_template('fragmento/inicial/login.html')
 
 
 @router.route('/admin/person/list')
