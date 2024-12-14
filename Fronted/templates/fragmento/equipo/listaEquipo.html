@@ -13,6 +13,7 @@
                 <th>Nombre</th>
                 <th>Acciones</th>
                 <th>Acciones</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -22,11 +23,15 @@
                     <td>{{ loop.index }}</td>
                     <td>{{ item.nombre }}</td>
                     <td>
-                        <a href="/admin/person/edit/{{ item.idPersona }}" class="btn btn-info">Modificar</a>
+                        <a href="/admin/equipo/edit/{{ item.id }}" class="btn btn-info">Modificar</a>
                     </td>
                     <td>
-                        <button class="btn btn-danger" onclick="deleteRow({{ item.idPersona }})">Eliminar</button>
+                        <button class="btn btn-danger" onclick="deleteRow({{ item.id }})">Eliminar</button>
                     </td>
+                    <td>
+                        <button class="btn btn-warning">Gestionar Equipo</button>
+                    </td>
+
                 </tr>
             {% endfor %}
         {% else %}
@@ -41,7 +46,7 @@
 <script>
     function deleteRow(id) {
         const row = document.getElementById(`row-${id}`);
-        if (confirm("¿Estás seguro de que deseas eliminar este cliente?")) {
+        if (confirm("¿Estás seguro de que deseas eliminar este Equipo?")) {
             row.remove();
         }
     }

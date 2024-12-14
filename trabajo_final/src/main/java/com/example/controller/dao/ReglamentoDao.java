@@ -4,6 +4,7 @@ import com.example.controller.tda.list.LinkedList;
 
 import com.example.controller.dao.implement.AdapterDao;
 import com.example.models.Reglamento;
+import com.example.models.enumerador.Formato;
 
 public class ReglamentoDao extends AdapterDao<Reglamento>{
     private Reglamento reglamento;
@@ -45,4 +46,24 @@ public class ReglamentoDao extends AdapterDao<Reglamento>{
         this.listAll = listAll();
         return true;
     }
+
+
+    public Formato getFormato(String tipo) {
+        return Formato.valueOf(tipo);
+    }
+
+    public Formato[] getTipos() {
+        return Formato.values();
+    }
+
+    public Boolean delete(Integer id) throws Exception {
+        LinkedList<Reglamento> list = getListAll();
+        Reglamento reglamento = get(id);
+        if(reglamento != null){
+            list.remove(reglamento);
+        }
+        return true;
+    }
+
+
 }

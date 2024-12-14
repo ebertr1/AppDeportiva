@@ -65,10 +65,6 @@ public class JugadorEquipoApi {
     @Produces(MediaType.APPLICATION_JSON)
     public Response save(HashMap map) {
         HashMap res = new HashMap<>();
-        Gson g = new Gson();
-        String a = g.toJson(map);
-        System.out.println("***** " + a);
-
         try {
             JugadorEquipoServices jes = new JugadorEquipoServices();
             jes.getJugadorEquipo().setFechaInscrito(new Date());
@@ -87,10 +83,6 @@ public class JugadorEquipoApi {
             res.put("data", e.toString());
             return Response.status(Status.INTERNAL_SERVER_ERROR).entity(res).build();
         }
-
-        // todo
-        // Validation
-
     }
 
     @Path("/update")
@@ -102,7 +94,7 @@ public class JugadorEquipoApi {
 
         try {
             JugadorEquipoServices jes = new JugadorEquipoServices();
-            jes.setJugadorEquipo(jes.get(Integer.parseInt(map.get("idDirigente").toString())));
+            jes.setJugadorEquipo(jes.get(Integer.parseInt(map.get("id").toString())));
             jes.getJugadorEquipo().setFechaInscrito(new Date());
             jes.getJugadorEquipo().setIdEquipo(Integer.parseInt(map.get("idEquipo").toString()));
             jes.getJugadorEquipo().setIntegerJugador(Integer.parseInt(map.get("idJugador").toString()));
@@ -134,7 +126,7 @@ public class JugadorEquipoApi {
 
         try {
             JugadorEquipoServices jes = new JugadorEquipoServices();
-            Integer id = Integer.parseInt(map.get("idDirigente").toString());
+            Integer id = Integer.parseInt(map.get("id").toString());
 
             Boolean success = jes.delete(id);
             if (success) {

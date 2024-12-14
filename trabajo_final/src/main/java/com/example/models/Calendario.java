@@ -9,11 +9,6 @@ public class Calendario {
     public Calendario() {
     }
 
-    public Calendario(Integer id, Date fechaJornada, Integer nroEncuentros) {
-        this.id = id;
-        this.fechaJornada = fechaJornada;
-        this.nroEncuentros = nroEncuentros;
-    }
 
     public Integer getId() {
         return id;

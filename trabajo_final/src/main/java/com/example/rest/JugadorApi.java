@@ -139,20 +139,12 @@ public class JugadorApi {
 
         try {
             JugadorServices js = new JugadorServices();
-            js.setJugador(js.get(Integer.parseInt(map.get("idJugador").toString())));
+            
+            js.setJugador(js.get(Integer.parseInt(map.get("id").toString())));
             js.getJugador().setNombre(map.get("nombre").toString());
             js.getJugador().setApellido(map.get("apellido").toString());
-            js.getJugador().setTipo(js.getTipoIdentificacion(map.get("tipo").toString()));
-            js.getJugador().setIdentificacion(map.get("identificacion").toString());
             js.getJugador().setCelular(map.get("celular").toString());
-            js.getJugador().setGenero(js.getTipoGenero(map.get("genero").toString()));
             js.getJugador().setNumCamiseta(Integer.parseInt(map.get("numCamiseta").toString()));
-            if (map.containsKey("fechaNacimiento") && map.get("fechaNacimiento") != null) {
-                String fechaNacimientoStr = map.get("fechaNacimiento").toString();
-                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-                Date fechaNacimiento = dateFormat.parse(fechaNacimientoStr);
-                js.getJugador().setFechaNacimiento(fechaNacimiento);
-            }
             js.update();
             res.put("msg", "Ok");
             res.put("data", "Guardado correctamente");
@@ -179,7 +171,7 @@ public class JugadorApi {
 
         try {
             JugadorServices js = new JugadorServices();
-            Integer id = Integer.parseInt(map.get("idJugador").toString());
+            Integer id = Integer.parseInt(map.get("id").toString());
 
             Boolean success = js.delete(id);
             if (success) {
