@@ -39,4 +39,8 @@ public class EquipoServices {
         return obj.get(id);
     }
     
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> main

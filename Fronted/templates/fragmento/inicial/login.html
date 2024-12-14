@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Deportivo</title>
+  <!-- Enlace al archivo CSS desde la carpeta 'static' -->
+  <link rel="stylesheet" href=" {{ url_for('static', filename='css/login.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="login-container">
+    <div class="login-box">
+      <div class="header">
+        <h1>⚽ SportsApp</h1>
+        <p>Gestión deportiva profesional al alcance de tu mano.</p>
+      </div>
+      <form>
+        <div class="input-group">
+          <input type="email" id="email" placeholder="Correo Electrónico" required>
+        </div>
+        <div class="input-group">
+          <input type="password" id="password" placeholder="Contraseña" required>
+        </div>
+        <button type="submit" class="login-btn">Iniciar Sesión</button>
+        <div class="divider">
+        </div>
+      
+    </div>
+  </div>
+</body>
+</html>
