@@ -50,6 +50,7 @@ public class EquipoDao extends AdapterDao<Equipo> {
         }
     }
 
+
     public Boolean delete(Integer id) throws Exception {
         LinkedList<Equipo> list = getlistAll();
         Equipo equipo = get(id);

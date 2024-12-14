@@ -13,16 +13,6 @@ public class Encuentro {
     public Encuentro() {
     }
 
-    public Encuentro(Integer id, Integer idInscrito1, Integer idInscrito2, String ubicacion, String identificacion, Boolean estado, Time horaInicio) {
-        this.id = id;
-        this.idInscrito1 = idInscrito1;
-        this.idInscrito2 = idInscrito2;
-        this.ubicacion = ubicacion;
-        this.identificacion = identificacion;
-        this.estado = estado;
-        this.horaInicio = horaInicio;
-    }
-
     public Integer getId() {
         return id;
     }

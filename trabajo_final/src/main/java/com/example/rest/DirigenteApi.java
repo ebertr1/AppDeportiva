@@ -15,23 +15,28 @@ import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.Response.StatusType;
 
 import com.example.controller.dao.services.DirigenteServices;
+import com.example.controller.dao.services.EquipoServices;
 import com.google.gson.Gson;
 
 @Path("dirigente")
 public class DirigenteApi {
-    @Path("/list")
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response getAllPersons() {
-        HashMap map = new HashMap<>();
-        DirigenteServices ds = new DirigenteServices();
-        map.put("msg", "Ok");
-        map.put("data", ds.listAll().toArray());
-        if (ds.listAll().isEmpty()) {
-            map.put("data", new Object[] {});
+        @Path("/list")
+        @GET
+        @Produces(MediaType.APPLICATION_JSON)
+        public Response getAllDirigentes() {
+            HashMap map = new HashMap<>();
+            DirigenteServices ds = new DirigenteServices();
+            try {
+                map.put("data", ds.listShowAll());
+                if (ds.listAll().isEmpty()) {
+                    map.put("data", new Object[] {});
+                }
+            } catch (Exception e) {
+                map.put("data", new Object[] {});
+                System.out.println("Error "+e);
+            }
+            return Response.ok(map).build();
         }
-        return Response.ok(map).build();
-    }
 
     @Path("/get/{id}")
     @GET
@@ -66,43 +71,51 @@ public class DirigenteApi {
     @Produces(MediaType.APPLICATION_JSON)
     public Response save(HashMap map) {
         HashMap res = new HashMap<>();
-        Gson g = new Gson();
-        String a = g.toJson(map);
-        System.out.println("***** " + a);
 
         try {
-            DirigenteServices ds = new DirigenteServices();
-            ds.getDirigente().setNombre(map.get("nombre").toString());
-            ds.getDirigente().setApellido(map.get("apellido").toString());
-            ds.getDirigente().setTipo(ds.getTipoIdentificacion(map.get("tipo").toString()));
-            ds.getDirigente().setIdentificacion(map.get("identificacion").toString());
-            ds.getDirigente().setCelular(map.get("celular").toString());
-            ds.getDirigente().setGenero(ds.getTipoGenero(map.get("genero").toString()));
-            // ds.getDirigente().setFechaNacimiento(new
-            // Date(map.get("fechaNacimiento").toString()));
-            ds.getDirigente().setAniosExperiencia(Integer.parseInt(map.get("aniosExperiencia").toString()));
-            if (map.containsKey("fechaNacimiento") && map.get("fechaNacimiento") != null) {
-                String fechaNacimientoStr = map.get("fechaNacimiento").toString();
-                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-                Date fechaNacimiento = dateFormat.parse(fechaNacimientoStr);
-                ds.getDirigente().setFechaNacimiento(fechaNacimiento);
-            }
-            ds.save();
-            res.put("msg", "Ok");
-            res.put("data", "Guardado correctamente");
-            return Response.ok(res).build();
+            EquipoServices equipoServices = new EquipoServices();
+            equipoServices.setEquipo(equipoServices.get(Integer.parseInt(map.get("equipo").toString())));
 
+            if (map.get("equipo") != null) {
+                if (equipoServices.getEquipo().getId() != null) {
+                    DirigenteServices ds = new DirigenteServices();
+                    ds.getDirigente().setNombre(map.get("nombre").toString());
+                    ds.getDirigente().setApellido(map.get("apellido").toString());
+                    ds.getDirigente().setTipo(ds.getTipoIdentificacion(map.get("tipo").toString()));
+                    ds.getDirigente().setIdentificacion(map.get("identificacion").toString());
+                    ds.getDirigente().setCelular(map.get("celular").toString());
+                    ds.getDirigente().setGenero(ds.getTipoGenero(map.get("genero").toString()));
+                    ds.getDirigente().setAniosExperiencia(Integer.parseInt(map.get("aniosExperiencia").toString()));
+                    if (map.containsKey("fechaNacimiento") && map.get("fechaNacimiento") != null) {
+                        String fechaNacimientoStr = map.get("fechaNacimiento").toString();
+                        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                        Date fechaNacimiento = dateFormat.parse(fechaNacimientoStr);
+                        ds.getDirigente().setFechaNacimiento(fechaNacimiento);
+                    }
+                    ds.getDirigente().setIdEquipo(equipoServices.getEquipo().getId());
+                    ds.save();
+                    res.put("msg", "Ok");
+                    res.put("data", "Guardado correctamente");
+                    return Response.ok(res).build();
+                }else {
+                    res.put("msg", "Error");
+                    res.put("data", "El dirigente no existen");
+                    return Response.status(Status.BAD_REQUEST).entity(res).build();
+                }                    
+            }else {
+                res.put("msg", "Error");
+                res.put("data", "Faltan datos");
+                return Response.status(Status.BAD_REQUEST).entity(res).build();
+            }
+            
         } catch (Exception e) {
             System.out.println("Error en save data" + e.toString());
             res.put("msg", "Error");
             res.put("data", e.toString());
             return Response.status(Status.INTERNAL_SERVER_ERROR).entity(res).build();
         }
-
-        // todo
-        // Validation
-
     }
+
 
     @Path("/listType")
     @GET
@@ -141,18 +154,41 @@ public class DirigenteApi {
 
         try {
             DirigenteServices ds = new DirigenteServices();
-            ds.setDirigente(ds.get(Integer.parseInt(map.get("idDirigente").toString())));
-            ds.getDirigente().setNombre(map.get("nombre").toString());
-            ds.getDirigente().setApellido(map.get("apellido").toString());
-            ds.getDirigente().setTipo(ds.getTipoIdentificacion(map.get("tipo").toString()));
-            ds.getDirigente().setIdentificacion(map.get("identificacion").toString());
-            ds.getDirigente().setAniosExperiencia(Integer.parseInt(map.get("aniosExperiencia").toString()));
+            ds.setDirigente(ds.get(Integer.parseInt(map.get("id").toString())));
 
-            ds.update();
-            res.put("msg", "Ok");
-            res.put("data", "Guardado correctamente");
-            return Response.ok(res).build();
+            if (map.get("equipo") != null) {
+                EquipoServices equipoServices = new EquipoServices();
+                equipoServices.setEquipo(equipoServices.get(Integer.parseInt(map.get("equipo").toString())));    
+                if (equipoServices.getEquipo().getId() != null) {
+                    ds.getDirigente().setNombre(map.get("nombre").toString());
+                    ds.getDirigente().setApellido(map.get("apellido").toString());
+                    ds.getDirigente().setTipo(ds.getTipoIdentificacion(map.get("tipo").toString()));
+                    //ds.getDirigente().setIdentificacion(map.get("identificacion").toString());
+                    ds.getDirigente().setCelular(map.get("celular").toString());
+                    //ds.getDirigente().setGenero(ds.getTipoGenero(map.get("genero").toString()));
+                    ds.getDirigente().setAniosExperiencia(Integer.parseInt(map.get("aniosExperiencia").toString()));
+                    if (map.containsKey("fechaNacimiento") && map.get("fechaNacimiento") != null) {
+                        String fechaNacimientoStr = map.get("fechaNacimiento").toString();
+                        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                        Date fechaNacimiento = dateFormat.parse(fechaNacimientoStr);
+                        ds.getDirigente().setFechaNacimiento(fechaNacimiento);
+                    }
+                    ds.getDirigente().setIdEquipo(equipoServices.getEquipo().getId());
+                    ds.update();
+                    res.put("msg", "Ok");
+                    res.put("data", "Guardado correctamente");
+                    return Response.ok(res).build();
+                }else {
+                    res.put("msg", "Error");
+                    res.put("data", "La persona o la marca no existen");
+                    return Response.status(Status.BAD_REQUEST).entity(res).build();
+                }
 
+            } else {
+                res.put("msg", "Error");
+                res.put("data", "Faltan datos");
+                return Response.status(Status.BAD_REQUEST).entity(res).build();
+            }
         } catch (Exception e) {
             System.out.println("Error en save data" + e.toString());
             res.put("msg", "Error");

@@ -20,20 +20,8 @@
                 <input type="text" class="form-control" id="nomE" name="nomE" required>
                 <div class="invalid-feedback">Por favor, ingrese el nombre del equipo.</div>
               </div>
-
-              <!-- Sección Dirigente -->
-              <hr>
-              <h6>Dirigente</h6>
-              <div class="col-md-6 mb-3">
-                <label for="tipoIdentificacion" class="form-label">Dirigente del Equipo</label>
-                <select class="form-control" id="tipoIdentificacion" name="tipo" required>
-                  {% for item in lista %}
-                  <option value="{{ item }}">{{ item }}</option>
-                  {% endfor %}
-                </select>
-                <div class="invalid-feedback">Seleccione un tipo de identificación.</div>
-              </div>
-              <div class="col-12 text-end">
+                <div class="col-12 text-end">
+                  <a type="button" class="btn btn-secondary" href="/admin/equipo/list" >Cancelar</a>
                 <button type="submit" class="btn btn-primary">Guardar</button>
               </div>
             </form>
