@@ -1,10 +1,7 @@
 package com.example.controller.dao;
 
-import org.mindrot.jbcrypt.BCrypt;
-
 import com.example.controller.dao.implement.AdapterDao;
 import com.example.controller.tda.list.LinkedList;
-import com.example.models.Administrador;
 import com.example.models.Persona;
 import com.example.models.Rol;
 import com.example.models.Usuario;
@@ -13,9 +10,6 @@ public class UsuarioDao extends AdapterDao<Usuario> {
      // Atributos
     private Usuario user;
     private LinkedList listUsr;
-    
-    // Atributo PersonaDao
-    private AdministradorDao personaDao;
 
     public UsuarioDao(){
         super(Usuario.class);
@@ -43,10 +37,6 @@ public class UsuarioDao extends AdapterDao<Usuario> {
     public Boolean save() throws Exception {
         Integer id = getListAll().getSize()+1;
         user.setId(id);
-        
-        // hashear contrasenia
-        user.setContrasenia(hashPasswd(user.getContrasenia()));
-        
         this.persist(this.user);
         this.listUsr = listAll();
         return true;
@@ -73,6 +63,7 @@ public class UsuarioDao extends AdapterDao<Usuario> {
             return false;
         }
     }
+<<<<<<< HEAD
     
     // Metodo que me permite hasear contrasenia
     private String hashPasswd(String pwd) {
@@ -125,4 +116,6 @@ public class UsuarioDao extends AdapterDao<Usuario> {
     	return person;
     }
     
+=======
+>>>>>>> main
 }
