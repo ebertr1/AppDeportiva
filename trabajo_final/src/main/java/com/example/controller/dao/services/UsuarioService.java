@@ -48,5 +48,9 @@ public class UsuarioService {
     public Administrador findPersonabyEmail(String text_email) throws Exception{
     	return userDao.getPersonabyEmail(text_email);
     }
+    
+    public void asignarUsuario(int persona) throws Exception{
+    	userDao.asignarUsuario(persona);
+    }
 
 }

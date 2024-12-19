@@ -20,7 +20,8 @@ public class UsuarioDao extends AdapterDao<Usuario> {
     public UsuarioDao(){
         super(Usuario.class);
     }
-
+    
+    // Unica Instancia
     public Usuario getUsuario(){
         if(user == null){
             user = new Usuario();
@@ -124,5 +125,14 @@ public class UsuarioDao extends AdapterDao<Usuario> {
     	
     	return person;
     }
+    
+    // Metodo asignacion de Usuario
+    // Modifica que el usuario tenga el idPersona
+    public void asignarUsuario(int idPersona) throws Exception {
+    	this.user.setIdPersona(idPersona);
+    	// modifica la lista o bdd 
+    	update();
+    }
+    
     
 }

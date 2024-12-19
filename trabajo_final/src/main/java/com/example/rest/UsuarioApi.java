@@ -13,9 +13,14 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
+import com.example.controller.dao.services.PersonaService;
 import com.example.controller.dao.services.UsuarioService;
 import com.example.models.Administrador;
+import com.example.models.Arbitro;
+import com.example.models.Jugador;
+import com.example.models.Persona;
 import com.example.models.Rol;
+import com.example.models.Usuario;
 import com.google.gson.Gson;
 
 @Path("/usuario")
@@ -83,6 +88,56 @@ public class UsuarioApi {
         return Response.ok(map).build();
     }
     
-    //Modificar y asignar roles
+    // Asignar Usuario
+    @Path("/asignn/usr")
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response asignarUsuario(HashMap map) {
+        HashMap res = new HashMap<>();
+        
+        Gson g = new Gson();
+        String a = g.toJson(map);
+        System.out.println("***** " + a);
+
+        try {
+            UsuarioService userService = new UsuarioService();
+            PersonaService personaService = new PersonaService();
+            
+            // 1. verificar que el usuario exista en la bdd 
+            Usuario usr = userService.findUserbyEmail(map.get("correo").toString());
+//            System.out.println("Usuario: "+usr.toString()+"\n");
+            
+            if (usr != null) { // existe el usuario
+            	// 2. verificar que el idPersona exista en la bdd
+            	Object person = personaService.get((int) map.get("idPersona"));
+//            	System.out.println("Objeto: "+person.toString()+"\n");
+            	if(person != null) {
+            		// 3. verifica que la persona registrada no sea una instancia de Arbitro, Dirigente o Jugador 
+            		// Nota... Realmente no se esta validadndo si sea una instancia de Arbitro o Jugador
+            		if (!(person instanceof Arbitro) || !(person instanceof Jugador)) {
+            			// 4. capturar el id, y asignar el usuario (modificacion)
+            			usr.setIdPersona(((Persona) person).getId());
+            			userService.setUsuario(usr);
+            			userService.update();
+            			res.put("msg", "Ok");
+            			res.put("data", "Persona asignado un usuario correctamente");
+					}
+            	}
+			}
+            res.put("msg", "Error");
+            res.put("data", "El usuario no existe... o existe algun error..");
+            
+            return Response.ok(res).build();
+
+        } catch (Exception e) {
+            System.out.println("Error en save data" + e.toString());
+            res.put("msg", "Error");
+            res.put("data", e.toString());
+            return Response.status(Status.INTERNAL_SERVER_ERROR).entity(res).build();
+        }
+
+    }
+    
     
 }

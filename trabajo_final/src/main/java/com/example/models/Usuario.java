@@ -5,6 +5,7 @@ public class Usuario {
     private String correo;
     private String contrasenia;
     private Boolean estado;
+    private Integer idPersona;
     
     // Podria ser en lugar de String la clase role
     private Rol role;
@@ -50,6 +51,14 @@ public class Usuario {
 
 	public void setRole(Rol role) {
 		this.role = role;
+	}
+
+	public Integer getIdPersona() {
+		return idPersona;
+	}
+
+	public void setIdPersona(Integer idPersona) {
+		this.idPersona = idPersona;
 	}
 
 }
