@@ -1,19 +1,33 @@
+<<<<<<< HEAD
 package com.example.controller.dao;
+=======
+package com.example.controller;
+>>>>>>> main
 
 import com.example.controller.dao.implement.AdapterDao;
 import com.example.controller.tda.list.LinkedList;
 import com.example.models.Encuentro;
 
+<<<<<<< HEAD
 public class EncuentroDao extends AdapterDao<Encuentro> {
     private Encuentro encuentro;
     private LinkedList<Encuentro> listAll;
+=======
+public class EncuentroDao extends AdapterDao<Encuentro>{
+    private Encuentro encuentro;
+    private LinkedList listAll;
+>>>>>>> main
 
     public EncuentroDao() {
         super(Encuentro.class);
     }
 
     public Encuentro getEncuentro() {
+<<<<<<< HEAD
         if (encuentro == null) {
+=======
+        if (encuentro == null){
+>>>>>>> main
             encuentro = new Encuentro();
         }
         return encuentro;
@@ -22,22 +36,33 @@ public class EncuentroDao extends AdapterDao<Encuentro> {
     public void setEncuentro(Encuentro encuentro) {
         this.encuentro = encuentro;
     }
+<<<<<<< HEAD
 
     public LinkedList<Encuentro> getListAll() {
         if (listAll == null) {
+=======
+    
+    public LinkedList getListAll() {
+        if(listAll == null){
+>>>>>>> main
             this.listAll = listAll();
         }
         return listAll;
     }
 
     public Boolean save() throws Exception {
+<<<<<<< HEAD
         Integer id = getListAll().getSize() + 1;
+=======
+        Integer id = getListAll().getSize()+1;
+>>>>>>> main
         encuentro.setId(id);
         this.persist(this.encuentro);
         this.listAll = listAll();
         return true;
     }
 
+<<<<<<< HEAD
     public Boolean update() throws Exception {
         this.merge(getEncuentro(), getEncuentro().getId() - 1);
         this.listAll = listAll();
@@ -142,3 +167,12 @@ public class EncuentroDao extends AdapterDao<Encuentro> {
 
 
 }
+=======
+
+    public Boolean update() throws Exception {
+        this.merge(getEncuentro(), getEncuentro().getId()-1);
+        this.listAll = listAll();
+        return true;
+    }
+}
+>>>>>>> main

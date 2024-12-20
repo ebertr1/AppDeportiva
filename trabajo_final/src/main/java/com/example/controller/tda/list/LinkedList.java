@@ -162,6 +162,7 @@ public class LinkedList<E> {
         } else if (post < 0 || post >= size) {
             throw new IndexOutOfBoundsException("Error, fuera de rango");
         } else if (post == 0) {
+<<<<<<< HEAD
             return deleteFirst(); 
         } else if (post == (size - 1)) {
             return deleteLast(); 
@@ -174,6 +175,20 @@ public class LinkedList<E> {
             previous.setNext(next); 
             size--; 
             return element; 
+=======
+            return deleteFirst(); // Elimina el primer nodo
+        } else if (post == (size - 1)) {
+            return deleteLast(); // Elimina el último nodo
+        } else {
+            Node<E> previous = getNode(post - 1); // Nodo anterior al nodo a eliminar
+            Node<E> current = previous.getNext(); // Nodo actual (a eliminar)
+            E element = current.getInfo(); // Información del nodo a eliminar
+            Node<E> next = current.getNext(); // Nodo siguiente al nodo a eliminar
+    
+            previous.setNext(next); // Elimina el nodo actual enlazando el nodo anterior al siguiente
+            size--; // Disminuye el tamaño de la lista
+            return element; // Devuelve la información del nodo eliminado
+>>>>>>> main
         }
     }
     
@@ -265,6 +280,7 @@ public class LinkedList<E> {
         
         return false; // Elemento no encontrado
     }
+<<<<<<< HEAD
 
     private Boolean compare(Object a, Object b, Integer type) {
         if (a == null || b == null) return false;
@@ -458,3 +474,6 @@ public class LinkedList<E> {
 
 }
 
+=======
+}
+>>>>>>> main

@@ -4,11 +4,22 @@ import com.example.controller.dao.implement.AdapterDao;
 import com.example.controller.tda.list.LinkedList;
 import com.example.models.Arbitro;
 
+<<<<<<< HEAD
 public class ArbitroDao extends AdapterDao<Arbitro> {
     private Arbitro arbitro;
     private LinkedList<Arbitro> listAll;
 
     public ArbitroDao() {
+=======
+
+
+public class ArbitroDao extends AdapterDao<Arbitro> {
+   
+    private Arbitro arbitro;
+    private LinkedList listAll;    
+     
+   public ArbitroDao() {
+>>>>>>> main
         super(Arbitro.class);
     }
 
@@ -19,6 +30,7 @@ public class ArbitroDao extends AdapterDao<Arbitro> {
         return arbitro;
     }
 
+<<<<<<< HEAD
     public void setArbitro(Arbitro arbitro) {
         this.arbitro = arbitro;
     }
@@ -33,20 +45,36 @@ public class ArbitroDao extends AdapterDao<Arbitro> {
 
     public LinkedList<Arbitro> getListAll() {
         if (listAll == null) {
+=======
+    public void setArbitro(Arbitro Arbitro) {
+        this.arbitro = arbitro;
+    }
+
+    public LinkedList<Arbitro> getlistAll() {
+        if (listAll.isEmpty()) {
+>>>>>>> main
             this.listAll = listAll();
         }
         return listAll;
     }
 
     public Boolean save() throws Exception {
+<<<<<<< HEAD
         Integer id = getListAll().getSize() + 1;
         arbitro.setId(id);
         this.persist(this.arbitro);
         this.listAll = listAll();
+=======
+        Integer id = getlistAll().getSize() + 1;
+        arbitro.setId(id);
+        this.persist(this.arbitro);
+        this.listAll = getlistAll();
+>>>>>>> main
         return true;
     }
 
     public Boolean update() throws Exception {
+<<<<<<< HEAD
         this.merge(getArbitro(), getArbitro().getId() - 1);
         this.listAll = listAll();
         return true;
@@ -54,6 +82,20 @@ public class ArbitroDao extends AdapterDao<Arbitro> {
 
     public Boolean delete(Integer id) throws Exception {
         LinkedList<Arbitro> list = getListAll();
+=======
+        try {
+            this.merge(getArbitro(), getArbitro().getId() - 1);
+            this.listAll = getlistAll();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public Boolean delete(Integer id) throws Exception {
+        LinkedList<Arbitro> list = getlistAll();
+>>>>>>> main
         Arbitro arbitro = get(id);
         if (arbitro != null) {
             list.remove(arbitro);
@@ -62,11 +104,16 @@ public class ArbitroDao extends AdapterDao<Arbitro> {
             this.listAll = list;
             return true;
         } else {
+<<<<<<< HEAD
             System.out.println("Arbitro con id " + id + " no encontrado.");
+=======
+            System.out.println("Persona con id " + id + " no encontrada.");
+>>>>>>> main
             return false;
         }
     }
 
+<<<<<<< HEAD
     public LinkedList<Arbitro> ordenarPorNombre(boolean ascendente) throws Exception {
         LinkedList<Arbitro> arbitros = getListAll();
         arbitros.quicksort("nombre", ascendente ? 1 : -1);
@@ -150,3 +197,9 @@ public class ArbitroDao extends AdapterDao<Arbitro> {
 
 
 }
+=======
+
+
+
+}
+>>>>>>> main
