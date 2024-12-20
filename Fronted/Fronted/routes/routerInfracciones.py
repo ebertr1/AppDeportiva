@@ -93,3 +93,39 @@ def delete_infraccion(id):
         flash("No se pudo eliminar la infracción.", category='error')
     
     return redirect(url_for('routerInfracciones.listInfraccion'))
+
+@routerInfracciones.route('/admin/infraccion/buscar')
+def buscar_infracciones():
+    numTarjeta = request.args.get('NumeroTarjeta')
+    identifiacionJugador = request.args.get('IdentifiacionJugador')
+    colorTarjeta = request.args.get('ColorTarjeta')
+ 
+    params = {}
+    
+    if numTarjeta:
+        params['NumeroTarjeta'] = numTarjeta
+    if identifiacionJugador:
+        params['IdentifiacionJugador'] = identifiacionJugador
+    if colorTarjeta:
+        params['ColorTarjeta'] = colorTarjeta
+
+    try:
+        response = requests.get('http://localhost:8078/myapp/infraccion/buscar', params=params)
+        return jsonify(response.json())
+    except Exception as e:
+        return jsonify({'msg': 'Error', 'data': str(e)}), 500
+
+# ordenar encuentros
+@routerInfracciones.route('/admin/infraccion/ordenar')
+def ordenar_encuentros():
+    order_by = request.args.get('by')
+    direction = request.args.get('direction')
+
+    try:
+        response = requests.get(
+            'http://localhost:8078/myapp/infraccion/ordenar',
+            params={'by': order_by, 'direction': direction}
+        )
+        return jsonify(response.json())
+    except Exception as e:
+        return jsonify({'msg': 'Error', 'data': str(e)}), 500
