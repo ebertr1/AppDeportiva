@@ -16,19 +16,23 @@ import java.util.Map.Entry;
 
 import org.mindrot.jbcrypt.BCrypt;
 
+import com.example.controller.dao.TokenDao;
 import com.example.controller.dao.UsuarioDao;
 import com.example.models.Administrador;
+import com.example.models.Token;
 import com.example.models.Usuario;
 
 public class LoginService {
 
 //	private UsuarioDao userDAO;
 	private UsuarioService userService;
+	private TokenDao tknDAO;
 	
 	private static final String SECRET_KEY = "asdjoijqwijIASJOJDAJoijwiejqeojasjdoqpomzxcmllAasd"; // Esto debe ser más seguro en un entorno real
 
 	public LoginService() {
 		this.userService = new UsuarioService();
+		this.tknDAO = new TokenDao();
 	}
 
 	public String login(String email, String password) throws Exception {
@@ -54,11 +58,16 @@ public class LoginService {
 	}
 
 	private String generateJWT(Usuario user) throws Exception {
+		
+		Token tkn = new Token();
+		
+		
 		// Obtener la fecha y hora actual
 		long now = System.currentTimeMillis(); // opcional usar Calendar
 		Key key = Keys.hmacShaKeyFor(SECRET_KEY.getBytes());
 		Map claims = new HashMap<>();
 		String msg;
+		
 		// construimos un map
 		claims.put("email", user.getCorreo());
 		
@@ -78,7 +87,7 @@ public class LoginService {
 		// crear un token (objeto) y guardar a la base de dats
 		
 		// Generar el JWT con información sobre el usuario
-		// header
+		// header -> algoritmo
 		// payload -> user, id, role, carga util, fecha 
 		// signature -> firma, clae secreta firmaca con algoritmo HS26
 		try {			
@@ -92,13 +101,21 @@ public class LoginService {
 			
 			System.out.println("tokn: "+tokn);
 			msg = tokn;
+			
+			tkn.setIdUsr(user.getId());
+			tkn.setToken(tokn);
+			tkn.setFecha_creacion(LocalDateTime.now());
+//			tkn.setExpiracion_token((LocalDate);
+			tkn.setValid(true); // validar el tokn
+			
+			tknDAO.setTokn(tkn);
+			tknDAO.save(); // Guarda el token en bdd
+			
 		} catch (Exception e) {
 			// TODO: handle exception
 			msg = "Error en generate Token, CAUSA: "+e.getCause()+"\nMessage Localized: "+e.getLocalizedMessage()+" \nMessage: "+e.getMessage();
 			
 		}
-		
-		
 		
 		return msg;
 	}

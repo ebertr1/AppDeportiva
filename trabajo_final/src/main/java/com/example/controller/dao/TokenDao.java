@@ -16,7 +16,11 @@ public class TokenDao extends AdapterDao<Token>{
 	}
 	
 	public Token getToken() {
-		return this.tokn;
+		
+		if(tokn == null) {
+			tokn = new Token();
+		}
+		return tokn;
 	}
 	
 	public void setTokn(Token tkn) {

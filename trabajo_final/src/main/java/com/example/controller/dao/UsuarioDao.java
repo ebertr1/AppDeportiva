@@ -75,6 +75,24 @@ public class UsuarioDao extends AdapterDao<Usuario> {
         }
     }
     
+    // Metodo get
+    // Traer el objeto usuario por el id
+	public Usuario get(Integer id) throws Exception {
+		LinkedList<Usuario> listUsers = getListAll();
+		Usuario user = null;
+		
+		for (Usuario usuario : listUsers.toArray()) {
+			if(usuario.getId().compareTo(id) == 0) {
+				user = usuario;
+				break;
+			}
+		}
+		
+		return user;
+		
+	}
+    
+    
     // Metodo que me permite hasear contrasenia
     private String hashPasswd(String pwd) {
     	
@@ -125,14 +143,5 @@ public class UsuarioDao extends AdapterDao<Usuario> {
     	
     	return person;
     }
-    
-    // Metodo asignacion de Usuario
-    // Modifica que el usuario tenga el idPersona
-    public void asignarUsuario(int idPersona) throws Exception {
-    	this.user.setIdPersona(idPersona);
-    	// modifica la lista o bdd 
-    	update();
-    }
-    
     
 }

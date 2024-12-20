@@ -16,12 +16,31 @@
         <h1>⚽ SportsApp</h1>
         <p>Gestión deportiva profesional al alcance de tu mano.</p>
       </div>
-      <form>
+      <form 
+        method="post"
+        action="/index"
+        novalidate
+        onsubmit="return validateForm()"
+      >
         <div class="input-group">
           <input type="email" id="email" placeholder="Correo Electrónico" required>
+          <div
+                    class="invalid-feedback"
+                    id="emailFeedback"
+                    style="display: none"
+                  >
+                    Debe ingresar su correo Electrónico
+            </div>
         </div>
         <div class="input-group">
           <input type="password" id="password" placeholder="Contraseña" required>
+          <div
+                    class="invalid-feedback"
+                    id="passwordFeedback"
+                    style="display: none"
+                  >
+                  Su contraseña debe ser mayor a 5 caracteres.. ingrese nuevamente su contraseña.
+          </div>
         </div>
         <button type="submit" class="login-btn">Iniciar Sesión</button>
         <div class="divider">
@@ -31,3 +50,29 @@
   </div>
 </body>
 </html>
+
+<script>
+  function validateForm() {
+    // Limpiar mensajes de error
+    document.getElementById("emailFeedback").style.display = "none";
+    document.getElementById("passwordFeedback").style.display = "none";
+
+    const email = document.getElementById("email").value;
+    const pwd = document.getElementById("password").value;
+
+    let isValid = true;
+
+    // Validar que el email no esté vacía
+    if (!email.trim() || email.length <= 5) {
+      document.getElementById("emailFeedback").style.display = "block";
+      isValid = false;
+    }
+    // Validar que la pwd no esté vacía
+    if (!pwd.trim() || pwd.length <= 5) {
+      document.getElementById("passwordFeedback").style.display = "block";
+      isValid = false;
+    }
+
+    return isValid; // Si todas las validaciones pasan, enviar el formulario
+  }
+</script>

@@ -41,7 +41,13 @@ public class LoginApi {
 			map.put("error Mesag", e.getMessage());
 		}
 		
-		map.put("msg", "tester");
+		if(mensaje.compareToIgnoreCase("Usuario no existe") == 0 || 
+				mensaje.compareToIgnoreCase("Contraseña incorrecta") == 0) {
+			map.put("msg", "Error");
+		}else {			
+			map.put("msg", "OK");
+		}
+		
 		map.put("data", mensaje);
 		
 		return Response.ok(map).build();
