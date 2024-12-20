@@ -8,26 +8,25 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Nro</th>
+                <th>ID</th>
                 <th>Equipo Ganador</th>
                 <th>Equipo Perdedor</th>
                 <th>Goles Equipo 1</th>
                 <th>Goles Equipo 2</th>
                 <th>Empate</th>
-                <th>Puntos del Encuentro</th>
-                <th>Acciones</th>
+                <th>Puntos Encuentro</th>
             </tr>
         </thead>
         <tbody>
             {% if list %}
             {% for item in list %}
             <tr id="row-{{ item.id }}">
-                <td>{{ loop.index }}</td>
+                <td>{{ item.id }}</td>
                 <td>{{ item.equipoGanador }}</td>
                 <td>{{ item.equipoPerdedor }}</td>
                 <td>{{ item.golesEquipo1 }}</td>
                 <td>{{ item.golesEquipo2 }}</td>
-                <td>{{ item.empate ? 'Sí' : 'No' }}</td>
+                <td>{{ 'Sí' if item.empate else 'No' }}</td>
                 <td>{{ item.puntosEncuentro }}</td>
                 <td>
                     <a href="/admin/resultado/edit/{{ item.id }}" class="btn btn-info">Modificar</a>

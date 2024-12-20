@@ -8,36 +8,35 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Nro</th>
-                <th>ID Inscrito 1</th>
-                <th>ID Inscrito 2</th>
+                <th>ID</th>
+                <th>Inscrito 1</th>
+                <th>Inscrito 2</th>
                 <th>Ubicación</th>
                 <th>Identificación</th>
                 <th>Estado</th>
                 <th>Hora de Inicio</th>
-                <th>Hora de Finalizacion</th>
-                
             </tr>
         </thead>
         <tbody>
             {% if list %}
             {% for item in list %}
             <tr id="row-{{ item.id }}">
-                <td>{{ loop.index }}</td>
+                <td>{{ item.id }}</td>
                 <td>{{ item.idInscrito1 }}</td>
                 <td>{{ item.idInscrito2 }}</td>
                 <td>{{ item.ubicacion }}</td>
                 <td>{{ item.identificacion }}</td>
-                <td>{{ item.estado ? 'Activo' : 'Inactivo' }}</td>
+                <td>{{ 'Activo' if item.estado else 'Inactivo' }}</td>
                 <td>{{ item.horaInicio }}</td>
-                <td>{{ item.horaFin }}</td>
-                <td>
+                <td> 
                     <a href="/admin/encuentro/edit/{{ item.id }}" class="btn btn-info">Modificar</a>
+                </td>
+                <td>
                     <button class="btn btn-danger" onclick="deleteRow('{{ item.id }}')">Eliminar</button>
                 </td>
             </tr>
             {% endfor %}
-            {% else %}
+        {% else %}
             <tr>
                 <td colspan="8">No hay Encuentros registrados.</td>
             </tr>

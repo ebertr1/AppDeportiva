@@ -198,9 +198,47 @@ def delete_arbitro(id):
     
     return redirect(url_for('router.list_arbitros'))
 
+@router.route('/admin/arbitro/buscar')
+def  buscar_arbitros():
+    nombre = request.args.get('nombre')
+    apellido = request.args.get('apellido')
+    identifiacion = request.args.get('identifiacion')
+    asociacion = request.args.get('asociacion')
+    genero = request.args.get('genero')
+
+  
+    params = {}
+    if nombre:
+        params['nombre'] = nombre
+    if apellido:
+        params['apellido'] = apellido
+    if identifiacion:
+        params['identifiacion'] = identifiacion
+    if asociacion:
+        params['asociacion'] = asociacion
+    if genero:
+        params['genero'] = genero    
 
 
+    try:
+        response = requests.get('http://localhost:8078/myapp/arbitro/buscar', params=params)
+        return jsonify(response.json())
+    except Exception as e:
+        return jsonify({'msg': 'Error', 'data': str(e)}), 500
 
+@router.route('/admin/arbitro/ordenar')
+def ordenar_arbitros():
+    order_by = request.args.get('by')
+    direction = request.args.get('direction')
+
+    try:
+        response = requests.get(
+            'http://localhost:8078/myapp/arbitro/ordenar',
+            params={'by': order_by, 'direction': direction}
+        )
+        return jsonify(response.json())
+    except Exception as e:
+        return jsonify({'msg': 'Error', 'data': str(e)}), 500
 
 
 
