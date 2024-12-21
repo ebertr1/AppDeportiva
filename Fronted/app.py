@@ -4,5 +4,7 @@ def create_app():
     app = Flask(__name__, instance_relative_config=False)
     with app.app_context():
         from routes.router import router
+        from routes.routerLogin import routerLogin
         app.register_blueprint(router)
+        app.register_blueprint(routerLogin)
     return app

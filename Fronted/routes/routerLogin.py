@@ -13,21 +13,24 @@ def view_login():
 def iniciarSesion():
     headers = {'Content-type': 'application/json'}
     form = request.form
+    # print(form)
     dataF = {
         "correo": form["email"],
         "contrasenia": form["password"]
     }
 
-    r = requests.post("http://localhost:8078/myapp/login/auth", data=json.dumps(dataF), headers=headers)
+    r = requests.post("http://localhost:8078/myapp/login/auth", data =json.dumps(dataF), headers=headers)
     
     # Validacion si se obtuvo acceso, o se obtuvo un token
     # Validar si el token es valido (No recomendable validar en front), luego 
 
-    data = r.json()
+    dataResponse = r.json()
 
-    if data["msg"] == "OK":
-        return render_template('fragmento/template.html')
-    else: flash("Credenciales incorrectas", category='info')
+    if dataResponse["msg"] == "OK":
+        return render_template('template.html') # Template principal
+    else: 
+        flash("Credenciales incorrectas", category='info')
+        return redirect(url_for('routerLogin.view_login'))  # Redirige de nuevo al login
 
 
 # Logica para cerrar Sesion
