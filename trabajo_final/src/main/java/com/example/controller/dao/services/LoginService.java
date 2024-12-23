@@ -6,7 +6,10 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 
 import java.security.Key;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
@@ -64,6 +67,12 @@ public class LoginService {
 		
 		// Obtener la fecha y hora actual
 		long now = System.currentTimeMillis(); // opcional usar Calendar
+		
+		SimpleDateFormat formatter_fecha = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date fecha_em = new Date(now);
+		Date fecha_exp = new Date(now+ 3600000);
+		
+		
 		Key key = Keys.hmacShaKeyFor(SECRET_KEY.getBytes());
 		Map claims = new HashMap<>();
 		String msg;
@@ -104,8 +113,10 @@ public class LoginService {
 			
 			tkn.setIdUsr(user.getId());
 			tkn.setToken(tokn);
-			tkn.setFecha_creacion(LocalDateTime.now());
-//			tkn.setExpiracion_token((LocalDate);
+			
+			tkn.setFecha_creacion(formatter_fecha.format(fecha_em));
+			tkn.setExpiracion_token(formatter_fecha.format(fecha_exp));
+			
 			tkn.setValid(true); // validar el tokn
 			
 			tknDAO.setTokn(tkn);

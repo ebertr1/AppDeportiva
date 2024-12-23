@@ -48,5 +48,16 @@ public class UsuarioService {
     public Administrador findPersonabyEmail(String text_email) throws Exception{
     	return userDao.getPersonabyEmail(text_email);
     }
+    
+ // Metodo booleano que permite verificar tal persona tenga un usuario
+    public Boolean existAsignacion() throws Exception{
+    	return userDao.existAsignacion();
+    }
+    
+    // Metodo que permite verificar si el usuario a asignar ya tiene otra persona...
+    // Es decir evitar que existan 2 personas con el mismo usuario o viceversa
+    public boolean existOtherUser(int idPersona) throws Exception{
+    	return userDao.existOtherUser(idPersona);
+    }
 
 }

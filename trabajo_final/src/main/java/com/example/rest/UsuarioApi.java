@@ -106,34 +106,53 @@ public class UsuarioApi {
             
             // 1. verificar que el usuario exista en la bdd 
             Usuario usr = userService.findUserbyEmail(map.get("correo").toString());
+            
+            int idPersona = (int) map.get("idPersona");
+            
 //            System.out.println("Usuario: "+usr.toString()+"\n");
             
             if (usr != null) { // existe el usuario
             	// 2. verificar que el idPersona exista en la bdd
-            	Object person = personaService.get((int) map.get("idPersona"));
+            	userService.setUsuario(usr);
+            	Object person = personaService.get(idPersona);
+            	
 //            	System.out.println("Objeto: "+person.toString()+"\n");
             	if(person != null) {
             		// 3. verifica que la persona registrada no sea una instancia de Arbitro, Dirigente o Jugador 
-            		// Nota... Realmente no se esta validadndo si sea una instancia de Arbitro o Jugador
-            		if (!(person instanceof Arbitro) || !(person instanceof Jugador)) {
-            			// 4. capturar el id, y asignar el usuario (modificacion)
-            			usr.setIdPersona(((Persona) person).getId());
-            			userService.setUsuario(usr);
-            			userService.update();
-            			res.put("msg", "Ok");
-            			res.put("data", "Persona asignado un usuario correctamente");
+            		// Nota... Realmente no se esta validadndo si sea una instancia de Arbitro o Jugador, se debe usar isInstance(Persona)
+            		
+            		if (!userService.existAsignacion()) { // No tiene una persona asignad
+            			
+            			if (!userService.existOtherUser(idPersona)) { // Si existe otro registro con este idP
+							
+            				if (!(person instanceof Arbitro) || !(person instanceof Jugador)) {
+            					// 4. capturar el id, y asignar el usuario (modificacion)
+            					userService.getUsuario().setIdPersona(((Persona) person).getId());
+            					userService.update();
+            					res.put("msg", "Ok");
+            					res.put("data", "Persona asignado un usuario correctamente");
+            				}
+						}else {							
+							res.put("msg", "Informacion");
+							res.put("data", "Ya existe un usuario para la persona con ID "+idPersona);
+						}
+            			
+					}else {
+						res.put("msg", "Informacion");
+						res.put("data", "La persona con el identificador "+idPersona+", ya tiene asignado un usuario..");
 					}
+            		
             	}
 			}
-            res.put("msg", "Error");
-            res.put("data", "El usuario no existe... o existe algun error..");
             
             return Response.ok(res).build();
 
         } catch (Exception e) {
-            System.out.println("Error en save data" + e.toString());
+            System.out.println("Error en save data " + e.toString());
             res.put("msg", "Error");
             res.put("data", e.toString());
+            res.put("cause", e.getCause());
+            res.put("LocalizedMessage", e.getLocalizedMessage());
             return Response.status(Status.INTERNAL_SERVER_ERROR).entity(res).build();
         }
 
