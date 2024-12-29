@@ -8,6 +8,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
 import com.example.controller.dao.services.LoginService;
 
@@ -43,14 +44,16 @@ public class LoginApi {
 		
 		if(mensaje.compareToIgnoreCase("Usuario no existe") == 0 || 
 				mensaje.compareToIgnoreCase("Contraseña incorrecta") == 0) {
-			map.put("msg", "Error");
+			map.put("msg", "Error, credenciales incorrectas o el usuario no existe..");
+			return Response.status(Status.UNAUTHORIZED).entity(map).build();
 		}else {			
 			map.put("msg", "OK");
+			// Se debe de construir un Response Builder
+			map.put("data", "Inicio de sesion exitoso..");
+			return Response.status(Status.OK).header("Authorization","Bearer "+ mensaje).entity(map).build();
 		}
-		
-		map.put("data", mensaje);
-		
-		return Response.ok(map).build();
+				
+//		return Response.ok(map).build();
 		
 		
 	}

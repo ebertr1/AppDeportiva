@@ -1,27 +1,18 @@
 package com.example.controller.dao.services;
 
-import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 
 import java.security.Key;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
-import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
-import java.util.Map.Entry;
 
 import org.mindrot.jbcrypt.BCrypt;
 
 import com.example.controller.dao.TokenDao;
-import com.example.controller.dao.UsuarioDao;
-import com.example.models.Administrador;
 import com.example.models.Token;
 import com.example.models.Usuario;
 
@@ -134,5 +125,8 @@ public class LoginService {
 	// metodo para refrescar el token
 	
 	// Metodo para logout
+	public void logout() {
+		
+	}
 
 }
