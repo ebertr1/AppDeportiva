@@ -40,16 +40,9 @@ public class CalendarioSerivices {
     public void setCalendario(Calendario Calendario){
         obj.setCalendario(Calendario);
     }
-<<<<<<< HEAD:trabajo_final/src/main/java/com/example/controller/dao/services/CalendarioSerivices.java
-=======
 
-    public Calendario get(Integer id) throws Exception {
-        return obj.get(id);
-    }   
 
-<<<<<<< HEAD
->>>>>>> rama_Isauro:trabajo_final/src/main/java/com/example/controller/dao/services/CalendarioServices.java
+
+
 }
-=======
-}
->>>>>>> origin/rama_Isauro
+

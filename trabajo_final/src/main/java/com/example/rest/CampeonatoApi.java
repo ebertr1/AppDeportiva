@@ -1,15 +1,12 @@
 package com.example.rest;
-<<<<<<< HEAD
-import java.text.SimpleDateFormat;
-import java.util.Date;
-=======
-<<<<<<< HEAD
 
 import java.text.SimpleDateFormat;
-=======
 import java.util.Date;
->>>>>>> origin/rama_Isauro
->>>>>>> rama_Isauro
+
+import java.text.SimpleDateFormat;
+
+import java.util.Date;
+
 import java.util.HashMap;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -100,21 +97,19 @@ public class CampeonatoApi {
         try {
             CampeonatoServices cs = new CampeonatoServices();
             cs.getCampeonato().setNombre(map.get("nombre").toString());
-<<<<<<< HEAD
+
             cs.getCampeonato().setCategoria(cs.getTipoCategoria(map.get("tipo").toString()));
             cs.getCampeonato().setFechaInicio(new SimpleDateFormat("yyyy-MM-dd").parse(map.get("fechaInicio").toString()));
             cs.getCampeonato().setFechaFin(new SimpleDateFormat("yyyy-MM-dd").parse(map.get("fechaFin").toString()));
-=======
-<<<<<<< HEAD
+
             cs.getCampeonato().setFechaInicio(new SimpleDateFormat("yyyy-MM-dd").parse(map.get("fechaInicio").toString())); 
             cs.getCampeonato().setFechaFin(new SimpleDateFormat("yyyy-MM-dd").parse(map.get("fechaFin").toString()));   
             cs.getCampeonato().setTipoCategoria(cs.getTipoCategoria(map.get("Categoria").toString()));   
-=======
+
             cs.getCampeonato().setFechaInicio(new Date());
             cs.getCampeonato().setFechaFin(new Date());
             cs.getCampeonato().setCategoria(cs.getTipoCategoria(map.get("Categoria").toString()));   
->>>>>>> origin/rama_Isauro
->>>>>>> rama_Isauro
+
             cs.save();
 
             res.put("msg", "Ok");
@@ -138,29 +133,26 @@ public class CampeonatoApi {
         HashMap res = new HashMap<>();
 
         try {
-<<<<<<< HEAD
+
              CampeonatoServices cs = new CampeonatoServices();
             cs.setCampeonato(cs.get(Integer.parseInt(map.get("id").toString())));
-=======
-            CampeonatoServices cs = new CampeonatoServices();
-<<<<<<< HEAD
+   CampeonatoServices cs = new CampeonatoServices();
             cs.getCampeonato().setId(Integer.parseInt(map.get("id").toString()));
->>>>>>> rama_Isauro
+
             cs.getCampeonato().setNombre(map.get("nombre").toString());
             cs.getCampeonato().setCategoria(cs.getTipoCategoria(map.get("tipo").toString()));
             cs.getCampeonato().setFechaInicio(new SimpleDateFormat("yyyy-MM-dd").parse(map.get("fechaInicio").toString()));
             cs.getCampeonato().setFechaFin(new SimpleDateFormat("yyyy-MM-dd").parse(map.get("fechaFin").toString()));
-<<<<<<< HEAD
-=======
+
+
             cs.getCampeonato().setTipoCategoria(cs.getTipoCategoria(map.get("Categoria").toString()));
-=======
+
             cs.setCampeonato(cs.get(Integer.parseInt(map.get("isCampeonato").toString())));
             cs.getCampeonato().setNombre(map.get("nombre").toString());
             cs.getCampeonato().setFechaInicio(new Date());
             cs.getCampeonato().setFechaFin(new Date());
             cs.getCampeonato().setCategoria(cs.getTipoCategoria(map.get("Categoria").toString()));
->>>>>>> origin/rama_Isauro
->>>>>>> rama_Isauro
+
             cs.update();
             res.put("msg", "OK");
             res.put("data", "Modificacion exitosa");

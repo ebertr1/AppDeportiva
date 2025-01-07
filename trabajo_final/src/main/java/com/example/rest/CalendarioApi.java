@@ -1,15 +1,11 @@
 package com.example.rest;
-<<<<<<< HEAD
-import java.text.SimpleDateFormat;
-import java.util.Date;
-=======
 
-<<<<<<< HEAD
 import java.text.SimpleDateFormat;
-=======
 import java.util.Date;
->>>>>>> origin/rama_Isauro
->>>>>>> rama_Isauro
+
+
+import java.text.SimpleDateFormat;
+
 import java.util.HashMap;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -82,22 +78,16 @@ public class CalendarioApi {
         String a = g.toJson(map);
         System.out.println("***** " + a);
 
-<<<<<<< HEAD
+
         try {
             CalendarioSerivices cs = new CalendarioSerivices();
             cs.getCalendario().setFechaJornada(new SimpleDateFormat("yyyy-MM-dd").parse(map.get("fechaJornada").toString()));
             cs.getCalendario().setNroEncuentros(Integer.parseInt(map.get("nroEncuentros").toString()));
 
-=======
-<<<<<<< HEAD
+
             cs.getCalendario().setFechaJornada(new SimpleDateFormat("YYYY-MM-dd").parse(map.get("fechaJornada").toString()));
             cs.getCalendario().setNroEncuentros(Integer.parseInt(map.get("nroEncuentros").toString()));
-=======
-            cs.getCalendario().setFechaJornada(new Date());
-            cs.getCalendario().setNroEncuentros(Integer.parseInt(map.get("nroEncuentros").toString()));
-            cs.getCalendario().setId_Campeonato(Integer.parseInt(map.get("idCampeonato").toString()));
->>>>>>> origin/rama_Isauro
->>>>>>> rama_Isauro
+
             cs.save();
 
             res.put("msg", "Ok");
@@ -121,21 +111,7 @@ public class CalendarioApi {
         HashMap res = new HashMap<>();
 
         try {
-<<<<<<< HEAD
             CalendarioSerivices cs = new CalendarioSerivices();
-=======
-            CalendarioServices cs = new CalendarioServices();
-<<<<<<< HEAD
->>>>>>> rama_Isauro
-            cs.setCalendario(cs.get(Integer.parseInt(map.get("id").toString())));
-            cs.getCalendario().setFechaJornada(new SimpleDateFormat("yyyy-MM-dd").parse(map.get("fechaJornada").toString()));
-            cs.getCalendario().setNroEncuentros(Integer.parseInt(map.get("nroEncuentros").toString()));
-=======
-            cs.setCalendario(cs.get(Integer.parseInt(map.get("idCalendario").toString())));
-            cs.getCalendario().setFechaJornada(new Date());
-            cs.getCalendario().setNroEncuentros(Integer.parseInt(map.get("nroEncuentros").toString()));
-            cs.getCalendario().setId_Campeonato(Integer.parseInt(map.get("idCampeonato").toString()));
->>>>>>> origin/rama_Isauro
             cs.update();
             res.put("msg", "OK");
             res.put("data", "Modificacion exitosas");

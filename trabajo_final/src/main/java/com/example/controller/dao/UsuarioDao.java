@@ -65,7 +65,6 @@ public class UsuarioDao extends AdapterDao<Usuario> {
             return false;
         }
     }
-<<<<<<< HEAD
     
     // Metodo get
     // Traer el objeto usuario por el id
@@ -136,6 +135,7 @@ public class UsuarioDao extends AdapterDao<Usuario> {
     	return person;
     }
     
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 >>>>>>> main
@@ -270,4 +270,6 @@ public class UsuarioDao extends AdapterDao<Usuario> {
 //		return false;
 	}
 >>>>>>> origin/rama_Matailo
+=======
+>>>>>>> origin/main
 }

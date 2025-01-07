@@ -66,8 +66,4 @@ public class ReglamentoDao extends AdapterDao<Reglamento>{
     }
 
 
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> origin/rama_Isauro

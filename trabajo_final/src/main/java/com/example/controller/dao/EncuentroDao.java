@@ -44,9 +44,6 @@ public class EncuentroDao extends AdapterDao<Encuentro>{
         this.listAll = listAll();
         return true;
     }
-<<<<<<< HEAD
-=======
-
 
     public Boolean delete(Integer id) throws Exception {
         LinkedList<Encuentro> list = getListAll();
@@ -63,9 +60,6 @@ public class EncuentroDao extends AdapterDao<Encuentro>{
         }
     }
 
-<<<<<<< HEAD
->>>>>>> rama_Isauro
+
 }
-=======
-}
->>>>>>> origin/rama_Isauro
+
