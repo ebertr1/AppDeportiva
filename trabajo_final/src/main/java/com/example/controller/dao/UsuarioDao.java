@@ -119,6 +119,7 @@ public class UsuarioDao extends AdapterDao<Usuario> {
     	return persona;
     }
     
+    /*
     public Administrador getPersonabyEmail(String email) throws Exception{
     	Administrador person = null;
     	LinkedList listPersona = personaDao.getlistAll();
@@ -136,7 +137,7 @@ public class UsuarioDao extends AdapterDao<Usuario> {
     	}
     	
     	return person;
-    }
+    }*/
     
 
     
