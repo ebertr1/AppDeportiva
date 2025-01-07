@@ -72,6 +72,7 @@ public class UsuarioApi {
     }
     
     // obtener persona por usuario
+    /*
     @Path("/search/{email}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -87,6 +88,7 @@ public class UsuarioApi {
         }
         return Response.ok(map).build();
     }
+    */
     
     // Asignar Usuario
     @Path("/asignn/usr")

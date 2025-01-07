@@ -45,9 +45,9 @@ public class UsuarioService {
     	return userDao.getUsuariobyEmail(email);
     }
     
-    public Administrador findPersonabyEmail(String text_email) throws Exception{
-    	return userDao.getPersonabyEmail(text_email);
-    }
+//    public Administrador findPersonabyEmail(String text_email) throws Exception{
+//    	return userDao.getPersonabyEmail(text_email);
+//    }
     
  // Metodo booleano que permite verificar tal persona tenga un usuario
     public Boolean existAsignacion() throws Exception{

@@ -1,12 +1,13 @@
 package com.example.models;
 
 public class Usuario {
+	// Id Usuario
     private Integer id;
     private String correo;
     private String contrasenia;
     private Boolean estado;
-    private Integer idPersona;
     
+    private Integer idPersona;
     // Podria ser en lugar de String la clase role
     private Rol role;
 
