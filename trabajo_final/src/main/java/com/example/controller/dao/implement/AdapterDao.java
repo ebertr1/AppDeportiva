@@ -35,7 +35,6 @@ public class AdapterDao <T> implements InterfazDao<T> {
         if (!list.isEmpty()) {
             T[] matriz = list.toArray();
             return matriz[id - 1];
-            
         }
         return null;
     }

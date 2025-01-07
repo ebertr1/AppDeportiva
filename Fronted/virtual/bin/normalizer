@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 #!/home/pablo/Escritorio/ESTRUCTURA_DATOS/TRABAJO_GRUPAL/AppDeportiva/Fronted/virtual/bin/python3
+=======
+#!/home/freddy/Documentos/ProyectosDesarrollo/STS4-4.25.0/AppDeportiva/Fronted/virtual/bin/python3
+>>>>>>> origin/rama_Matailo
 # -*- coding: utf-8 -*-
 import re
 import sys

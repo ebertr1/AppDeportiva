@@ -12,8 +12,19 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
+<<<<<<< HEAD
 import com.example.controller.dao.UsuarioDao;
 import com.example.controller.dao.services.UsuarioService;
+=======
+import com.example.controller.dao.services.PersonaService;
+import com.example.controller.dao.services.UsuarioService;
+import com.example.models.Administrador;
+import com.example.models.Arbitro;
+import com.example.models.Jugador;
+import com.example.models.Persona;
+import com.example.models.Rol;
+import com.example.models.Usuario;
+>>>>>>> origin/rama_Matailo
 import com.google.gson.Gson;
 
 @Path("/usuario")
@@ -62,4 +73,96 @@ public class UsuarioApi {
         }
         return Response.ok(map).build();
     }
+<<<<<<< HEAD
+=======
+    
+    // obtener persona por usuario
+    @Path("/search/{email}")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getPersonAdminUser(@PathParam("email") String email) throws Exception {
+        HashMap map = new HashMap<>();
+        UsuarioService ps = new UsuarioService();
+        Administrador persona = ps.findPersonabyEmail(email);
+        System.out.println("Objeto Persona: "+persona);
+        map.put("msg", "Ok");
+        map.put("data", persona);
+        if (ps.listAll().isEmpty()) {
+            map.put("data", new Object[] {});
+        }
+        return Response.ok(map).build();
+    }
+    
+    // Asignar Usuario
+    @Path("/asignn/usr")
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response asignarUsuario(HashMap map) {
+        HashMap res = new HashMap<>();
+        
+        Gson g = new Gson();
+        String a = g.toJson(map);
+        System.out.println("***** " + a);
+
+        try {
+            UsuarioService userService = new UsuarioService();
+            PersonaService personaService = new PersonaService();
+            
+            // 1. verificar que el usuario exista en la bdd 
+            Usuario usr = userService.findUserbyEmail(map.get("correo").toString());
+            
+            int idPersona = (int) map.get("idPersona");
+            
+//            System.out.println("Usuario: "+usr.toString()+"\n");
+            
+            if (usr != null) { // existe el usuario
+            	// 2. verificar que el idPersona exista en la bdd
+            	userService.setUsuario(usr);
+            	Object person = personaService.get(idPersona);
+            	
+//            	System.out.println("Objeto: "+person.toString()+"\n");
+            	if(person != null) {
+            		// 3. verifica que la persona registrada no sea una instancia de Arbitro, Dirigente o Jugador 
+            		// Nota... Realmente no se esta validadndo si sea una instancia de Arbitro o Jugador, se debe usar isInstance(Persona)
+            		
+            		if (!userService.existAsignacion()) { // No tiene una persona asignad
+            			
+            			if (!userService.existOtherUser(idPersona)) { // Si existe otro registro con este idP
+							
+            				if (!(person instanceof Arbitro) || !(person instanceof Jugador)) {
+            					// 4. capturar el id, y asignar el usuario (modificacion)
+            					userService.getUsuario().setIdPersona(((Persona) person).getId());
+            					userService.update();
+            					res.put("msg", "Ok");
+            					res.put("data", "Persona asignado un usuario correctamente");
+            				}
+						}else {							
+							res.put("msg", "Informacion");
+							res.put("data", "Ya existe un usuario para la persona con ID "+idPersona);
+						}
+            			
+					}else {
+						res.put("msg", "Informacion");
+						res.put("data", "La persona con el identificador "+idPersona+", ya tiene asignado un usuario..");
+					}
+            		
+            	}
+			}
+            
+            return Response.ok(res).build();
+
+        } catch (Exception e) {
+            System.out.println("Error en save data " + e.toString());
+            res.put("msg", "Error");
+            res.put("data", e.toString());
+            res.put("cause", e.getCause());
+            res.put("LocalizedMessage", e.getLocalizedMessage());
+            return Response.status(Status.INTERNAL_SERVER_ERROR).entity(res).build();
+        }
+
+    }
+    
+    
+>>>>>>> origin/rama_Matailo
 }
