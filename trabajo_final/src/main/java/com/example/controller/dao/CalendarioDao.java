@@ -41,9 +41,38 @@ public class CalendarioDao extends AdapterDao<Calendario>{
 
 
     public Boolean update() throws Exception {
+<<<<<<< HEAD
         this.merge(getCalendario(), getCalendario().getId()-1);
         this.listAll = listAll();
         return true;
+=======
+        try {
+            this.merge(getCalendario(), getCalendario().getId() - 1);
+            this.listAll = getListAll();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+<<<<<<< HEAD
+    }
+
+    public Boolean delete(Integer id) throws Exception {
+        LinkedList<Calendario> list = getListAll();
+        Calendario calendario = get(id);
+        if (calendario != null) {
+            list.remove(calendario);
+            String info = g.toJson(list.toArray());
+            saveFile(info);
+            this.listAll = list;
+            return true;
+        } else {
+            System.out.println("Calendario con id " + id + " no encontrada.");
+            return false;
+        }
+=======
+>>>>>>> origin/rama_Isauro
+>>>>>>> rama_Isauro
     }
 
     public Boolean delete(Integer id) throws Exception {
@@ -59,5 +88,9 @@ public class CalendarioDao extends AdapterDao<Calendario>{
             return false;
         }
     }
+<<<<<<< HEAD
 
 }
+=======
+}
+>>>>>>> rama_Isauro

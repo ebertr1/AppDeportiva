@@ -44,4 +44,28 @@ public class EncuentroDao extends AdapterDao<Encuentro>{
         this.listAll = listAll();
         return true;
     }
+<<<<<<< HEAD
+=======
+
+
+    public Boolean delete(Integer id) throws Exception {
+        LinkedList<Encuentro> list = getListAll();
+        Encuentro encuentro = get(id);
+        if (encuentro != null) {
+            list.remove(encuentro);
+            String info = g.toJson(list.toArray());
+            saveFile(info);
+            this.listAll = list;
+            return true;
+        } else {
+            System.out.println("Encuentro con id " + id + " no encontrada.");
+            return false;
+        }
+    }
+
+<<<<<<< HEAD
+>>>>>>> rama_Isauro
 }
+=======
+}
+>>>>>>> origin/rama_Isauro

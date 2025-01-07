@@ -48,4 +48,16 @@ public class CampeonatoServices {
     public Campeonato getCampeonato() {
         return obj.getCampeonato();
     }
+<<<<<<< HEAD
+=======
+
+    public TipoCategoria[] getTipos() {
+        return obj.getTipoCategoria();
+    }
+    
+<<<<<<< HEAD
+>>>>>>> rama_Isauro
 }
+=======
+}
+>>>>>>> origin/rama_Isauro

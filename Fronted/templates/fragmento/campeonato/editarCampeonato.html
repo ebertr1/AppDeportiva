@@ -1,0 +1,66 @@
+{% extends 'template.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="pagetitle">
+        <h1>Editar de Campeonato</h1>
+      </div>
+      
+        <div class="row g-0" data-aos="fade-up" data-aos-delay="100">
+
+          <div class="col-lg-4" style="background-image: url(static/assets/img/menu/copa.jpeg);"></div>
+
+          <div class="col-lg-8 d-flex align-items-center reservation-form-bg" data-aos="fade-up" data-aos-delay="200">
+              <div class="row gy-4">
+                <h3 class="card-title">Modificar datos del Campeonato</h3>
+                <div class="container" data-aos="fade-up">
+                    <h5>Nombre Campeonato</h5>
+
+                  </div>
+                <div class="col-lg-4 col-md-6">
+                    <input type="text" class="form-control"  name="ape" required value="{{campeonato.nombre}}">
+                </div>
+                <div class="container" data-aos="fade-up">
+                    <h5>Fecha de Inicio</h5>
+                  </div>
+                <div class="col-lg-4 col-md-6">
+                    <input type="text" class="form-control"  name="dateStart" id="date" placeholder="Date" required value="{{campeonato.fechaInicio}}">
+                </div>
+                <div class="container" data-aos="fade-up">
+                  <h5>Fecha de Culminacion</h5>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <input type="text" class="form-control"  name="dateEnd" id="date" placeholder="Date" required value="{{campeonato.fechaFin}}">
+                </div>
+                <div class="container" data-aos="fade-up">
+                  <h5>Formato del Campeonato</h5>
+                </div>
+                <select class="col-lg-4 col-md-6" placeholder="Default select example" required="">
+                
+                  {% for item in list2 %}
+                  <option value="{{ item }}" {% if item == campeonato.formato %}selected{% endif %}>{{ Masculino }}</option>
+                  <option value="{{ item }}" {% if item == campeonato.formato %}selected{% endif %}>{{ Femenino }}</option>
+
+                  {% endfor %}
+                </select>
+
+                <div class="container" data-aos="fade-up">
+                    <h5>Guardar Campeonato</h5>
+                  </div>
+                <div class="col-12 text-end">
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                  </div>
+                <div class="col-13 text-end">
+                    <button type="submit" class="btn btn-primary">Cancelar</button>
+                </div>
+
+            </form>
+          </div><!-- End Reservation Form -->
+
+        </div>
+    </section><!-- /Book A Table Section -->
+
+
+</html> 
+{% endblock %}

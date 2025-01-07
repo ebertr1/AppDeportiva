@@ -9,7 +9,6 @@ import com.example.models.enumerador.TipoIdentificacion;
 public class DirigenteDao extends AdapterDao<Dirigente> {
     private Dirigente dirigente;
     private LinkedList<Dirigente> listAll;
-    // private LinkedList<Persona> listAll;
 
     public DirigenteDao() {
         super(Dirigente.class);

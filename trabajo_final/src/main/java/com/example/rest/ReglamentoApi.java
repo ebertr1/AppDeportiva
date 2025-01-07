@@ -91,8 +91,16 @@ public class ReglamentoApi {
         try {
             ReglamentoServices rs = new ReglamentoServices();
             rs.getReglamento().setDescripcion(map.get("descripcion").toString());
+<<<<<<< HEAD
             rs.getReglamento().setFormato(rs.getFormato(map.get("formato").toString()));
             rs.getReglamento().setNombreReglamento(map.get("nombreReglamento").toString());
+=======
+            rs.getReglamento().setTipoFormato(rs.getTipoFormato(map.get("formato").toString()));
+<<<<<<< HEAD
+=======
+            rs.getReglamento().setId_Campeonato(Integer.parseInt(map.get("idCampeonato").toString()));
+>>>>>>> origin/rama_Isauro
+>>>>>>> rama_Isauro
             rs.save();
             res.put("msg", "Ok");
             res.put("data", "Guardado correctamente");
@@ -115,14 +123,33 @@ public class ReglamentoApi {
         HashMap res = new HashMap<>();
 
         try {
+<<<<<<< HEAD
              ReglamentoServices rs = new ReglamentoServices();
             rs.setReglamento(rs.get(Integer.parseInt(map.get("id").toString())));
+=======
+            ReglamentoServices rs = new ReglamentoServices();
+<<<<<<< HEAD
+            rs.getReglamento().setId(Integer.parseInt(map.get("id").toString()));
+            rs.getReglamento().setNombreReglamento(map.get("nombreReglamento").toString());
+>>>>>>> rama_Isauro
             rs.getReglamento().setDescripcion(map.get("descripcion").toString());
             rs.getReglamento().setFormato(rs.getFormato(map.get("formato").toString()));
             rs.getReglamento().setNombreReglamento(map.get("nombreReglamento").toString());
             rs.update();
+<<<<<<< HEAD
             res.put("msg", "OK");
             res.put("data", "Modificacion exitosa");
+=======
+=======
+            rs.setReglamento(rs.get(Integer.parseInt(map.get("id").toString())));
+            rs.getReglamento().setNombreReglamento(map.get("nombreReglamento").toString());
+            rs.getReglamento().setDescripcion(map.get("descripcion").toString());
+            rs.getReglamento().setTipoFormato(rs.getTipoFormato(map.get("formato").toString()));
+            rs.getReglamento().setId_Campeonato(Integer.parseInt(map.get("idCampeonato").toString()));rs.update();
+>>>>>>> origin/rama_Isauro
+            res.put("msg", "Ok");
+            res.put("msg", "Reglamento actualizado");
+>>>>>>> rama_Isauro
             return Response.ok(res).build();
         } catch (Exception e) {
             System.out.println("Error en sav data " + e.toString());
