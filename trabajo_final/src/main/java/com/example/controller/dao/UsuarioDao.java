@@ -1,5 +1,7 @@
 package com.example.controller.dao;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import com.example.controller.dao.implement.AdapterDao;
 import com.example.controller.tda.list.LinkedList;
 import com.example.models.Persona;
@@ -135,11 +137,7 @@ public class UsuarioDao extends AdapterDao<Usuario> {
     	return person;
     }
     
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> main
-=======
+
     
     // Metodo booleano que permite verificar tal persona tenga un usuario
     public Boolean existAsignacion() throws Exception{
@@ -269,7 +267,5 @@ public class UsuarioDao extends AdapterDao<Usuario> {
 		}
 //		return false;
 	}
->>>>>>> origin/rama_Matailo
-=======
->>>>>>> origin/main
+
 }
