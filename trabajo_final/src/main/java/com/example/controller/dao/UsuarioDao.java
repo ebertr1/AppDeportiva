@@ -63,7 +63,6 @@ public class UsuarioDao extends AdapterDao<Usuario> {
             return false;
         }
     }
-<<<<<<< HEAD
     
     // Metodo que me permite hasear contrasenia
     private String hashPasswd(String pwd) {
@@ -116,6 +115,4 @@ public class UsuarioDao extends AdapterDao<Usuario> {
     	return person;
     }
     
-=======
->>>>>>> main
 }

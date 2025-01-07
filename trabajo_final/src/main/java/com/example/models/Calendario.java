@@ -10,15 +10,6 @@ public class Calendario {
     public Calendario() {
     }
 
-<<<<<<< HEAD
-=======
-    public Calendario(Integer id_Campeonato, Integer id, Date fechaJornada, Integer nroEncuentros) {
-        this.id = id;
-        this.fechaJornada = fechaJornada;
-        this.nroEncuentros = nroEncuentros;
-        this.id_Campeonato=id_Campeonato;
-    }
->>>>>>> rama_Isauro
 
     public Integer getId() {
         return id;

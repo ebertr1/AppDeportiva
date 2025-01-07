@@ -9,16 +9,10 @@ import com.example.models.enumerador.Formato;
 import com.example.models.enumerador.TipoCategoria;
 
 public class ReglamentoServices {
-<<<<<<< HEAD
+
     private ReglamentoDao obj;
 
-    public ReglamentoServices() {
-        obj = new ReglamentoDao();
-    }
-
-    public Boolean save() throws Exception {
-        return obj.save();
-    }
+ 
 
     public Boolean update() throws Exception {
         return obj.update();
@@ -28,9 +22,7 @@ public class ReglamentoServices {
         return obj.delete(id);
     }
 
-    public LinkedList listAll() {
-        return obj.getListAll();
-    }
+
     public Formato getFormato(String tipo) {
         return obj.getFormato(tipo);
     }
@@ -91,9 +83,7 @@ public class ReglamentoServices {
         public Formato[] getFormato() {
             return obj.getTipoFormato();
         }
-<<<<<<< HEAD
->>>>>>> rama_Isauro
+
 }
-=======
-}
->>>>>>> origin/rama_Isauro
+
+
