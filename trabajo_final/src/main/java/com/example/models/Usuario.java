@@ -5,13 +5,6 @@ public class Usuario {
     private String correo;
     private String contrasenia;
     private Boolean estado;
-<<<<<<< HEAD
-=======
-    private Integer idPersona;
-    
-    // Podria ser en lugar de String la clase role
-    private Rol role;
->>>>>>> origin/rama_Matailo
 
     public Usuario() {
     }

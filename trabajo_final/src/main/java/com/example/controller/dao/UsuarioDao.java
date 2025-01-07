@@ -7,6 +7,7 @@ import com.example.controller.tda.list.LinkedList;
 import com.example.models.Persona;
 import com.example.models.Rol;
 import com.example.models.Usuario;
+import com.example.controller.dao.PersonaDao;
 
 
 public class UsuarioDao extends AdapterDao<Usuario> {
