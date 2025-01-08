@@ -3,7 +3,7 @@ package com.example.controller.dao.services;
 
 import com.example.controller.dao.UsuarioDao;
 import com.example.controller.tda.list.LinkedList;
-import com.example.models.Administrador;
+
 import com.example.models.Usuario;
 
 public class UsuarioService {
@@ -39,9 +39,6 @@ public class UsuarioService {
 
     public Usuario get(Integer id) throws Exception {
         return userDao.get(id);
-<<<<<<< HEAD
-    } 
-=======
     }
     
     public Usuario findUserbyEmail(String email) throws Exception{
@@ -62,6 +59,5 @@ public class UsuarioService {
     public boolean existOtherUser(int idPersona) throws Exception{
     	return userDao.existOtherUser(idPersona);
     }
->>>>>>> origin/rama_Matailo
 
 }

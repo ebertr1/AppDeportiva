@@ -13,7 +13,12 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import com.example.controller.dao.UsuarioDao;
+import com.example.controller.dao.services.PersonaService;
 import com.example.controller.dao.services.UsuarioService;
+import com.example.models.Arbitro;
+import com.example.models.Jugador;
+import com.example.models.Persona;
+import com.example.models.Usuario;
 import com.google.gson.Gson;
 
 @Path("/usuario")
@@ -62,8 +67,6 @@ public class UsuarioApi {
         }
         return Response.ok(map).build();
     }
-<<<<<<< HEAD
-=======
     
     // obtener persona por usuario
     /*
@@ -155,5 +158,4 @@ public class UsuarioApi {
     }
     
     
->>>>>>> origin/rama_Matailo
 }

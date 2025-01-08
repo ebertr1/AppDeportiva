@@ -46,7 +46,7 @@ public class TokenDao extends AdapterDao<Token>{
     }
 	
 	public void delete(int index) throws Exception{
-		this.delete((Token) listTokns.get(index));
+		this.delete(index);
 		actualizar_lista_Ids();
 		this.listTokns = listAll();
 	}
