@@ -25,7 +25,7 @@ public class JugadorDao extends AdapterDao<Jugador>{
     public void setJugador(Jugador jugador) {
         this.jugador = jugador;
     }
-    
+
     public LinkedList<Jugador> getlistAll() {
         if (listAll.isEmpty()) {
             this.listAll = listAll();
@@ -44,7 +44,7 @@ public class JugadorDao extends AdapterDao<Jugador>{
         public TipoIdentificacion getTipoIdentificacion(String tipo) {
         return TipoIdentificacion.valueOf(tipo);
     }
-    
+
     public TipoIdentificacion[] getTipos() {
         return TipoIdentificacion.values();
     }
@@ -52,7 +52,7 @@ public class JugadorDao extends AdapterDao<Jugador>{
     public Genero getTipoGenero(String genero) {
         return Genero.valueOf(genero);
     }
-    
+
     public Genero[] getGenero() {
         return Genero.values();
     }
@@ -68,19 +68,27 @@ public class JugadorDao extends AdapterDao<Jugador>{
         }
     }
 
-    public Boolean delete(Integer id) throws Exception {
-        LinkedList<Jugador> list = getlistAll();
-        Jugador jugador = get(id);
-        if (jugador != null) {
-            list.remove(jugador);
-            String info = g.toJson(list.toArray());
-            saveFile(info);
-            this.listAll = list;
-            return true;
-        } else {
-            System.out.println("Persona con id " + id + " no encontrada.");
-            return false;
-        }
+	public Boolean deleteJugador(Integer id) throws Exception {
+//        LinkedList<Jugador> list = getlistAll();
+//        Jugador jugador = get(id);
+//        if (jugador != null) {
+//            list.remove(jugador);
+//            String info = g.toJson(list.toArray());
+//            saveFile(info);
+//            this.listAll = list;
+//            return true;
+//        } else {
+//            System.out.println("Persona con id " + id + " no encontrada.");
+//            return false;
+//        }
+		try {
+			this.delete(id);
+			this.getlistAll();
+			return true;
+		} catch (Exception e) {
+			// TODO: handle exception
+			return false;
+		}
     }
 
 }

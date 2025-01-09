@@ -51,6 +51,7 @@ public class Reglamento {
     public void setFormato(Formato formato) {
         this.formato = formato;
     }
+<<<<<<< HEAD
     
     public Integer getId_Campeonato(){
         return id_Campeonato;
@@ -59,4 +60,7 @@ public class Reglamento {
     public void setId_Campeonato(Integer id_Campeonato){
         this.id_Campeonato = id_Campeonato;
     }
+=======
+
+>>>>>>> origin/rama_Matailo
 }

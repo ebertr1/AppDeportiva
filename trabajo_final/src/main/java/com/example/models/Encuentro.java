@@ -69,5 +69,5 @@ public class Encuentro {
         this.horaInicio = horaInicio;
     }
 
-    
+
 }

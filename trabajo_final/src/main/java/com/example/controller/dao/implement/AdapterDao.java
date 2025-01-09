@@ -18,7 +18,8 @@ public class AdapterDao <T> implements InterfazDao<T> {
         this.g = new Gson();
     }
 
-    public LinkedList listAll() {
+    @Override
+	public LinkedList listAll() {
         LinkedList<T> list = new LinkedList<>();
         try {
             String data = readFile();
@@ -29,8 +30,9 @@ public class AdapterDao <T> implements InterfazDao<T> {
         }
         return list;
     }
-    
-    public T get(Integer id) throws Exception {
+
+    @Override
+	public T get(Integer id) throws Exception {
         LinkedList<T> list = listAll();
         if (!list.isEmpty()) {
             T[] matriz = list.toArray();
@@ -38,15 +40,17 @@ public class AdapterDao <T> implements InterfazDao<T> {
         }
         return null;
     }
-    
-    public void merge(T object, Integer index) throws Exception {
+
+    @Override
+	public void merge(T object, Integer index) throws Exception {
         LinkedList<T> list = listAll();
         list.update(object, index);
         String info = g.toJson(list.toArray());
         saveFile(info);
     }
 
-    public void persist(T object) throws Exception {
+    @Override
+	public void persist(T object) throws Exception {
         LinkedList<T> list = listAll();
         list.add(object);
         String info = g.toJson(list.toArray());
@@ -87,4 +91,31 @@ public class AdapterDao <T> implements InterfazDao<T> {
             System.out.println("Error al escribir en el archivo: " + e.getMessage());
         }
     }
+<<<<<<< HEAD
+=======
+
+	@Override
+	public void delete(Integer elemnt) throws Exception {
+		LinkedList<T> list = listAll();
+		list.delete(elemnt);
+		String info = g.toJson(list.toArray());
+		// 3.
+		saveFile(info); //guarda
+	}
+
+	public void UpdateFile(LinkedList<T> dataList) throws Exception {
+		// 1. Crear un Objeto File o Archivo para almacenar los datos
+		File file = new File(URL + clazz.getSimpleName() + ".json");
+		String info = g.toJson(dataList.toArray());
+		// 2. Objeto como tipo cursor para la escritura
+		FileWriter fw = new FileWriter(file);
+		try { // Usamos try-with-resources para cerrar automáticamente el FileWriter
+			fw.write(info);
+			fw.flush();
+			fw.close();
+		} catch (IOException e) {
+			System.out.println("Error al escribir en el archivo: " + e.getMessage());
+		}
+	}
+>>>>>>> origin/rama_Matailo
 }

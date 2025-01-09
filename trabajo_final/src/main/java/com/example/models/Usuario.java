@@ -6,6 +6,10 @@ public class Usuario {
     private String correo;
     private String contrasenia;
     private Boolean estado;
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/rama_Matailo
     private Integer idPersona;
 
     public Usuario() {
@@ -42,6 +46,13 @@ public class Usuario {
     public void setEstado(Boolean estado) {
         this.estado = estado;
     }
+<<<<<<< HEAD
+=======
+
+    public Rol getRole() {
+		return role;
+	}
+>>>>>>> origin/rama_Matailo
 
     // hashear contrasenia
 

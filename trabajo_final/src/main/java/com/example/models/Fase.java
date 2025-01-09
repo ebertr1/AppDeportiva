@@ -3,7 +3,7 @@ package com.example.models;
 public class Fase {
     private Integer id;
     private String nombreFase;
-    
+
     public Fase() {
     }
 

@@ -15,15 +15,15 @@ public class JugadorEquipoServices {
     public Boolean save() throws Exception{
         return obj.save();
     }
-    
+
     public Boolean update() throws Exception{
         return obj.update();
     }
 
     public Boolean delete(Integer id) throws Exception {
-        return obj.delete(id);
+        return obj.deleteJugadorEquipo(id);
     }
-    
+
     public LinkedList listAll(){
         return obj.getlistAll();
     }

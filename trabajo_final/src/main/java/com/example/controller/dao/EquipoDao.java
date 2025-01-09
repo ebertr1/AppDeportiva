@@ -50,6 +50,7 @@ public class EquipoDao extends AdapterDao<Equipo> {
         }
     }
 
+<<<<<<< HEAD
 
     public Boolean delete(Integer id) throws Exception {
         LinkedList<Equipo> list = getlistAll();
@@ -64,5 +65,15 @@ public class EquipoDao extends AdapterDao<Equipo> {
             System.out.println("Persona con id " + id + " no encontrada.");
             return false;
         }
+=======
+	public Boolean deleteEquipo(Integer id) throws Exception {
+    	try {
+			this.delete(id);
+			return true;
+		} catch (Exception e) {
+			// TODO: handle exception
+			return false;
+		}
+>>>>>>> origin/rama_Matailo
     }
 }

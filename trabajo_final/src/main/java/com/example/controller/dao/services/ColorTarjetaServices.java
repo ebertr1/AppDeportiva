@@ -19,7 +19,7 @@ public class ColorTarjetaServices {
     }
 
     public Boolean delete(Integer id) throws Exception {
-        return obj.delete(id);
+        return obj.deleteColorTarjeta(id);
     }
 
     public LinkedList listAll() {
@@ -44,5 +44,5 @@ public class ColorTarjetaServices {
     }
 
 
-    
+
 }

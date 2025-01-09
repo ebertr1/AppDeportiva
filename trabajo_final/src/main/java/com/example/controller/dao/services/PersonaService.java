@@ -1,8 +1,8 @@
 package com.example.controller.dao.services;
 
+import com.example.controller.dao.PersonaDao;
 import com.example.controller.tda.list.LinkedList;
 import com.example.models.Persona;
-import com.example.controller.dao.PersonaDao;
 
 public class PersonaService {
     private PersonaDao obj;
@@ -20,7 +20,7 @@ public class PersonaService {
     }
 
     public Boolean delete(Integer id) throws Exception {
-        return obj.delete(id); // Llamar al método delete de PersonaDao
+        return obj.deletePersona(id); // Llamar al método delete de PersonaDao
     }
 
     public LinkedList<Persona> listAll() {

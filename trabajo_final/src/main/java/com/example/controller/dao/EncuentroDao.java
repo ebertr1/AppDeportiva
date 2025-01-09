@@ -22,7 +22,7 @@ public class EncuentroDao extends AdapterDao<Encuentro>{
     public void setEncuentro(Encuentro encuentro) {
         this.encuentro = encuentro;
     }
-    
+
     public LinkedList getListAll() {
         if(listAll == null){
             this.listAll = listAll();

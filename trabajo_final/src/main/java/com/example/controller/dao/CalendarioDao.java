@@ -23,7 +23,7 @@ public class CalendarioDao extends AdapterDao<Calendario>{
     public void setCalendario(Calendario calendario) {
         this.calendario = calendario;
     }
-    
+
     public LinkedList getListAll() {
         if(listAll == null){
             this.listAll = listAll();

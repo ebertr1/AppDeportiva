@@ -5,7 +5,7 @@ import com.example.controller.tda.list.LinkedList;
 
 public class StackOperation <E> extends LinkedList<E> {
     private Integer top;
-    
+
     public StackOperation(Integer top) {
     this.top = top;
     }

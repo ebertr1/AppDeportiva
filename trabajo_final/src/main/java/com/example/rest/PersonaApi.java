@@ -1,22 +1,21 @@
 package com.example.rest;
-import com.example.controller.dao.services.PersonaService;
-import com.example.models.enumerador.Genero;
-import com.example.models.enumerador.TipoIdentificacion;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.Consumes;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
-import javax.ws.rs.core.Response.StatusType;
 
+import com.example.controller.dao.services.PersonaService;
+import com.example.models.enumerador.Genero;
+import com.example.models.enumerador.TipoIdentificacion;
 import com.google.gson.Gson;
 
 @Path("person")
@@ -123,11 +122,11 @@ public class PersonaApi {
     @Produces(MediaType.APPLICATION_JSON)
     public Response update(HashMap map) {
         HashMap res = new HashMap<>();
-        
+
 
         try {
             PersonaService ps = new PersonaService();
-            ps.setPersona(ps.get(Integer.parseInt(map.get("idRol").toString())));
+            ps.setPersona(ps.get(Integer.parseInt(map.get("id").toString())));
             ps.getPersona().setNombre(map.get("nombre").toString());
             ps.getPersona().setApellido(map.get("apellido").toString());
             ps.getPersona().setCelular(map.get("celular").toString());
@@ -169,7 +168,7 @@ public class PersonaApi {
     try {
         PersonaService ps = new PersonaService();
         Integer id = Integer.parseInt(map.get("idPersona").toString());
-        
+
         Boolean success = ps.delete(id);
         if (success) {
             res.put("msg", "Ok");

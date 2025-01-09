@@ -12,6 +12,7 @@ public class Dirigente extends Persona {
     public Dirigente() {
     }
 
+<<<<<<< HEAD
     public Integer getIdEquipo() {
         return idEquipo;
     }
@@ -19,6 +20,8 @@ public class Dirigente extends Persona {
     public void setIdEquipo(Integer idEquipo) {
         this.idEquipo = idEquipo;
     }
+=======
+>>>>>>> origin/rama_Matailo
 
     public Integer getAniosExperiencia() {
         return aniosExperiencia;

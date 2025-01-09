@@ -6,10 +6,10 @@ import com.example.models.Infraccion;
 
 
 public class InfraccionDao extends AdapterDao<Infraccion> {
- 
-    
+
+
     private Infraccion infraccion;
-    private LinkedList listAll;  
+    private LinkedList listAll;
 
     public InfraccionDao() {
         super(Infraccion.class);
@@ -52,19 +52,14 @@ public class InfraccionDao extends AdapterDao<Infraccion> {
         }
     }
 
-    public Boolean delete(Integer id) throws Exception {
-        LinkedList<Infraccion> list = getlistAll();
-        Infraccion infraccion = get(id);
-        if (infraccion != null) {
-            list.remove(infraccion);
-            String info = g.toJson(list.toArray());
-            saveFile(info);
-            this.listAll = list;
-            return true;
-        } else {
-            System.out.println("Persona con id " + id + " no encontrada.");
-            return false;
-        }
+	public Boolean deleteInfraccion(Integer id) throws Exception {
+    	try {
+			this.delete(id);
+			return true;
+		} catch (Exception e) {
+			// TODO: handle exception
+			return false;
+		}
     }
 
 

@@ -1,8 +1,8 @@
 package com.example.models;
 import java.util.Date;
 
-import com.example.models.enumerador.TipoIdentificacion;
 import com.example.models.enumerador.Genero;
+import com.example.models.enumerador.TipoIdentificacion;
 public class Persona {
     private int id;
     private String nombre;
@@ -93,7 +93,7 @@ public class Persona {
 
     public void setGenero(Genero genero) {
         this.genero = genero;
-    }    
+    }
     public boolean getisActivo() {
         return activo;
     }
