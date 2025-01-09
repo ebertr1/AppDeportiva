@@ -22,7 +22,7 @@ public class CampeonatoDao extends AdapterDao<Campeonato>{
     public void setCampeonato(Campeonato campeonato) {
         this.campeonato = campeonato;
     }
-    
+
     public LinkedList getListAll() {
         if(listAll == null){
             this.listAll = listAll();

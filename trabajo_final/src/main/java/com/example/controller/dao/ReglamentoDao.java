@@ -1,8 +1,7 @@
 package com.example.controller.dao;
 
-import com.example.controller.tda.list.LinkedList;
-
 import com.example.controller.dao.implement.AdapterDao;
+import com.example.controller.tda.list.LinkedList;
 import com.example.models.Reglamento;
 
 public class ReglamentoDao extends AdapterDao<Reglamento>{
@@ -23,7 +22,7 @@ public class ReglamentoDao extends AdapterDao<Reglamento>{
     public void setReglamento(Reglamento reglamento) {
         this.reglamento = reglamento;
     }
-    
+
     public LinkedList getListAll() {
         if(listAll == null){
             this.listAll = listAll();

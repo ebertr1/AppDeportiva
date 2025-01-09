@@ -17,7 +17,7 @@ import com.example.models.Persona;
 
 @Path("/login")
 public class LoginApi {
-	
+
 	@Path("/auth")
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -29,34 +29,34 @@ public class LoginApi {
 		UsuarioService userService = new UsuarioService();
 		// Servicio para traer el objeto persona por ID
 		PersonaService personaService = new PersonaService();
-		
+
 		Persona persona;
-		
+
 		String mensaje;
-		
-		//2 Construir response 
+
+		//2 Construir response
 		HashMap map = new HashMap<>();
-		
+
 		String email = requ.get("correo").toString();
-		try {			
+		try {
 			String pwd = requ.get("contrasenia").toString();
-			
+
 			System.out.println("email: "+email+", pwd: "+pwd);
-			
+
 			mensaje = logService.login(email, pwd);
-			
+
 		} catch (Exception e) {
 			// TODO: handle exception
 			mensaje = "Ocurrio un error "+e.getCause();
 			map.put("error Localized", e.getLocalizedMessage());
 			map.put("error Mesag", e.getMessage());
 		}
-		
-		if(mensaje.compareToIgnoreCase("Usuario no existe") == 0 || 
+
+		if(mensaje.compareToIgnoreCase("Usuario no existe") == 0 ||
 				mensaje.compareToIgnoreCase("Contraseña incorrecta") == 0) {
 			map.put("msg", "Error, credenciales incorrectas o el usuario no existe..");
 			return Response.status(Status.UNAUTHORIZED).entity(map).build();
-		}else {			
+		}else {
 			map.put("msg", "OK");
 			// Se debe de construir un Response Builder
 			map.put("data_tokn", mensaje);
@@ -65,7 +65,7 @@ public class LoginApi {
 			return Response.status(Status.OK).entity(map).build();
 		}
 	}
-	
+
 	@Path("/logout")
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -73,14 +73,14 @@ public class LoginApi {
 	public Response logout(HashMap request) {
 		// 1. Llamar Services
 		LoginService logService = new LoginService();
-		
+
 		//2. Construir map para response
 		HashMap map = new HashMap<>();
-		
+
 		// En request lo que debe de enviar es el token (id)
 		int id = (int) request.get("idToken");
-		
-		
+
+
 		if(logService.logout(id)) {
 			// Buscar en base de datos
 			// Eliminar de la base de datos
@@ -93,7 +93,7 @@ public class LoginApi {
 			map.put("data", "Algo salio mal ..!");
 			return Response.status(Status.EXPECTATION_FAILED).entity(map).build();
 		}
-		
+
 //		return null;
 	}
 }

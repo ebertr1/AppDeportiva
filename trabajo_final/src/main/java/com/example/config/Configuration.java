@@ -9,5 +9,5 @@ import javax.ws.rs.core.Application;
  */
 @ApplicationPath("myapp")
 public class Configuration extends Application{
-	
+
 }

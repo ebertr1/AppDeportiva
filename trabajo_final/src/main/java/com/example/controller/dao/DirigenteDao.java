@@ -45,16 +45,16 @@ public class DirigenteDao extends AdapterDao<Dirigente> {
     public TipoIdentificacion getTipoIdentificacion(String tipo) {
         return TipoIdentificacion.valueOf(tipo);
     }
-    
+
     public TipoIdentificacion[] getTipos() {
         return TipoIdentificacion.values();
     }
 
-    
+
     public Genero getTipoGenero(String genero) {
         return Genero.valueOf(genero);
     }
-    
+
     public Genero[] getGenero() {
         return Genero.values();
     }
@@ -70,19 +70,14 @@ public class DirigenteDao extends AdapterDao<Dirigente> {
         }
     }
 
-    public Boolean delete(Integer id) throws Exception {
-        LinkedList<Dirigente> list = getlistAll();
-        Dirigente dirigente = get(id);
-        if (dirigente != null) {
-            list.remove(dirigente);
-            String info = g.toJson(list.toArray());
-            saveFile(info);
-            this.listAll = list;
-            return true;
-        } else {
-            System.out.println("Persona con id " + id + " no encontrada.");
-            return false;
-        }
+	public Boolean deleteDirigente(Integer id) throws Exception {
+		try {
+			this.delete(id);
+			return true;
+		} catch (Exception e) {
+			// TODO: handle exception
+			return false;
+		}
     }
 
 }

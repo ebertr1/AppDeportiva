@@ -6,7 +6,7 @@ public class Usuario {
     private String correo;
     private String contrasenia;
     private Boolean estado;
-    
+
     private Integer idPersona;
     // Podria ser en lugar de String la clase role
     private Rol role;
@@ -45,7 +45,7 @@ public class Usuario {
     public void setEstado(Boolean estado) {
         this.estado = estado;
     }
-    
+
     public Rol getRole() {
 		return role;
 	}

@@ -7,10 +7,10 @@ import com.example.models.Arbitro;
 
 
 public class ArbitroDao extends AdapterDao<Arbitro> {
-   
+
     private Arbitro arbitro;
-    private LinkedList listAll;    
-     
+    private LinkedList listAll;
+
    public ArbitroDao() {
         super(Arbitro.class);
     }
@@ -52,19 +52,14 @@ public class ArbitroDao extends AdapterDao<Arbitro> {
         }
     }
 
-    public Boolean delete(Integer id) throws Exception {
-        LinkedList<Arbitro> list = getlistAll();
-        Arbitro arbitro = get(id);
-        if (arbitro != null) {
-            list.remove(arbitro);
-            String info = g.toJson(list.toArray());
-            saveFile(info);
-            this.listAll = list;
-            return true;
-        } else {
-            System.out.println("Persona con id " + id + " no encontrada.");
-            return false;
-        }
+	public boolean deleteArbitr(Integer id) throws Exception {
+		try {
+			this.delete(id);
+			return true;
+		} catch (Exception e) {
+			// TODO: handle exception
+			return false;
+		}
     }
 
 

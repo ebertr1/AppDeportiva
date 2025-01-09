@@ -22,7 +22,7 @@ public class DirigenteServices {
     }
 
     public Boolean delete(Integer id) throws Exception {
-        return obj.delete(id);
+        return obj.deleteDirigente(id);
     }
 
     public LinkedList listAll() {

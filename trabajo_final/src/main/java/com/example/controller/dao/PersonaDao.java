@@ -49,7 +49,7 @@ public class PersonaDao extends AdapterDao<Persona> {
     }
 
     // Método de borrado lógico para inhabilitar una Persona
-    public Boolean delete(int id) throws Exception {
+    public Boolean deletePersona(int id) throws Exception {
         Persona persona = get(id); // Obtiene la Persona por ID
         if (persona != null) {
             persona.setActivo(false); // Borrado lógico (inactiva la persona)

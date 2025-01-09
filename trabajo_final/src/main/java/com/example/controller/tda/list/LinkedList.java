@@ -113,8 +113,8 @@ public class LinkedList<E> {
         }
     }
 
-   
-    
+
+
    public E deleteFirst() throws ListEmptyException {
         if (isEmpty()) {
             throw new ListEmptyException("Error, lista vacía");
@@ -124,13 +124,13 @@ public class LinkedList<E> {
             header = aux;
             if (size.intValue() == 1) {
                 last = null;
-            } 
+            }
             size--;
             return elemnt;
             }
         }
-        
-        
+
+
     public E deleteLast() throws ListEmptyException {
         if (isEmpty()) {
             throw new ListEmptyException("Error, lista vacía");
@@ -168,15 +168,15 @@ public class LinkedList<E> {
             Node<E> current = previous.getNext(); // Nodo actual (a eliminar)
             E element = current.getInfo(); // Información del nodo a eliminar
             Node<E> next = current.getNext(); // Nodo siguiente al nodo a eliminar
-    
+
             previous.setNext(next); // Elimina el nodo actual enlazando el nodo anterior al siguiente
             size--; // Disminuye el tamaño de la lista
             return element; // Devuelve la información del nodo eliminado
         }
     }
-    
-    
-    
+
+
+
 
     public void reset() {
         this.header = null;
@@ -223,8 +223,8 @@ public class LinkedList<E> {
 
     public LinkedList<E> toList(E[] matrix) {
         reset();
-        for (int i = 0; i < matrix.length; i++) {
-            this.add(matrix[i]);
+        for (E element : matrix) {
+            this.add(element);
         }
         return this;
     }
@@ -233,42 +233,42 @@ public class LinkedList<E> {
         if (index < 0 || index >= size) { // Verifica el rango del índice
             throw new IndexOutOfBoundsException("Índice fuera de rango: " + index);
         }
-    
+
         Node<E> current = header; // Comienza desde la cabecera
         for (int i = 0; i < index; i++) {
             current = current.getNext(); // Moverse al nodo en el índice deseado
         }
-    
+
         current.setInfo(object); // Actualizar el dato del nodo usando el setter
     }
-    
-    
+
+
     // Este metodo no es util, no se debe utilizar
     // en lugar de este utilizar el delete
     /*public boolean remove(E element) {
         if (isEmpty()) return false;
-        
+
         if (header.getInfo().equals(element)) { // Si el elemento está en la cabecera
         	Node<E> aux = header.getNext();
             header = aux;
             size--;
             return true;
         }
-        
+
         Node<E> current = header;
         while (current.getNext() != null) {
         	//1. Empieza con header
             if (current.getInfo().equals(element)) {
-            	Node<E> aux = current.getNext(); // obtengo el siguiente 
+            	Node<E> aux = current.getNext(); // obtengo el siguiente
                 current.setNext(current.getNext()); // ??
-                // No se enlaza con el anterior, y por ende esta lista enlazada es de 
+                // No se enlaza con el anterior, y por ende esta lista enlazada es de
                 // una sola direccion, si el caso fuera doblemente enlazada, ahi seria mucho mejor
                 size--;
                 return true;
             }
             current = current.getNext();
         }
-        
+
         return false; // Elemento no encontrado
     }*/
 }

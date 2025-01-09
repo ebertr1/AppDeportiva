@@ -2,7 +2,7 @@ package com.example.controller.tda.stack;
 
 public class Stack<E> {
     private StackOperation<E> stackOperation;
-    public Stack(Integer cant) {   
+    public Stack(Integer cant) {
             this.stackOperation = new StackOperation<>(cant);
     }
 

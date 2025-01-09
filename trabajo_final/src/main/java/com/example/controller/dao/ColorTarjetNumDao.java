@@ -6,7 +6,7 @@ import com.example.models.enumerador.ColorTarjeta;
 
 
 public class ColorTarjetNumDao extends AdapterDao<ColorTarjeta>{
-   
+
     private ColorTarjeta colorTarjeta;
     private LinkedList<ColorTarjeta> listAll;
     // private LinkedList<Persona> listAll;
@@ -18,7 +18,7 @@ public class ColorTarjetNumDao extends AdapterDao<ColorTarjeta>{
 
     public ColorTarjeta getColorTarjeta() {
         if (colorTarjeta == null) {
-           colorTarjeta = ColorTarjeta.AMARILLO; 
+           colorTarjeta = ColorTarjeta.AMARILLO;
         }
         return colorTarjeta;
     }
@@ -34,12 +34,12 @@ public class ColorTarjetNumDao extends AdapterDao<ColorTarjeta>{
     public ColorTarjeta getColorTarjeta(String name) {
         return ColorTarjeta.valueOf(name);
     }
-    
+
     public ColorTarjeta[] getTipos() {
         return ColorTarjeta.values();
     }
 
- 
+
 
     public Boolean update() throws Exception {
         try {
@@ -52,19 +52,14 @@ public class ColorTarjetNumDao extends AdapterDao<ColorTarjeta>{
         }
     }
 
-    public Boolean delete(Integer id) throws Exception {
-        LinkedList<ColorTarjeta> list = getlistAll();
-        ColorTarjeta dirigente = get(id);
-        if (dirigente != null) {
-            list.remove(dirigente);
-            String info = g.toJson(list.toArray());
-            saveFile(info);
-            this.listAll = list;
-            return true;
-        } else {
-            System.out.println("Persona con id " + id + " no encontrada.");
-            return false;
-        }
+    public Boolean deleteColorTarjeta(Integer id) throws Exception {
+        try {
+			this.delete(id);
+			return true;
+		} catch (Exception e) {
+			// TODO: handle exception
+			return false;
+		}
     }
 
 

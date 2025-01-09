@@ -50,18 +50,13 @@ public class EquipoDao extends AdapterDao<Equipo> {
         }
     }
 
-    public Boolean delete(Integer id) throws Exception {
-        LinkedList<Equipo> list = getlistAll();
-        Equipo equipo = get(id);
-        if (equipo != null) {
-            list.remove(equipo);
-            String info = g.toJson(list.toArray());
-            saveFile(info);
-            this.listAll = list;
-            return true;
-        } else {
-            System.out.println("Persona con id " + id + " no encontrada.");
-            return false;
-        }
+	public Boolean deleteEquipo(Integer id) throws Exception {
+    	try {
+			this.delete(id);
+			return true;
+		} catch (Exception e) {
+			// TODO: handle exception
+			return false;
+		}
     }
 }

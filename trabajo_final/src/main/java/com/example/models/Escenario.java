@@ -3,17 +3,17 @@ package com.example.models;
 /**
  * Clase Escenario
  * Contiene la informacion sobre los escenarios donde se celebran los
- * partidos, incluyendo ubicacion y nombre de Lugar   
+ * partidos, incluyendo ubicacion y nombre de Lugar
  */
 public class Escenario {
-		
-	private Integer idEscenario;	
+
+	private Integer idEscenario;
 	private String direccionEscenario;
 	// Referencia de la direccion o lugar
 	private String referenciadireccionEscenario;
-	// Nombre del complejo deportivo o escenario deportivo	
+	// Nombre del complejo deportivo o escenario deportivo
 	private String nombreEscenario;
-	
+
 //	Gestores GETTERS AND SETTERS
 	public Integer getIdEscenario() {
 		return idEscenario;
@@ -40,10 +40,10 @@ public class Escenario {
 		this.nombreEscenario = nombreEscenario;
 	}
 
-	
+
 	//	Constructores
 	public Escenario() {
-		
+
 	}
 	public Escenario(Integer idEscenario, String direccionEscenario, String referenciadireccionEscenario,
 			String nombreEscenario) {
@@ -52,8 +52,8 @@ public class Escenario {
 		this.referenciadireccionEscenario = referenciadireccionEscenario;
 		this.nombreEscenario = nombreEscenario;
 	}
-	
-	
-	
+
+
+
 
 }

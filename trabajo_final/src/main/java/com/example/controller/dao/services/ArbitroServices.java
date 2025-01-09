@@ -6,7 +6,7 @@ import com.example.models.Arbitro;
 
 public class ArbitroServices {
     private ArbitroDao obj;
-    
+
     public ArbitroServices() {
         obj = new ArbitroDao();
     }
@@ -14,15 +14,15 @@ public class ArbitroServices {
     public Boolean save() throws Exception{
         return obj.save();
     }
-    
+
     public Boolean update() throws Exception{
         return obj.update();
     }
 
     public Boolean delete(Integer id) throws Exception {
-        return obj.delete(id);
+        return obj.deleteArbitr(id);
     }
-    
+
     public LinkedList listAll(){
         return obj.getlistAll();
     }

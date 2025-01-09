@@ -49,5 +49,5 @@ public class Reglamento {
     public void setFormato(Formato formato) {
         this.formato = formato;
     }
-    
+
 }

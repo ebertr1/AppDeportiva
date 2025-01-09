@@ -62,10 +62,10 @@ public class RolDao extends AdapterDao<Rol>{
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
         // Si no se encuentra el rol con el id especificado, devuelve false
         return false;
     }
-    
-    
+
+
 }

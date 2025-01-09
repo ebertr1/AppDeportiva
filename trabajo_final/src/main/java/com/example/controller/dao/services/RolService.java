@@ -1,14 +1,11 @@
 package com.example.controller.dao.services;
 
-import com.example.controller.dao.PersonaDao;
 import com.example.controller.dao.RolDao;
 import com.example.controller.tda.list.LinkedList;
-import com.example.models.Persona;
-import com.example.models.Usuario;
 import com.example.models.Rol;
 
 public class RolService {
-    
+
     private RolDao rolDao;
 
     public RolService(){
@@ -22,14 +19,14 @@ public class RolService {
     }
     public Boolean delete(Integer id) throws Exception {
         try {
-        	rolDao.delete(id); 
+        	rolDao.delete(id);
         	return true;
 		} catch (Exception e) {
 			// TODO: handle exception
 			return false;
 		}
     }
-    
+
 
     public LinkedList listAll(){
         return rolDao.getListAll();
@@ -46,6 +43,6 @@ public class RolService {
 
     public Rol get(Integer id) throws Exception {
         return rolDao.get(id);
-    } 
+    }
 
 }

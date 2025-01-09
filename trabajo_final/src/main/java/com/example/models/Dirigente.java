@@ -18,7 +18,7 @@ public class Dirigente extends Persona {
     public Dirigente() {
     }
 
-    
+
     public Integer getAniosExperiencia() {
         return aniosExperiencia;
     }

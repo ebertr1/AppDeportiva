@@ -24,5 +24,5 @@ public class Arbitro extends Persona {
     public void setAsociacion(String asociacion) {
         this.asociacion = asociacion;
     }
-    
+
 }

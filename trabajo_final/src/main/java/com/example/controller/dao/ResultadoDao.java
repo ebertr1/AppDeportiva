@@ -7,19 +7,19 @@ import com.example.models.Resultado;
 public class ResultadoDao extends AdapterDao<Resultado>{
     private Resultado resultado;
     private LinkedList<Resultado> listAll;
-    
+
     public ResultadoDao(){
         super(Resultado.class);
         this.listAll = new LinkedList<>();
     }
-    
+
     public Resultado getResultado() {
         if (resultado == null) {
             resultado = new Resultado();
         }
         return resultado;
     }
-    
+
     public void setResultado(Resultado resultado) {
         this.resultado = resultado;
     }
@@ -50,18 +50,26 @@ public class ResultadoDao extends AdapterDao<Resultado>{
         }
     }
 
-    public Boolean delete(Integer id) throws Exception {
-        LinkedList<Resultado> list = getlistAll();
-        Resultado resultado = get(id);
-        if (resultado != null) {
-            list.remove(resultado);
-            String info = g.toJson(list.toArray());
-            saveFile(info);
-            this.listAll = list;
-            return true;
-        } else {
-            System.out.println("Persona con id " + id + " no encontrada.");
-            return false;
-        }
+	public Boolean deleteResultad(Integer id) throws Exception {
+//        LinkedList<Resultado> list = getlistAll();
+//        Resultado resultado = get(id);
+//        if (resultado != null) {
+//            list.remove(resultado);
+//            String info = g.toJson(list.toArray());
+//            saveFile(info);
+//            this.listAll = list;
+//            return true;
+//        } else {
+//            System.out.println("Persona con id " + id + " no encontrada.");
+//            return false;
+//        }
+		try {
+			this.delete(id);
+			this.getlistAll();
+			return true;
+		} catch (Exception e) {
+			// TODO: handle exception
+			return false;
+		}
     }
 }
