@@ -4,7 +4,6 @@ import org.mindrot.jbcrypt.BCrypt;
 
 import com.example.controller.dao.implement.AdapterDao;
 import com.example.controller.tda.list.LinkedList;
-import com.example.models.Administrador;
 import com.example.models.Persona;
 import com.example.models.Rol;
 import com.example.models.Usuario;
@@ -14,9 +13,6 @@ public class UsuarioDao extends AdapterDao<Usuario> {
      // Atributos
     private Usuario user;
     private LinkedList listUsr;
-    
-    // Atributo PersonaDao
-    private AdministradorDao personaDao;
 
     public UsuarioDao(){
         super(Usuario.class);

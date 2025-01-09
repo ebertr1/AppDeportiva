@@ -15,7 +15,6 @@ import javax.ws.rs.core.Response.Status;
 
 import com.example.controller.dao.services.PersonaService;
 import com.example.controller.dao.services.UsuarioService;
-import com.example.models.Administrador;
 import com.example.models.Arbitro;
 import com.example.models.Jugador;
 import com.example.models.Persona;
