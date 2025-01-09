@@ -241,8 +241,11 @@ public class LinkedList<E> {
     
         current.setInfo(object); // Actualizar el dato del nodo usando el setter
     }
-
-    public boolean remove(E element) {
+    
+    
+    // Este metodo no es util, no se debe utilizar
+    // en lugar de este utilizar el delete
+    /*public boolean remove(E element) {
         if (isEmpty()) return false;
         
         if (header.getInfo().equals(element)) { // Si el elemento está en la cabecera
@@ -254,8 +257,12 @@ public class LinkedList<E> {
         
         Node<E> current = header;
         while (current.getNext() != null) {
-            if (current.getNext().getInfo().equals(element)) {
-                current.setNext(current.getNext().getNext());
+        	//1. Empieza con header
+            if (current.getInfo().equals(element)) {
+            	Node<E> aux = current.getNext(); // obtengo el siguiente 
+                current.setNext(current.getNext()); // ??
+                // No se enlaza con el anterior, y por ende esta lista enlazada es de 
+                // una sola direccion, si el caso fuera doblemente enlazada, ahi seria mucho mejor
                 size--;
                 return true;
             }
@@ -263,5 +270,5 @@ public class LinkedList<E> {
         }
         
         return false; // Elemento no encontrado
-    }
+    }*/
 }

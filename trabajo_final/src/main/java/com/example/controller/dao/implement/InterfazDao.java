@@ -7,5 +7,5 @@ public interface InterfazDao <T> {
     public void merge(T object, Integer index) throws Exception;
     public LinkedList listAll();
     public T get(Integer id) throws Exception;
-    public void delete(T object) throws Exception;
+    public void delete(Integer object) throws Exception;
 }

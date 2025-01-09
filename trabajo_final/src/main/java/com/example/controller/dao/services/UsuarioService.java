@@ -19,7 +19,8 @@ public class UsuarioService {
         return userDao.update();
     }
     public Boolean delete(Integer id) throws Exception {
-        return userDao.delete(id); 
+//        return userDao.delete(id);
+        return userDao.delete(id.intValue());
     }
     
 

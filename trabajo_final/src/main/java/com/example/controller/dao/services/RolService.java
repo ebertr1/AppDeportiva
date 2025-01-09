@@ -21,7 +21,13 @@ public class RolService {
         return rolDao.update();
     }
     public Boolean delete(Integer id) throws Exception {
-        return rolDao.delete(id); 
+        try {
+        	rolDao.delete(id); 
+        	return true;
+		} catch (Exception e) {
+			// TODO: handle exception
+			return false;
+		}
     }
     
 

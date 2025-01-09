@@ -90,9 +90,9 @@ public class AdapterDao <T> implements InterfazDao<T> {
     }
 
 	@Override
-	public void delete(T elemnt) throws Exception {
+	public void delete(Integer elemnt) throws Exception {
 		LinkedList<T> list = listAll();
-		list.remove(elemnt);
+		list.delete(elemnt);
 		String info = g.toJson(list.toArray());
 		// 3.
 		saveFile(info); //guarda

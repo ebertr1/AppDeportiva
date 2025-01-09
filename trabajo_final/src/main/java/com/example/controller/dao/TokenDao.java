@@ -48,7 +48,7 @@ public class TokenDao extends AdapterDao<Token>{
 	public void delete() throws Exception{
 //		System.out.println("Elemento o indice de token "+index);
 //		System.out.println("Lista vacia?: "+getListTokns().isEmpty());
-		this.delete(this.tokn);
+		this.delete(this.tokn.getIdToken());
 		this.listTokns = listAll();
 	}
 	
