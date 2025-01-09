@@ -246,7 +246,8 @@ public class LinkedList<E> {
         if (isEmpty()) return false;
         
         if (header.getInfo().equals(element)) { // Si el elemento está en la cabecera
-            header = header.getNext();
+        	Node<E> aux = header.getNext();
+            header = aux;
             size--;
             return true;
         }

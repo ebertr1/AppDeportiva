@@ -45,9 +45,10 @@ public class TokenDao extends AdapterDao<Token>{
         return true;
     }
 	
-	public void delete(int index) throws Exception{
-		this.delete((Token) listTokns.get(index));
-		actualizar_lista_Ids();
+	public void delete() throws Exception{
+//		System.out.println("Elemento o indice de token "+index);
+//		System.out.println("Lista vacia?: "+getListTokns().isEmpty());
+		this.delete(this.tokn);
 		this.listTokns = listAll();
 	}
 	
@@ -56,23 +57,5 @@ public class TokenDao extends AdapterDao<Token>{
 		return true;
 	}
 	
-	private void actualizar_lista_Ids() throws Exception {
-        int contador = 0; // Comenzar desde 1
-        
-        Node<Token> current = getListTokns().getHeader(); // Suponiendo que tienes un método para obtener la cabeza de la lista
-        Token mensajero;
-        
-        while (current != null) {
-        	contador++; // cuenta 1
-            mensajero = current.getInfo(); // obtiene el objeto de NODO
-            mensajero.setIdToken(contador); // actualiza el id del Objeto
-            
-        	current.setInfo(mensajero); // Asigna o guarda esa info en su respectivo Nodo
-            current = current.getNext(); // Moverse al siguiente nodo
-        }
-       
-        this.UpdateFile(listTokns); // Actualiza el archivo si es necesario
-    }
-	
-	// Realizar metodo de busqueda por token, para comparar
+	// Realizar metodo de busqueda por token, para comparar la fecha de expiracion
 }

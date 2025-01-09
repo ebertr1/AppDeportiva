@@ -124,8 +124,26 @@ public class LoginService {
 	// metodo para refrescar el token
 	
 	// Metodo para logout
-	public void logout() {
+	public boolean logout(int idToken) {
+		Token tkn;
+		boolean flag = false;
+		try {
+			tkn = tknDAO.get(idToken);
+			
+			//Verifico si el token existe en bdd 
+			if (tkn != null) {
+				tknDAO.setTokn(tkn);
+				tknDAO.delete(); // elimina
+				flag = true; // significa que se elimino correctamente
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("Ocurrio un error en el metodo de logout");
+			e.printStackTrace(); // imprime el seguimiento traz de error
+			return false;
+		}
 		
+		return flag;
 	}
 
 }

@@ -64,9 +64,36 @@ public class LoginApi {
 			map.put("persona", persona.getApellido()+" "+persona.getNombre());
 			return Response.status(Status.OK).entity(map).build();
 		}
-				
-//		return Response.ok(map).build();
+	}
+	
+	@Path("/logout")
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response logout(HashMap request) {
+		// 1. Llamar Services
+		LoginService logService = new LoginService();
+		
+		//2. Construir map para response
+		HashMap map = new HashMap<>();
+		
+		// En request lo que debe de enviar es el token (id)
+		int id = (int) request.get("idToken");
 		
 		
+		if(logService.logout(id)) {
+			// Buscar en base de datos
+			// Eliminar de la base de datos
+			// Eliminacion correcta
+			map.put("msg", "OK");
+			map.put("data", "Inicio de sesion cerrada exitosamente");
+			return Response.status(Status.OK).entity(map).build();
+		}else {
+			map.put("msg", "Error");
+			map.put("data", "Algo salio mal ..!");
+			return Response.status(Status.EXPECTATION_FAILED).entity(map).build();
+		}
+		
+//		return null;
 	}
 }
