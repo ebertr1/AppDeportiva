@@ -90,7 +90,7 @@ public class UsuarioApi {
     */
     
     // Asignar Usuario
-    @Path("/asignn/usr")
+    @Path("/asign/usr")
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)

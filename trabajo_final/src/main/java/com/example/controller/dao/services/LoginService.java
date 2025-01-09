@@ -30,10 +30,9 @@ public class LoginService {
 	}
 
 	public String login(String email, String password) throws Exception {
-//		userService.getUsuario().setCorreo(email);
-//		userService.getUsuario().setContrasenia(password);
 		
-		Usuario user = userService.findUserbyEmail(email); // debo de 
+		// trae el usuario para verificar o comparar la contrasenia en bdd, con la contrasenia que envia 
+		Usuario user = userService.findUserbyEmail(email);
 
 		if (user == null) {
 			return "Usuario no existe";
@@ -43,8 +42,8 @@ public class LoginService {
 		// Verificar la contraseña hasheada
 		if (BCrypt.checkpw(password, user.getContrasenia())) {
 			// Si las credenciales son correctas, generar el JWT
-			System.out.println("Contrasenia correcta");
-			System.out.println("usuario : "+user.getCorreo());
+//			System.out.println("Contrasenia correcta");
+//			System.out.println("usuario : "+user.getCorreo());
 			return generateJWT(user);
 		} else {
 			return "Contraseña incorrecta";
@@ -99,7 +98,7 @@ public class LoginService {
 					.signWith(key, SignatureAlgorithm.HS256) // Firma del JWT con la clave secreta
 					.compact();
 			
-			System.out.println("tokn: "+tokn);
+//			System.out.println("tokn: "+tokn);
 			msg = tokn;
 			
 			tkn.setIdUsr(user.getId());

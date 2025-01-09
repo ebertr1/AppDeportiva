@@ -11,6 +11,9 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import com.example.controller.dao.services.LoginService;
+import com.example.controller.dao.services.PersonaService;
+import com.example.controller.dao.services.UsuarioService;
+import com.example.models.Persona;
 
 @Path("/login")
 public class LoginApi {
@@ -22,13 +25,20 @@ public class LoginApi {
 	public Response login(HashMap requ) throws Exception{
 		//1. Llamo los servicios
 		LoginService logService = new LoginService();
+		// Servicio para acceder al id Persona
+		UsuarioService userService = new UsuarioService();
+		// Servicio para traer el objeto persona por ID
+		PersonaService personaService = new PersonaService();
+		
+		Persona persona;
+		
 		String mensaje;
 		
 		//2 Construir response 
 		HashMap map = new HashMap<>();
 		
+		String email = requ.get("correo").toString();
 		try {			
-			String email = requ.get("correo").toString();
 			String pwd = requ.get("contrasenia").toString();
 			
 			System.out.println("email: "+email+", pwd: "+pwd);
@@ -49,8 +59,10 @@ public class LoginApi {
 		}else {			
 			map.put("msg", "OK");
 			// Se debe de construir un Response Builder
-			map.put("data", "Inicio de sesion exitoso..");
-			return Response.status(Status.OK).header("Authorization","Bearer "+ mensaje).entity(map).build();
+			map.put("data_tokn", mensaje);
+			persona = personaService.get(userService.findUserbyEmail(email).getIdPersona());
+			map.put("persona", persona.getApellido()+" "+persona.getNombre());
+			return Response.status(Status.OK).entity(map).build();
 		}
 				
 //		return Response.ok(map).build();

@@ -127,7 +127,7 @@ public class PersonaApi {
 
         try {
             PersonaService ps = new PersonaService();
-            ps.setPersona(ps.get(Integer.parseInt(map.get("idRol").toString())));
+            ps.setPersona(ps.get(Integer.parseInt(map.get("id").toString())));
             ps.getPersona().setNombre(map.get("nombre").toString());
             ps.getPersona().setApellido(map.get("apellido").toString());
             ps.getPersona().setCelular(map.get("celular").toString());
