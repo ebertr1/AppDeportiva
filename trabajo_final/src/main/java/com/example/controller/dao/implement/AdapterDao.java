@@ -24,7 +24,14 @@ public class AdapterDao <T> implements InterfazDao<T> {
         LinkedList<T> list = new LinkedList<>();
         try {
             String data = readFile();
+            if (data == null) { // Si data es null
+				data = "[]";
+			}
             T[] matrix = (T[]) g.fromJson(data, java.lang.reflect.Array.newInstance(clazz, 0).getClass());
+            // Verificamos si el arreglo es null, en cuyo caso lo tratamos como vacío
+            if (matrix == null) {
+                matrix = (T[]) java.lang.reflect.Array.newInstance(clazz, 0);
+            }
             list.toList(matrix);
         } catch (Exception e) {
             e.printStackTrace();

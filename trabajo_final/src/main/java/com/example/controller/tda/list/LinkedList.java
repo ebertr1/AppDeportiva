@@ -155,7 +155,8 @@ public class LinkedList<E> {
     }
 
     public E delete(Integer post) throws ListEmptyException {
-        if (isEmpty()) {
+        
+    	if (isEmpty()) {
             throw new ListEmptyException("Error, lista vacía");
         } else if (post < 0 || post >= size) {
             throw new IndexOutOfBoundsException("Error, fuera de rango");
