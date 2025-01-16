@@ -24,6 +24,10 @@ public class EncuentroServices {
         this.encuentro = encuentro;
     }
 
+    public void getEncuentro(Encuentro encuentro) {
+        this.encuentro = encuentro;
+    }
+
     public LinkedList<Encuentro> listAll() {
         return encuentroDao.getListAll();
     }
@@ -83,5 +87,6 @@ public class EncuentroServices {
     public LinkedList<Encuentro> buscarPorHoraInicio(String horaInicio) {
         return encuentroDao.buscarPorHoraInicio(horaInicio);
     }
-    
+
+   
 }

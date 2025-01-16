@@ -95,3 +95,48 @@ def delete_resultado(id):
         flash("No se pudo eliminar el resultado.", category='error')
     
     return redirect(url_for('routerResultado.listResultado'))
+
+@routerResultado.route('/admin/resultado/buscar')
+def buscar_resultado():
+    equipoGanador = request.args.get('EquipoGanador')
+    equipoPededor = request.args.get('EquipoPerdedor')
+    golesEquipo1 = request.args.get('GolesEquipo1')
+    golesEquipo2 = request.args.get('GolesEquipo2')
+    puntosEncuentro = request.args.get('PuntosEncuentro')
+    
+    params = {}
+
+    if equipoGanador:
+        params['equipoGanador'] = equipoGanador
+    if equipoPerdedor:
+        params['equipoPerdedor'] = equipoPerdedor
+    if golesEquipo1:
+        params['golesEquipo1'] = golesEquipo1
+    if golesEquipo2:
+        params['golesEquipo2'] = golesEquipo2
+    if empate:
+        params['empate'] = empate
+    if puntosEncuentro:
+        params['puntosEncuentro'] = puntosEncuentro
+   
+
+    try:
+        response = requests.get('http://localhost:8078/myapp/resultado/buscar', params=params)
+        return jsonify(response.json())
+    except Exception as e:
+        return jsonify({'msg': 'Error', 'data': str(e)}), 500
+
+# ordenar encuentros
+@routerResultado.route('/admin/infraccion/ordenar')
+def ordenar_encuentros():
+    order_by = request.args.get('by')
+    direction = request.args.get('direction')
+
+    try:
+        response = requests.get(
+            'http://localhost:8078/myapp/resultado/ordenar',
+            params={'by': order_by, 'direction': direction}
+        )
+        return jsonify(response.json())
+    except Exception as e:
+        return jsonify({'msg': 'Error', 'data': str(e)}), 500

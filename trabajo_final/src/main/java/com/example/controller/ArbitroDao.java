@@ -97,4 +97,55 @@ public class ArbitroDao extends AdapterDao<Arbitro> {
         return arbitros;
     }
 
+    public LinkedList<Arbitro> buscarPorNombre(String nombre) {
+        LinkedList<Arbitro> resultados = new LinkedList<>();
+        for (Arbitro arbitro : getListAll().toArray()) {
+            if (arbitro.getNombre().equalsIgnoreCase(nombre)) {
+                resultados.add(arbitro);
+            }
+        }
+        return resultados;
+    }
+
+    public LinkedList<Arbitro> buscarPorApellido(String apellido) {
+        LinkedList<Arbitro> resultados = new LinkedList<>();
+        for (Arbitro arbitro : getListAll().toArray()) {
+            if (arbitro.getApellido().equalsIgnoreCase(apellido)) {
+                resultados.add(arbitro);
+            }
+        }
+        return resultados;
+    }
+
+    public LinkedList<Arbitro> buscarPorIdentificacion(String identificacion) {
+        LinkedList<Arbitro> resultados = new LinkedList<>();
+        for (Arbitro arbitro : getListAll().toArray()) {
+            if (arbitro.getIdentificacion().equalsIgnoreCase(identificacion)) {
+                resultados.add(arbitro);
+            }
+        }
+        return resultados;
+    }
+
+    public LinkedList<Arbitro> buscarPorAsociacion(String asociacion) {
+        LinkedList<Arbitro> resultados = new LinkedList<>();
+        for (Arbitro arbitro : getListAll().toArray()) {
+            if (arbitro.getAsociacion().equalsIgnoreCase(asociacion)) {
+                resultados.add(arbitro);
+            }
+        }
+        return resultados;
+    }
+
+    public LinkedList<Arbitro> buscarPorGenero(String genero) {
+        LinkedList<Arbitro> resultados = new LinkedList<>();
+        for (Arbitro arbitro : getListAll().toArray()) {
+            if (arbitro.getGenero().toString().equalsIgnoreCase(genero)) {
+                resultados.add(arbitro);
+            }
+        }
+        return resultados;
+    }
+
+
 }

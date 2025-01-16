@@ -95,3 +95,45 @@ def delete_encuentro(id):
         flash("No se pudo eliminar el encuentro.", category='error')
     
     return redirect(url_for('routerEncuentro.list'))
+
+@routerEncuentro.route('/admin/encuentro/buscar')
+def buscar_encuentros():
+    idInscrito1 = request.args.get('idInscrito1')
+    idInscrito2 = request.args.get('idInscrito2')
+    ubicacion = request.args.get('ubicacion')
+    identificacion = request.args.get('identificacion')
+    horaInicio = request.args.get('horaInicio')
+
+    params = {}
+    
+    if idInscrito1:
+        params['idInscrito1'] = idInscrito1
+    if idInscrito2:
+        params['idInscrito2'] = idInscrito2
+    if ubicacion:
+        params['ubicacion'] = ubicacion
+    if identificacion:
+        params['identificacion'] = identificacion
+    if horaInicio:
+        params['horaInicio'] = horaInicio   
+
+    try:
+        response = requests.get('http://localhost:8078/myapp/encuentro/buscar', params=params)
+        return jsonify(response.json())
+    except Exception as e:
+        return jsonify({'msg': 'Error', 'data': str(e)}), 500
+
+# ordenar encuentros
+@routerEncuentro.route('/admin/encuentro/ordenar')
+def ordenar_encuentros():
+    order_by = request.args.get('by')
+    direction = request.args.get('direction')
+
+    try:
+        response = requests.get(
+            'http://localhost:8078/myapp/encuentro/ordenar',
+            params={'by': order_by, 'direction': direction}
+        )
+        return jsonify(response.json())
+    except Exception as e:
+        return jsonify({'msg': 'Error', 'data': str(e)}), 500

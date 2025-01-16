@@ -139,7 +139,6 @@ public class JugadorApi {
 
         try {
             JugadorServices js = new JugadorServices();
-<<<<<<< HEAD
             js.setJugador(js.get(Integer.parseInt(map.get("idJugador").toString())));
             js.getJugador().setNombre(map.get("nombre").toString());
             js.getJugador().setApellido(map.get("apellido").toString());
@@ -154,14 +153,6 @@ public class JugadorApi {
                 Date fechaNacimiento = dateFormat.parse(fechaNacimientoStr);
                 js.getJugador().setFechaNacimiento(fechaNacimiento);
             }
-=======
-            
-            js.setJugador(js.get(Integer.parseInt(map.get("id").toString())));
-            js.getJugador().setNombre(map.get("nombre").toString());
-            js.getJugador().setApellido(map.get("apellido").toString());
-            js.getJugador().setCelular(map.get("celular").toString());
-            js.getJugador().setNumCamiseta(Integer.parseInt(map.get("numCamiseta").toString()));
->>>>>>> main
             js.update();
             res.put("msg", "Ok");
             res.put("data", "Guardado correctamente");
@@ -188,11 +179,7 @@ public class JugadorApi {
 
         try {
             JugadorServices js = new JugadorServices();
-<<<<<<< HEAD
             Integer id = Integer.parseInt(map.get("idJugador").toString());
-=======
-            Integer id = Integer.parseInt(map.get("id").toString());
->>>>>>> main
 
             Boolean success = js.delete(id);
             if (success) {

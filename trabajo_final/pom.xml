@@ -59,68 +59,6 @@
             <scope>test</scope>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
-<<<<<<< HEAD
-	    <dependency>
-	        <groupId>org.apache.commons</groupId>
-	        <artifactId>commons-lang3</artifactId>
-	        <version>3.17.0</version>
-	    </dependency>
-	
-	    <dependency>
-		    <groupId>com.fasterxml.jackson.core</groupId>
-		    <artifactId>jackson-annotations</artifactId>
-		    <version>2.12.2</version>
-	    </dependency>
-	    
-	     <dependency>
-	        <groupId>junit</groupId>
-	        <artifactId>junit</artifactId>
-	        <version>4.13.2</version>
-	        <scope>test</scope>
-	    </dependency>
-	
-	    <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
-		<dependency>
-		    <groupId>com.google.code.gson</groupId>
-		    <artifactId>gson</artifactId>
-		    <version>2.11.0</version>
-		</dependency>
-	
-	    <dependency>
-		    <groupId>org.glassfish.jersey.media</groupId>
-		    <artifactId>jersey-media-json-jackson</artifactId>
-		    <scope>runtime</scope>
-	    </dependency>
-	    
-	        <!-- Dependencia para trabajar con JWT -->
-	    <!-- https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-api -->
-		<dependency>
-		    <groupId>io.jsonwebtoken</groupId>
-		    <artifactId>jjwt-api</artifactId>
-		    <version>0.11.2</version>
-		</dependency>
-		<dependency>
-		    <groupId>io.jsonwebtoken</groupId>
-		    <artifactId>jjwt-impl</artifactId>
-		    <version>0.11.2</version>
-		    <scope>runtime</scope>
-		</dependency>
-		<dependency>
-		    <groupId>io.jsonwebtoken</groupId>
-		    <artifactId>jjwt-gson</artifactId>
-		    <version>0.11.2</version>
-		    <scope>runtime</scope>
-		</dependency>
-	  
-	    <!-- https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt -->
-	    
-	    <!-- Dependencia para manejo de seguridad de contraseñas -->
-	    <dependency>
-	        <groupId>org.mindrot</groupId>
-	        <artifactId>jbcrypt</artifactId>
-	        <version>0.4</version>
-	    </dependency>
-=======
     <dependency>
         <groupId>org.apache.commons</groupId>
         <artifactId>commons-lang3</artifactId>
@@ -152,7 +90,6 @@
     <artifactId>jersey-media-json-jackson</artifactId>
     <scope>runtime</scope>
     </dependency>
->>>>>>> main
 
 
     </dependencies>

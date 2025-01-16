@@ -1,6 +1,7 @@
 package com.example.models;
 
 public class Resultado {
+
     private Integer id;
     private String equipoGanador;
     private String equipoPerdedor;
@@ -9,7 +10,12 @@ public class Resultado {
     private Boolean empate;
     private Integer puntosEncuentro;
 
+    private Encuentro encuentro;
+
+
     public Resultado() {
+
+
     }
 
     public Resultado(Integer id, String equipoGanador, String equipoPerdedor, Integer golesEquipo1, Integer golesEquipo2, Boolean empate, Integer puntosEncuentro) {
@@ -77,5 +83,11 @@ public class Resultado {
     public void setPuntosEncuentro(Integer puntosEncuentro) {
         this.puntosEncuentro = puntosEncuentro;
     }
+
+    public Encuentro getEncuentro() {
+        return encuentro;
+    }
+
+    
 
 }

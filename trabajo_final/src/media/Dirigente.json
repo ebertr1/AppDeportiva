@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 [
     {
         "aniosExperiencia": 12,
@@ -12,6 +11,3 @@
         "genero": "MASCULINO"
     }
 ]
-=======
-[{"aniosExperiencia":12,"idEquipo":1,"id":1,"nombre":"Joel","apellido":"Jimenez","tipo":"CEDULA","identificacion":"1150096681","fechaNacimiento":"Jan 12, 2003, 12:00:00 AM","celular":"0989883012","genero":"MASCULINO","activo":false}]
->>>>>>> main

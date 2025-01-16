@@ -75,19 +75,19 @@ public class ArbitroApi {
         System.out.println("***** " + a);
 
         try {
-                ArbitroServices as = new ArbitroServices();
-                as.getArbitro().setNombre(map.get("nombre").toString());
-                as.getArbitro().setApellido(map.get("apellido").toString());
-                as.getArbitro().setIdentificacion(map.get("identificacion").toString());
-                as.getArbitro().setCelular(map.get("celular").toString());
-                as.getArbitro().setGenero(Genero.valueOf(map.get("genero").toString()));
-                as.getArbitro().setAsociacion(map.get("asociacion").toString());
-                if (map.containsKey("fechaNacimiento") && map.get("fechaNacimiento") != null) {
-                    String fechaNacimientoStr = map.get("fechaNacimiento").toString();
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-                    java.util.Date utilDate = dateFormat.parse(fechaNacimientoStr);
-                    Date fechaNacimiento = new Date(utilDate.getTime());
-                    as.getArbitro().setFechaNacimiento(fechaNacimiento);
+            ArbitroServices as = new ArbitroServices();
+            as.getArbitro().setNombre(map.get("nombre").toString());
+            as.getArbitro().setApellido(map.get("apellido").toString());
+            as.getArbitro().setIdentificacion(map.get("identificacion").toString());
+            as.getArbitro().setCelular(map.get("celular").toString());
+            as.getArbitro().setGenero(Genero.valueOf(map.get("genero").toString()));
+            as.getArbitro().setAsociacion(map.get("asociacion").toString());
+            if (map.containsKey("fechaNacimiento") && map.get("fechaNacimiento") != null) {
+                String fechaNacimientoStr = map.get("fechaNacimiento").toString();
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                java.util.Date utilDate = dateFormat.parse(fechaNacimientoStr);
+                Date fechaNacimiento = new Date(utilDate.getTime());
+                as.getArbitro().setFechaNacimiento(fechaNacimiento);
             }
             as.save();
             res.put("msg", "Ok");
