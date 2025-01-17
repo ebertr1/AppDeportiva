@@ -6,14 +6,14 @@ import com.example.models.enumerador.TipoCategoria;
 public class Campeonato {
     private Integer id;
     private String nombre;
-    private Date fechaInicio;
-    private Date fechaFin;
+    private String fechaInicio;
+    private String fechaFin;
     private TipoCategoria categoria;
 
     public Campeonato() {
     }
 
-    public Campeonato(Integer id, String nombre, Date fechaInicio, Date fechaFin, TipoCategoria categoria) {
+    public Campeonato(Integer id, String nombre, String fechaInicio, String fechaFin, TipoCategoria categoria) {
         this.id = id;
         this.nombre = nombre;
         this.fechaInicio = fechaInicio;
@@ -37,19 +37,19 @@ public class Campeonato {
         this.nombre = nombre;
     }
 
-    public Date getFechaInicio() {
+    public String getFechaInicio() {
         return fechaInicio;
     }
 
-    public void setFechaInicio(Date fechaInicio) {
+    public void setFechaInicio(String fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
 
-    public Date getFechaFin() {
+    public String getFechaFin() {
         return fechaFin;
     }
 
-    public void setFechaFin(Date fechaFin) {
+    public void setFechaFin(String fechaFin) {
         this.fechaFin = fechaFin;
     }
 

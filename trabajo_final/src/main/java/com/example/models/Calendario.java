@@ -3,13 +3,13 @@ import java.util.Date;
 
 public class Calendario {
     private Integer id;
-    private Date fechaJornada;
+    private String fechaJornada;
     private Integer nroEncuentros;
 
     public Calendario() {
     }
 
-    public Calendario(Integer id, Date fechaJornada, Integer nroEncuentros) {
+    public Calendario(Integer id, String fechaJornada, Integer nroEncuentros) {
         this.id = id;
         this.fechaJornada = fechaJornada;
         this.nroEncuentros = nroEncuentros;
@@ -23,11 +23,11 @@ public class Calendario {
         this.id = id;
     }
 
-    public Date getFechaJornada() {
+    public String getFechaJornada() {
         return fechaJornada;
     }
 
-    public void setFechaJornada(Date fechaJornada) {
+    public void setFechaJornada(String fechaJornada) {
         this.fechaJornada = fechaJornada;
     }
 

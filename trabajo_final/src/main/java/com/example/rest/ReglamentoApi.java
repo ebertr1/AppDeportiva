@@ -1,7 +1,5 @@
 package com.example.rest;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 
 import javax.ws.rs.Consumes;
@@ -15,13 +13,10 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-import com.example.controller.dao.services.PersonaService;
 import com.example.controller.dao.services.ReglamentoService;
-import com.example.models.Inscripcion;
-import com.example.models.Reglamento;
+
 import com.example.models.enumerador.Formato;
-import com.example.models.enumerador.Genero;
-import com.example.models.enumerador.TipoIdentificacion;
+
 import com.google.gson.Gson;
 
 @Path("reglamento")

@@ -7,8 +7,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import com.example.controller.dao.services.ReglamentoService;
-import com.example.models.enumerador.Formato;
+import com.example.controller.dao.services.CampeonatoService;
+import com.example.models.enumerador.TipoCategoria;
 
 @Path("myresource")
 public class MyResource {
@@ -17,19 +17,26 @@ public class MyResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getIt() {
         Map<String, Object> mapa = new HashMap<>();
-        ReglamentoService pd = new ReglamentoService(); 
+        CampeonatoService pd = new CampeonatoService();
         String aux = "";
-        
+
         try {
             // Verificamos si la lista de reglamentos está vacía
-            aux = "La lista de Reglamentos está vacía: " + pd.listAll().isEmpty();
+            aux = "La lista de Calendario está vacía: " + pd.listAll().isEmpty();
 
             // Crear y asignar datos al reglamento
-            pd.getReglamento().setNombreReglamento("Pepes");
-            pd.getReglamento().setDescripcion("Reglamento de Pepes");
-            
-            // Asignar uno de los valores del enum Formato, por ejemplo, "ELIMINACION"
-            pd.getReglamento().setFormato(Formato.ELIMINACION);
+            pd.getCampeonato().setNombre("Nombre de prueba");
+            pd.getCampeonato().setFechaInicio("2025-01-01");
+            pd.getCampeonato().setFechaFin("2025-12-31");
+
+            // Asignar una categoría válida del enum
+            String categoriaStr = "MASCULINO"; // Puede cambiarse a "FEMENINA" según la necesidad
+            try {
+                TipoCategoria categoria = TipoCategoria.valueOf(categoriaStr.toUpperCase());
+                pd.getCampeonato().setCategoria(categoria);
+            } catch (IllegalArgumentException e) {
+                throw new Exception("La categoría proporcionada no es válida. Valores permitidos: MASCULINO, FEMENINA.");
+            }
 
             // Guardar el reglamento
             pd.save();
