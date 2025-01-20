@@ -3,6 +3,11 @@ package com.example.controller.dao;
 import com.example.controller.dao.implement.AdapterDao;
 import com.example.controller.tda.list.LinkedList;
 import com.example.models.Calendario;
+<<<<<<< HEAD
+=======
+
+import com.example.models.Campeonato;
+>>>>>>> origin/feature/JoseRiofrio
 
 public class CalendarioDao extends AdapterDao<Calendario>{
     private Calendario calendario;
@@ -44,4 +49,23 @@ public class CalendarioDao extends AdapterDao<Calendario>{
         this.listAll = listAll();
         return true;
     }
+<<<<<<< HEAD
+=======
+
+
+    public Boolean delete(Integer id) throws Exception {
+        LinkedList<Calendario> list = getListAll();
+        Calendario calendario = get(id);
+        if (calendario != null) {
+            list.remove(calendario);
+            String info = g.toJson(list.toArray());
+            saveFile(info);
+            this.listAll = list;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+>>>>>>> origin/feature/JoseRiofrio
 }
