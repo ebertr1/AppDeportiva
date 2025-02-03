@@ -1,8 +1,12 @@
 package com.example.controller.dao.services;
 
-
+import com.example.controller.dao.PersonaDao;
 import com.example.controller.dao.UsuarioDao;
 import com.example.controller.tda.list.LinkedList;
+<<<<<<< HEAD:AppDeportiva/trabajo_final/src/main/java/com/example/controller/dao/services/UsuarioService.java
+=======
+import com.example.models.Persona;
+>>>>>>> origin/feature/JoseRiofrio:trabajo_final/src/main/java/com/example/controller/dao/services/UsuarioService.java
 import com.example.models.Usuario;
 
 public class UsuarioService {

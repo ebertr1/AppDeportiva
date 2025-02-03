@@ -50,6 +50,7 @@ public class EquipoDao extends AdapterDao<Equipo> {
         }
     }
 
+<<<<<<< HEAD:AppDeportiva/trabajo_final/src/main/java/com/example/controller/dao/EquipoDao.java
 	public Boolean deleteEquipo(Integer id) throws Exception {
     	try {
 			this.delete(id);
@@ -58,5 +59,20 @@ public class EquipoDao extends AdapterDao<Equipo> {
 			// TODO: handle exception
 			return false;
 		}
+=======
+    public Boolean delete(Integer id) throws Exception {
+        LinkedList<Equipo> list = getlistAll();
+        Equipo equipo = get(id);
+        if (equipo != null) {
+            list.remove(equipo);
+            String info = g.toJson(list.toArray());
+            saveFile(info);
+            this.listAll = list;
+            return true;
+        } else {
+            System.out.println("Persona con id " + id + " no encontrada.");
+            return false;
+        }
+>>>>>>> origin/feature/JoseRiofrio:trabajo_final/src/main/java/com/example/controller/dao/EquipoDao.java
     }
 }

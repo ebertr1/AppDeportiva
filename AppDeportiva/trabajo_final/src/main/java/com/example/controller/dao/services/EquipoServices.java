@@ -38,5 +38,9 @@ public class EquipoServices {
     public Equipo get(Integer id) throws Exception {
         return obj.get(id);
     }
+<<<<<<< HEAD:AppDeportiva/trabajo_final/src/main/java/com/example/controller/dao/services/EquipoServices.java
 
+=======
+    
+>>>>>>> origin/feature/JoseRiofrio:trabajo_final/src/main/java/com/example/controller/dao/services/EquipoServices.java
 }

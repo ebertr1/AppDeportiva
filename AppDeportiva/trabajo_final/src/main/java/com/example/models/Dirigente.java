@@ -18,7 +18,11 @@ public class Dirigente extends Persona {
     public Dirigente() {
     }
 
+<<<<<<< HEAD:AppDeportiva/trabajo_final/src/main/java/com/example/models/Dirigente.java
 
+=======
+    
+>>>>>>> origin/feature/JoseRiofrio:trabajo_final/src/main/java/com/example/models/Dirigente.java
     public Integer getAniosExperiencia() {
         return aniosExperiencia;
     }

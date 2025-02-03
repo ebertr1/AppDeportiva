@@ -49,4 +49,9 @@ public class Infraccion {
     public void setColorTarjeta(ColorTarjeta colorTarjeta) {
         this.colorTarjeta = colorTarjeta;
     }
+
+    public void setTipo(String string) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setTipo'");
+    }
 }
