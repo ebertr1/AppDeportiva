@@ -1,8 +1,11 @@
 package com.example.controller.dao;
 
+import java.util.List;
+
 import com.example.controller.dao.implement.AdapterDao;
 import com.example.controller.tda.list.LinkedList;
 import com.example.models.Campeonato;
+import com.example.models.Reglamento;
 
 public class CampeonatoDao extends AdapterDao<Campeonato> {
 
@@ -31,11 +34,26 @@ public class CampeonatoDao extends AdapterDao<Campeonato> {
         return listAll;
     }
 
+    // Método para obtener los reglamentos de un campeonato
+  
+
+    // Método para agregar un reglamento a un campeonato
+    public Boolean addReglamentoToCampeonato(Integer campeonatoId, Reglamento reglamento) throws Exception {
+        Campeonato campeonato = get(campeonatoId);
+        if (campeonato != null) {
+            campeonato.addReglamento(reglamento); // Agrega el reglamento a la lista de reglamentos del campeonato
+            this.merge(campeonato, campeonatoId - 1); // Guarda el campeonato actualizado
+            return true;
+        }
+        return false;
+    }
+
+    // Método para guardar un campeonato con sus reglamentos
     public Boolean save() throws Exception {
         LinkedList<Campeonato> currentList = getlistAll(); // Obtén la lista actual
         Integer id = currentList.getSize() + 1; // Calcula el ID
         campeonato.setId(id); // Establece el ID de la inscripción
-        this.persist(this.campeonato); // Persiste la inscripción
+        this.persist(this.campeonato); // Persiste el campeonato
         this.listAll = currentList; // Actualiza la lista
         return true;
     }
@@ -61,8 +79,28 @@ public class CampeonatoDao extends AdapterDao<Campeonato> {
             this.listAll = list;
             return true;
         } else {
-            System.out.println("Inscripción con id " + id + " no encontrada.");
+            System.out.println("Campeonato con id " + id + " no encontrado.");
             return false;
         }
     }
+    // Método para obtener los reglamentos de un campeonato
+public LinkedList<Reglamento> getReglamentosDeCampeonato(Integer campeonatoId) throws Exception {
+    Campeonato campeonato = get(campeonatoId);  // Obtener el campeonato por su ID
+    if (campeonato != null) {
+        // Supongamos que campeonato.getReglamentos() devuelve un List<Reglamento>
+        List<Reglamento> listaDeReglamentos = campeonato.getReglamentos(); 
+
+        // Convertir la lista de reglamentos (List<Reglamento>) a LinkedList<Reglamento>
+        LinkedList<Reglamento> reglamentos = new LinkedList<>();
+        for (Reglamento reglamento : listaDeReglamentos) {
+            reglamentos.add(reglamento); // Agregar cada reglamento al LinkedList
+        }
+        
+        return reglamentos;  // Devolver la lista convertida
+    }
+    
+    // Si no encuentra el campeonato, devuelve una lista vacía
+    return new LinkedList<>(); 
+}
+
 }

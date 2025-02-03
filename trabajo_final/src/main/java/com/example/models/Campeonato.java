@@ -1,5 +1,6 @@
 package com.example.models;
 import java.util.Date;
+import java.util.List;
 
 import com.example.models.enumerador.TipoCategoria;
 
@@ -9,10 +10,15 @@ public class Campeonato {
     private String fechaInicio;
     private String fechaFin;
     private TipoCategoria categoria;
+    private List<Calendario> calendarios; // Relación 1:N con Calendario
+    private List<Reglamento> reglamentos; // Relación 1:N con Reglamento
+
+
 
     public Campeonato() {
     }
 
+   //constructor
     public Campeonato(Integer id, String nombre, String fechaInicio, String fechaFin, TipoCategoria categoria) {
         this.id = id;
         this.nombre = nombre;
@@ -20,7 +26,30 @@ public class Campeonato {
         this.fechaFin = fechaFin;
         this.categoria = categoria;
     }
+    
+    public List<Calendario> getCalendarios() {
+        return calendarios;
+    }
 
+    public void setCalendarios(List<Calendario> calendarios) {
+        this.calendarios = calendarios;
+    }
+
+    public void addCalendario(Calendario calendario) {
+        this.calendarios.add(calendario);
+    }
+    public void addReglamento(Reglamento reglamento) {
+        this.reglamentos.add(reglamento);
+    }
+
+
+    public List<Reglamento> getReglamentos() {
+        return reglamentos;
+    }
+
+    public void setReglamentos(List<Reglamento> reglamentos) {
+        this.reglamentos = reglamentos;
+    }
     public Integer getId() {
         return id;
     }

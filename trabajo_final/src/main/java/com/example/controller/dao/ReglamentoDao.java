@@ -65,4 +65,17 @@ public class ReglamentoDao extends AdapterDao<Reglamento> {
             return false;
         }
     }
+
+    public Boolean associateWithCampeonato(Integer reglamentoId, Integer campeonatoId) throws Exception {
+        Reglamento reglamento = get(reglamentoId);
+        if (reglamento != null) {
+            // Establecer el campeonato relacionado en el reglamento
+            reglamento.setIdCampeonato(campeonatoId);
+            this.merge(reglamento, reglamentoId);
+            return true;
+        }
+        return false;
+    }
+
 }
+

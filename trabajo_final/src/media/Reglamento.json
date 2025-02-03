@@ -1,1 +1,14 @@
-[{"id":1,"nombreReglamento":"Pepes","descripcion":"Reglamento de Pepes","formato":"ELIMINACION"},{"id":2,"nombreReglamento":"Reglamento de Ejemplo","descripcion":"Descripción del reglamento","formato":"ELIMINACION"}]
+[
+    {
+        "id": 1,
+        "nombreReglamento": "Pepes",
+        "descripcion": "Reglamento de Pepes",
+        "formato": "ELIMINACION"
+    },
+    {
+        "id": 2,
+        "nombreReglamento": "Reglamento de Ejemplo",
+        "descripcion": "Descripciï¿½n del reglamento",
+        "formato": "ELIMINACION"
+    }
+]
